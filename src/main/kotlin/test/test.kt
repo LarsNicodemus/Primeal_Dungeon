@@ -4,7 +4,6 @@ import character.heroes.Savior
 import character.villains.DemonLord
 import character.villains.FirstHeavenlyKing
 import character.villains.SecondHeavenlyKing
-import character.villains.Villan
 
 fun main() {
     var demonLord: DemonLord = DemonLord("Lilith")
@@ -13,7 +12,7 @@ fun main() {
     var savior3 : Savior = Savior("Berta")
     var firstHeavenlyKing = FirstHeavenlyKing("Jupiter")
     var firstHeavenlyKing2 = SecondHeavenlyKing("Mercure")
-
+    println(demonLord)
 //    println(savior.hp)
 //    println(firstHeavenlyKing.magicAttack(savior))
 //    demonLord.darkSword(savior)
@@ -27,7 +26,15 @@ fun main() {
 //demonLord.hellFlame(savior)
 //    println(savior.hp)
 
-    firstHeavenlyKing2.eternalIce(savior)
-    savior.darkSword(firstHeavenlyKing2)
-
+//    firstHeavenlyKing2.eternalIce(firstHeavenlyKing2)
+//    savior.darkSword(firstHeavenlyKing2)
+//    firstHeavenlyKing2.void(listOf(savior,savior2,savior3))
+//    println(savior.hp)
+//    println(savior2.hp)
+//    println(savior3.hp)
+//    savior.block(savior)
+//    firstHeavenlyKing.bloodRain(listOf(savior,savior2,savior3))
+//    println(savior.hp)
+//    println(savior2.hp)
+//    println(savior3.hp)
 }

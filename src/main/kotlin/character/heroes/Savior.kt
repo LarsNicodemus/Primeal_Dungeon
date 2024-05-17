@@ -1,21 +1,29 @@
 package character.heroes
 
 import character.villains.Villain
+import utils.roundDouble
 
 class Savior(name: String) : Hero(name) {
-    init {
-        this.hp = 70.0 + Math.random() * (100.0 - 70.0)
+
+    override fun toString(): String {
+        return """
+            Savior $name
+            Health Points ${roundDouble(hp)}
+            Attack Power ${roundDouble(attackPower)}
+        """.trimIndent()
     }
 
-    fun darkSword(opponent: Villain) {
-        attackPower = (20..40).random()
-        if (opponent.shield > 0) {
-            println("Attack was blocked! No damage taken.")
-
-        } else {
-
-            super.swordAttack(opponent, attackPower)
-            println("Demonlord $name used Dark Sword on ${opponent.name} and inflicted $attackPower damage.")
-        }
+    fun holyLight(opponent: List<Villain>) {
+        var unblockedOpponents = opponent.filter { it.shield <= 0 }
+        var blockedOpponents = opponent.filter { it.shield > 0 }
+        attackPower = actualAttackPower(attackPower,attackFactor,0.39,0.4)
+        if (unblockedOpponents.isNotEmpty()) {
+            var totalDamage = unblockedOpponents.sumOf {
+                super.magicAttack(it, attackPower)
+                attackPower
+            }
+            println("Savior $name used Holy Light on ${unblockedOpponents.joinToString { it.name }} and inflicted ${roundDouble(totalDamage)} total damage and ${roundDouble(attackPower)} to each.")
+            println(if (blockedOpponents.isNotEmpty()) "${blockedOpponents.joinToString { it.name }} blocked and took no Damage." else "")
+        } else println("All attacks were blocked! No damage taken.")
     }
 }

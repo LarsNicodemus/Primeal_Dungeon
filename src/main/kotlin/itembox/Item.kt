@@ -1,0 +1,4 @@
+package itembox
+
+class Item {
+}

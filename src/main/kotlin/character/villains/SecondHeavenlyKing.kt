@@ -3,12 +3,10 @@ package character.villains
 import character.heroes.Hero
 
 class SecondHeavenlyKing(name: String) : Villain(name) {
-    init {
-        this.hp = 70.0 + Math.random() * (100.0 - 70.0)
-    }
+
 
     fun void(opponent: List<Hero>) {
-        attackPower = (10..30).random()
+        attackPower = actualAttackPower(attackPower,attackFactor,0.1,0.3)
         opponent.forEach { super.magicAttack(it, attackPower) }
         println("Second Heavenly King $name used Void on ${opponent.joinToString(", ") { it.name }} and inflicted $attackPower damage to each.")
     }
@@ -21,13 +19,13 @@ class SecondHeavenlyKing(name: String) : Villain(name) {
     }
 
     fun gravityBomb(opponent: Hero) {
-        attackPower = (15..35).random()
+        attackPower = actualAttackPower(attackPower,attackFactor,0.15,0.35)
         super.magicAttack(opponent, attackPower)
         println("Demonlord $name used Gravity Bomb on ${opponent.name} and inflicted $attackPower damage.")
     }
 
     fun rulersGrip(opponent: Hero) {
-        attackPower = (25..35).random()
+        attackPower = actualAttackPower(attackPower,attackFactor,0.25,0.35)
         super.swordAttack(opponent, attackPower)
         println("Demonlord $name used Ruler's Grip on ${opponent.name} and inflicted $attackPower damage.")
     }

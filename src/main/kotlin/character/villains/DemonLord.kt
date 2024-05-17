@@ -1,6 +1,7 @@
 package character.villains
 
 import character.heroes.Hero
+import utils.roundDouble
 
 /**The DemonLord Class is child to Villain and one of the playable characters.
  * @constructor creates a Demonlord with a name
@@ -11,57 +12,54 @@ import character.heroes.Hero
  * @see shield
  * */
 
-class DemonLord(name: String) : Villain(name, hp = 0.0) {
-    init {
-        hp = 70.0 + Math.random() * (100.0 - 70.0)
+class DemonLord(name: String) : Villain(name) {
 
-    }
 
     override fun toString(): String {
         return """
             Demonlord $name
-            Health Points $hp
-            Attack Power $attackPower
+            Health Points ${roundDouble(hp)}
+            Attack Power ${roundDouble(attackPower)}
         """.trimIndent()
     }
 
     fun darkSword(opponent: Hero) {
-        attackPower = (20..40).random()
+        attackPower = actualAttackPower(attackPower, attackFactor, 0.2, 0.4)
         if (opponent.shield > 0) {
             println("Attack was blocked! No damage taken.")
         } else {
             super.swordAttack(opponent, attackPower)
-            println("Demonlord $name used Dark Sword on ${opponent.name} and inflicted $attackPower damage.")
+            println("Demonlord $name used Dark Sword on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.")
         }
     }
 
     fun hellFlame(opponent: Hero) {
-        attackPower = (30..55).random()
+        attackPower = actualAttackPower(attackPower, attackFactor, 0.2, 0.55)
         if (opponent.shield > 0) {
             println("Attack was blocked! No damage taken.")
         } else {
             super.magicAttack(opponent, attackPower)
-            println("Demonlord $name used Hell Flame on ${opponent.name} and inflicted $attackPower damage.")
+            println("Demonlord $name used Hell Flame on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.")
         }
     }
 
     fun gravityBomb(opponent: Hero) {
-        attackPower = (15..35).random()
+        attackPower = actualAttackPower(attackPower, attackFactor, 0.15, 0.35)
         if (opponent.shield > 0) {
             println("Attack was blocked! No damage taken.")
         } else {
             super.magicAttack(opponent, attackPower)
-            println("Demonlord $name used Gravity Bomb on ${opponent.name} and inflicted $attackPower damage.")
+            println("Demonlord $name used Gravity Bomb on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.")
         }
     }
 
     fun rulersGrip(opponent: Hero) {
-        attackPower = (25..35).random()
+        attackPower = actualAttackPower(attackPower, attackFactor, 0.25, 0.35)
         if (opponent.shield > 0) {
             println("Attack was blocked! No damage taken.")
         } else {
             super.swordAttack(opponent, attackPower)
-            println("Demonlord $name used Ruler's Grip on ${opponent.name} and inflicted $attackPower damage.")
+            println("Demonlord $name used Ruler's Grip on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.")
         }
     }
 

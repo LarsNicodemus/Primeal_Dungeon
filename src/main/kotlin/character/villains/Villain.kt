@@ -2,24 +2,24 @@ package character.villains
 
 import character.Character
 import character.heroes.Hero
+import utils.randomDouble
+import utils.roundDouble
 
 /** The Villain class is child class to character and mother class to villains. aka. the true Heroes!
  * @constructor creates a Villain with a name and hp
- * @see shield
+ *
  * */
 
-open class Villain(override var name: String, override var hp: Double = 0.0) : Character() {
+open class Villain(name: String) : Character(name) {
+var maxHP = 0.0
+    init {
+        this.hp = randomDouble(70.0,100.0)
+        maxHP = hp
+        this.attackPower = randomDouble(70.0,100.0)
+        this.healPower = 70.0 + Math.random() * (100.0 - 70.0)
+        this.shield = 0
+        this.attackFactor = 1.0
 
-    override var shield: Int = 0
-
-    /**returns a String with information about the villain
-     * */
-    override fun toString(): String {
-        return """
-            $name
-            $hp
-            $attackPower
-        """.trimIndent()
     }
 
     /** Performs a sword attack against an opposing hero.
@@ -28,7 +28,7 @@ open class Villain(override var name: String, override var hp: Double = 0.0) : C
      * The value of attack power will be subtracted from the heroes remaining health points.
      */
 
-    open fun swordAttack(opponent: Hero, attackPower: Int) {
+    open fun swordAttack(opponent: Hero, attackPower: Double) {
         opponent.hp -= attackPower
     }
 
@@ -38,7 +38,7 @@ open class Villain(override var name: String, override var hp: Double = 0.0) : C
      * The value of attack power will be subtracted from the heroes remaining health points.
      */
 
-    open fun magicAttack(opponent: Hero, attackPower: Int) {
+    open fun magicAttack(opponent: Hero, attackPower: Double) {
         opponent.hp -= attackPower
     }
 
@@ -48,7 +48,7 @@ open class Villain(override var name: String, override var hp: Double = 0.0) : C
      * \\\\\The value of heal power will be added to the villains remaining health points.
      */
 
-    open fun heal(healPower: Int, companion: Villain) {
+    open fun heal(healPower: Double, companion: Villain) {
         companion.hp += healPower
     }
 
@@ -69,7 +69,6 @@ open class Villain(override var name: String, override var hp: Double = 0.0) : C
             false
         }
     }
-
 
 
 }

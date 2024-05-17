@@ -2,6 +2,8 @@ package character.villains
 
 import character.Character
 import character.heroes.Hero
+import itembox.ConsumableItem
+import itembox.Item
 import utils.randomDouble
 import utils.roundDouble
 
@@ -11,15 +13,20 @@ import utils.roundDouble
  * */
 
 open class Villain(name: String) : Character(name) {
-var maxHP = 0.0
+    var maxHP = 0.0
+    var maxMP = 0.0
+    var maxRage = 0.0
     init {
         this.hp = randomDouble(70.0,100.0)
         maxHP = hp
+        this.mp = randomDouble(70.0,100.0)
+        maxMP = mp
+        this.rage = randomDouble(70.0,100.0)
+        maxRage = rage
         this.attackPower = randomDouble(70.0,100.0)
         this.healPower = 70.0 + Math.random() * (100.0 - 70.0)
         this.shield = 0
         this.attackFactor = 1.0
-
     }
 
     /** Performs a sword attack against an opposing hero.

@@ -1,11 +1,15 @@
 package test
 
-import character.heroes.Savior
-import character.villains.DemonLord
-import character.villains.FirstHeavenlyKing
-import character.villains.SecondHeavenlyKing
+import character.*
+import character.heroes.*
+import character.villains.*
+import itembox.*
+import utils.*
 
-fun main() {
+public fun main() {
+    var itemBox: MutableList<Item> = mutableListOf()
+    var item = StrengthBooster("SBooster")
+
     var demonLord: DemonLord = DemonLord("Lilith")
     var savior : Savior = Savior("Siegfried")
     var savior2 : Savior = Savior("Theresa")
@@ -15,12 +19,16 @@ fun main() {
 
 
     var sidekick = savior.summoning()
+    demonLord.darkSword(sidekick)
+    println(sidekick)
+    itemBox.add(HealingPotion("HP Potion"))
+    itemBox.add(HealingPotion("HP Potion"))
+    itemBox.add(StrengthBooster("SBooster"))
+    itemBox.add(StrengthBooster("SBooster"))
+    itemBox.add(DarknessBomb("DBomb"))
+    itemBox.add(DarknessBomb("DBomb"))
 
-    println(demonLord)
-    savior.curse(listOf(demonLord))
-    println(demonLord)
-    savior.curse(listOf(demonLord))
-    savior.curse(listOf(demonLord))
-    println(demonLord)
 
+    println(itemBox.joinToString { it.name })
+    useItems(demonLord,itemBox)
 }

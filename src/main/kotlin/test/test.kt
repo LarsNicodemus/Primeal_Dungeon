@@ -17,8 +17,10 @@ fun main() {
     var sidekick = savior.summoning()
 
     println(demonLord)
-    sidekick.curse(listOf(demonLord))
+    savior.curse(listOf(demonLord))
     println(demonLord)
-    sidekick.curse(listOf(demonLord))
+    savior.curse(listOf(demonLord))
+    savior.curse(listOf(demonLord))
+    println(demonLord)
 
 }

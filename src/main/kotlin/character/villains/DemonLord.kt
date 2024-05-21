@@ -1,16 +1,14 @@
 package character.villains
 
+import character.Character
 import character.heroes.Hero
 import utils.randomDemonVillainName
 import utils.roundDouble
 
 /**The DemonLord Class is child to Villain and one of the playable characters.
- * @constructor creates a Demonlord with a name
- * @property hp is invoked in the init and added as a part of the constructor so that the new created instance has both
- * name and health points.
- * The Class also gets some properties from the Character Class and the Villain Class
- * @see attackPower
- * @see shield
+ * @constructor creates a Demonlord with a random name from a list of names
+ * @see Villain
+ * @see Character
  * */
 
 class DemonLord(name: String = randomDemonVillainName()) : Villain(name) {

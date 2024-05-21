@@ -1,9 +1,16 @@
 package character.heroes
 
+import character.Character
 import character.villains.Villain
 import utils.randomHeroineName
 import utils.randomSaviorName
 import utils.roundDouble
+
+/**The Savior Class is child to Hero and the main antagonist.
+ * @constructor creates a Savior with a random name from a list of names
+ * @see Hero
+ * @see Character
+ * */
 
 class Savior(name: String = randomSaviorName()) : Hero(name) {
 

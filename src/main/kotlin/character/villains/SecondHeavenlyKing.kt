@@ -1,7 +1,14 @@
 package character.villains
 
+import character.Character
 import character.heroes.Hero
 import utils.randomDemonVillainName
+
+/**The SecondHeavenlyKing Class is child to Villain Class and one of the playable characters.
+ * @constructor creates a SecondHeavenlyKing with a random name from a list of names
+ * @see Villain
+ * @see Character
+ * */
 
 class SecondHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name) {
 

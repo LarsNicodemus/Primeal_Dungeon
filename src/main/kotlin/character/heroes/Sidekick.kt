@@ -1,8 +1,15 @@
 package character.heroes
 
+import character.Character
 import character.villains.Villain
 import utils.randomHeroineName
 import utils.roundDouble
+
+/**The Sidekick Class is child to Hero and the support antagonist.
+ * @constructor creates a Sidekick with a random name from a list of names
+ * @see Hero
+ * @see Character
+ * */
 
 class Sidekick(name: String = randomHeroineName()) : Hero(name) {
 //    override fun toString(): String {

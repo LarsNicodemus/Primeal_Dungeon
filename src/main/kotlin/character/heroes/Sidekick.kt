@@ -12,6 +12,9 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
 //            Attack Power ${roundDouble(attackPower)}
 //        """.trimIndent()
 //    }
+    init {
+    this.hp *= 0.5
+    }
 
     fun elementalArrow(opponent: Villain){
         attackPower = actualAttackPower(attackPower, attackFactor, 0.2, 0.55)

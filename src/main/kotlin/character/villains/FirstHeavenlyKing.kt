@@ -1,9 +1,10 @@
 package character.villains
 
 import character.heroes.Hero
+import utils.randomDemonVillainName
 import utils.roundDouble
 
-class FirstHeavenlyKing(name: String) : Villain(name) {
+class FirstHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name) {
 
     fun bite(opponent: Hero) {
         attackPower = actualAttackPower(attackPower,attackFactor,0.1,0.25)

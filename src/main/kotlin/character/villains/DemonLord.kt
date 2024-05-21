@@ -1,6 +1,7 @@
 package character.villains
 
 import character.heroes.Hero
+import utils.randomDemonVillainName
 import utils.roundDouble
 
 /**The DemonLord Class is child to Villain and one of the playable characters.
@@ -12,7 +13,7 @@ import utils.roundDouble
  * @see shield
  * */
 
-class DemonLord(name: String) : Villain(name) {
+class DemonLord(name: String = randomDemonVillainName()) : Villain(name) {
 
 
     override fun toString(): String {

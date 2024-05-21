@@ -1,8 +1,9 @@
 package character.villains
 
 import character.heroes.Hero
+import utils.randomDemonVillainName
 
-class SecondHeavenlyKing(name: String) : Villain(name) {
+class SecondHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name) {
 
 
     fun void(opponent: List<Hero>) {

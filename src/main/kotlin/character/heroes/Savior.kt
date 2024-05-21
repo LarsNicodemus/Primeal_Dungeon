@@ -1,10 +1,11 @@
 package character.heroes
 
 import character.villains.Villain
-import utils.randomName
+import utils.randomHeroineName
+import utils.randomSaviorName
 import utils.roundDouble
 
-class Savior(name: String) : Hero(name) {
+class Savior(name: String = randomSaviorName()) : Hero(name) {
 
     override fun toString(): String {
         return """
@@ -62,7 +63,7 @@ class Savior(name: String) : Hero(name) {
         } else println("All attacks were blocked! No damage taken.")
     }
     fun summoning(): Sidekick {
-        var sidekick: Sidekick = Sidekick(randomName())
+        var sidekick: Sidekick = Sidekick(randomHeroineName())
         println("Sidekick ${sidekick.name} was summoned to support the hero. be cautious.")
         return sidekick
     }

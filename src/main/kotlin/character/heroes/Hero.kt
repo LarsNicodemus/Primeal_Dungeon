@@ -3,7 +3,6 @@ package character.heroes
 import character.Character
 import character.villains.Villain
 import utils.randomDouble
-import utils.randomName
 import utils.roundDouble
 
 open class Hero(name: String) : Character(name) {

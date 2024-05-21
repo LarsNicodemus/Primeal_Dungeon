@@ -2,10 +2,10 @@ package character.villains
 
 import character.Character
 import character.heroes.Hero
-import itembox.ConsumableItem
 import itembox.Item
+import itembox.ItemBox
+import utils.nextRandomDouble
 import utils.randomDouble
-import utils.roundDouble
 
 /** The Villain class is child class to character and mother class to villains. aka. the true Heroes!
  * @constructor creates a Villain with a name and hp
@@ -19,7 +19,7 @@ open class Villain(name: String) : Character(name) {
     init {
         this.hp = randomDouble(70.0,100.0)
         maxHP = hp
-        this.mp = randomDouble(70.0,100.0)
+        this.mp = nextRandomDouble(70.0,100.0)
         maxMP = mp
         this.rage = randomDouble(70.0,100.0)
         maxRage = rage
@@ -77,5 +77,7 @@ open class Villain(name: String) : Character(name) {
         }
     }
 
-
+    fun useItemBox(itemBox: ItemBox,villain: Villain){
+        itemBox.useItem(villain,itemBox.itemBox)
+    }
 }

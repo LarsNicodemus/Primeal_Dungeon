@@ -1,16 +1,17 @@
 package character.heroes
 
 import character.villains.Villain
+import utils.randomHeroineName
 import utils.roundDouble
 
-class Sidekick(name: String) : Hero(name) {
-    override fun toString(): String {
-        return """
-            Sidekick $name
-            Health Points ${roundDouble(hp)}
-            Attack Power ${roundDouble(attackPower)}
-        """.trimIndent()
-    }
+class Sidekick(name: String = randomHeroineName()) : Hero(name) {
+//    override fun toString(): String {
+//        return """
+//            Sidekick $name
+//            Health Points ${roundDouble(hp)}
+//            Attack Power ${roundDouble(attackPower)}
+//        """.trimIndent()
+//    }
 
     fun elementalArrow(opponent: Villain){
         attackPower = actualAttackPower(attackPower, attackFactor, 0.2, 0.55)

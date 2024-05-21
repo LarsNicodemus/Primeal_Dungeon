@@ -5,9 +5,21 @@ import character.villains.Villain
 import utils.randomDouble
 import utils.roundDouble
 
+/** The Hero class is child class to character and mother class to Sidekick!
+ * @constructor creates a Hero with a name, the stats are initialized when created.
+ * @property name the characters name
+ * @property hp the characters health points, if hp reaches 0 the character dies.
+ * @property attackPower defines the attack power of the character, the higher, the stronger is the dealt attack.
+ * @property attackFactor attack power is 1.0 from start. if a booster is used the value goes up
+ * @property shield indicates if the character is able to block or nullify the next attack.
+ * @property maxHP 100% of the characters health points.
+ * @property healPower defines the heal power of the character, the higher, the stronger is the given heal.
+ * @see Character
+ * */
 open class Hero(name: String) : Character(name) {
     init {
         this.hp = randomDouble(140.0, 200.0)
+        this.maxHP = hp
         this.attackPower = randomDouble(70.0, 100.0)
         this.healPower = 70.0 + Math.random() * (100.0 - 70.0)
         this.shield = 0

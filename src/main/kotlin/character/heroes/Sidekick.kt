@@ -2,6 +2,7 @@ package character.heroes
 
 import character.Character
 import character.villains.Villain
+import utils.nextRandomDouble
 import utils.randomHeroineName
 import utils.roundDouble
 
@@ -32,10 +33,20 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
             println("Sidekick $name used elemental Arrow on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.")
         }
     }
-    fun heal(companion: Hero) {
-        healPower *= (0.25 + Math.random() * (0.35 - 0.25)) * attackFactor
-        super.heal(companion,healPower)
-        println("Sidekick $name used Heal on ${companion.name} and healed $healPower points.")
+    fun holyHeal(companion: Hero) {
+        healPower *= nextRandomDouble(0.25, 0.35) * attackFactor
+        super.heal(companion, healPower)
+        println("Sidekick $name used Holy Heal on ${companion.name} and healed $healPower points.")
+    }
+
+    fun elementalBeam(opponent: Villain) {
+        attackPower = actualAttackPower(attackPower, attackFactor, 0.2, 0.55)
+        if (opponent.shield > 0) {
+            println("Sidekick $name tried to use Elemental Beam on ${opponent.name}, attack was blocked! No damage taken.")
+        } else {
+            super.magicAttack(opponent, attackPower)
+            println("Sidekick $name used Elemental Beam on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.")
+        }
     }
 
     fun elementalWave(opponent: List<Villain>) {

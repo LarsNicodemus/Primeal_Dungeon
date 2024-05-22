@@ -52,6 +52,6 @@ class FirstHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name)
             }
             println("First Heavenly King $name used Blood Raid on ${unblockedOpponents.joinToString { it.name }} and inflicted ${roundDouble(totalDamage)} total damage and ${roundDouble(attackPower)} to each.")
             println(if (blockedOpponents.isNotEmpty()) "${blockedOpponents.joinToString { it.name }} blocked and took no Damage." else "")
-        } else println("All attacks were blocked! No damage taken.")
+        } else println("First Heavenly King $name tried to use Blood Rain on ${blockedOpponents.joinToString { it.name }}, all attacks were blocked! No damage taken.")
     }
 }

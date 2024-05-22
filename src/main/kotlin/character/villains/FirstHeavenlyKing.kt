@@ -2,6 +2,7 @@ package character.villains
 
 import character.Character
 import character.heroes.Hero
+import utils.nextRandomDouble
 import utils.randomDemonVillainName
 import utils.roundDouble
 
@@ -16,7 +17,7 @@ class FirstHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name)
     fun bite(opponent: Hero) {
         attackPower = actualAttackPower(attackPower,attackFactor,0.1,0.25)
         if (opponent.shield > 0) {
-            println("Attack was blocked! No damage taken.")
+            println("First Heavenly King $name tried to use Bite on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
             super.swordAttack(opponent, attackPower)
             println("First Heavenly King $name used Bite on ${opponent.name} and inflicted $attackPower damage.")
@@ -26,16 +27,16 @@ class FirstHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name)
     fun bloodLetting(opponent: Hero, companion: Villain) {
         attackPower = actualAttackPower(attackPower,attackFactor,0.1,0.2)
         if (opponent.shield > 0) {
-            println("Attack was blocked! No damage taken.")
+            println("First Heavenly King $name tried to use Blood Letting on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
             super.swordAttack(opponent, attackPower)
             super.heal(attackPower, companion)
-            println("First Heavenly King $name used Bloodletting on ${opponent.name}, healed his Lord Points ${companion.name} with the inflicted damage of $attackPower.")
+            println("First Heavenly King $name used Bloodletting on ${opponent.name}, healed his Lord's health points ${companion.name} with the inflicted damage of $attackPower.")
         }
     }
 
     fun darkHeal(companions: List<Villain>) {
-        healPower *= (0.25 + Math.random() * (0.35 - 0.25)) * attackFactor
+        healPower *= nextRandomDouble(0.25,0.35) * attackFactor
         companions.forEach { super.heal(healPower, it) }
         println("First Heavenly King $name used dark Heal on ${companions.joinToString(", ") { it.name }} and healed each with $healPower points.")
     }

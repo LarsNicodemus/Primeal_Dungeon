@@ -72,8 +72,8 @@ open class Villain(name: String) : Character(name) {
      * */
 
     fun block(villain: Villain): Boolean {
-        var blockChance: Double = 0.55 + Math.random() * (0.7 - 0.55)
-        var randomChance = Math.random()
+        var blockChance: Double = nextRandomDouble(0.55,0.7)
+        var randomChance = nextRandomDouble(0.0,1.0)
         return if (randomChance <= blockChance) {
             villain.shield = 1
             true

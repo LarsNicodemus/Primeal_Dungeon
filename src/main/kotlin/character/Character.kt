@@ -1,6 +1,7 @@
 package character
 
 import character.villains.Villain
+import utils.nextRandomDouble
 import utils.roundDouble
 
 /** The Character class is the mother class to all villains and heroes.
@@ -43,7 +44,7 @@ open class Character(var name: String, var hp: Double = 0.0) {
     var cursedVillain: Villain? = null
 
     open fun actualAttackPower(attackPower: Double, attackFactor: Double, minValue: Double, maxValue: Double): Double {
-        this.attackPower *= (minValue + Math.random() * (maxValue - minValue)) * attackFactor
+        this.attackPower *= (nextRandomDouble(minValue,maxValue)) * attackFactor
         return this.attackPower
     }
 }

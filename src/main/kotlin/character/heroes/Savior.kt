@@ -70,7 +70,7 @@ class Savior(name: String = randomSaviorName()) : Hero(name) {
         } else println("All attacks were blocked! No damage taken.")
     }
     fun summoning(): Sidekick {
-        var sidekick: Sidekick = Sidekick(randomHeroineName())
+        var sidekick: Sidekick = Sidekick()
         println("Sidekick ${sidekick.name} was summoned to support the hero. be cautious.")
         return sidekick
     }

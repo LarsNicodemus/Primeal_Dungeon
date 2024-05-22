@@ -31,7 +31,7 @@ class FirstHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name)
             println("First Heavenly King $name tried to use Bite on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
             super.swordAttack(opponent, attackPower)
-            println("First Heavenly King $name used Bite on ${opponent.name} and inflicted $attackPower damage.")
+            println("First Heavenly King $name used Bite on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.")
         }
     }
 
@@ -42,7 +42,7 @@ class FirstHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name)
         } else {
             super.swordAttack(opponent, attackPower)
             super.heal(attackPower, companion)
-            println("First Heavenly King $name used Bloodletting on ${opponent.name}, healed his Lord's health points ${companion.name} with the inflicted damage of $attackPower.")
+            println("First Heavenly King $name used Bloodletting on ${opponent.name}, healed his Lord's health points ${companion.name} with the inflicted damage of ${roundDouble(attackPower)}.")
         }
     }
 

@@ -3,6 +3,7 @@ package character.villains
 import character.Character
 import character.heroes.Hero
 import utils.randomDemonVillainName
+import utils.roundDouble
 import kotlin.reflect.KFunction
 import kotlin.reflect.KFunction1
 import kotlin.reflect.KFunction2
@@ -30,7 +31,7 @@ class SecondHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name
             println("Second Heavenly King $name tried to use Void on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
             super.magicAttack(opponent, attackPower)
-            println("Second Heavenly King $name used Void on ${opponent.name} and inflicted $attackPower damage.")
+            println("Second Heavenly King $name used Void on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.")
         }
     }
 
@@ -47,7 +48,7 @@ class SecondHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name
             println("Second Heavenly King $name tried to use Chaos Burst on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
             super.magicAttack(opponent, attackPower)
-            println("Second Heavenly King $name used Chaos Burst on ${opponent.name} and inflicted $attackPower damage.")
+            println("Second Heavenly King $name used Chaos Burst on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.")
         }
     }
 
@@ -57,7 +58,7 @@ class SecondHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name
             println("Second Heavenly King $name tried to use Blood Art on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
             super.swordAttack(opponent, attackPower)
-            println("Second Heavenly King $name used Blood Art on ${opponent.name} and inflicted $attackPower damage.")
+            println("Second Heavenly King $name used Blood Art on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.")
         }
     }
 }

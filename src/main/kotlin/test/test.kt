@@ -3,8 +3,7 @@ package test
 import character.heroes.*
 import character.villains.*
 import itembox.*
-import itembox.consumable.StrengthBooster
-import utils.villainsMove2
+import utils.villainsMove
 
 
 public fun main() {
@@ -15,6 +14,6 @@ public fun main() {
     itemBox.addItem(itemBox.itemBox)
 //    itemBox.useItem(villains[0],itemBox.itemBox)
 
-    villainsMove2(villains,heroes,itemBox)
+    villainsMove(villains,heroes,itemBox)
 
 }

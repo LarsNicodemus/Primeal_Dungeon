@@ -3,7 +3,6 @@ package character.heroes
 import character.Character
 import character.villains.Villain
 import utils.nextRandomDouble
-import utils.randomHeroineName
 import utils.randomSaviorName
 import utils.roundDouble
 
@@ -76,11 +75,10 @@ class Savior(name: String = randomSaviorName()) : Hero(name) {
         } else println("Savior $name tried to use Holy Sword on ${blockedOpponents.joinToString { it.name }}, all attacks were blocked! No damage taken.")
     }
 
-    fun summoning(): Sidekick {
+    fun summoning(companions: MutableList<Hero>){
         var sidekick: Sidekick = Sidekick()
+        companions.add(sidekick)
         println("Sidekick ${sidekick.name} was summoned to support the hero. be cautious.")
-        return sidekick
     }
-
 
 }

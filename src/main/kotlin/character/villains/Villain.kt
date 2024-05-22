@@ -2,10 +2,10 @@ package character.villains
 
 import character.Character
 import character.heroes.Hero
-import itembox.Item
 import itembox.ItemBox
 import utils.nextRandomDouble
 import utils.randomDouble
+import kotlin.reflect.KFunction4
 
 /** The Villain class is child class to character and mother class to villains. aka. the true Heroes!
  * @constructor creates a Villain with a name, the stats are initialized when created.
@@ -34,12 +34,20 @@ open class Villain(name: String) : Character(name) {
         this.shield = 0
         this.attackFactor = 1.0
     }
+    open var attacks = listOf("")
+
+    open var abilities: List<KFunction4<Hero, Villain, List<Villain>, List<Hero>, Unit>> = listOf(
+    )
+
+
 
     /** Performs a sword attack against an opposing hero.
      * @param opponent The opposing hero to perform the attack against.
      * @param attackPower the strength of the attack performed by the current villain.
      * The value of attack power will be subtracted from the heroes remaining health points.
      */
+
+
 
     open fun swordAttack(opponent: Hero, attackPower: Double) {
         opponent.hp -= attackPower
@@ -86,4 +94,6 @@ open class Villain(name: String) : Character(name) {
     fun useItemBox(itemBox: ItemBox,villain: Villain){
         itemBox.useItem(villain,itemBox.itemBox)
     }
+
+
 }

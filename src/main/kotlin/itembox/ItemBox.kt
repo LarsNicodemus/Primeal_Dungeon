@@ -5,7 +5,7 @@ import itembox.consumable.ConsumableItem
 import itembox.consumable.HealingPotion
 import itembox.consumable.StrengthBooster
 
-public class ItemBox(var itemBox: MutableList<Item> = mutableListOf()) {
+public class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Item> = mutableListOf()) {
 
 
 //    fun useHeiltrank(villain: Villain) {
@@ -52,7 +52,7 @@ public class ItemBox(var itemBox: MutableList<Item> = mutableListOf()) {
  * @return Boolean return false if the process is canceled and the user pressed q, return true if the user chose and used a valid item.
  *
  * */
-    fun useItem(villain: Villain, itemBox: MutableList<Item>): Boolean {
+    open fun useItem(villain: Villain, itemBox: MutableList<Item>): Boolean {
         itemBox.indices.forEach { index -> println("${index + 1}. ${itemBox[index].name}") }
         while (true) {
             print("Please enter the index of the desired item (q to quit): ")

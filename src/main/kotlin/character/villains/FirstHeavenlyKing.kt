@@ -5,6 +5,10 @@ import character.heroes.Hero
 import utils.nextRandomDouble
 import utils.randomDemonVillainName
 import utils.roundDouble
+import kotlin.reflect.KFunction
+import kotlin.reflect.KFunction1
+import kotlin.reflect.KFunction2
+import kotlin.reflect.KFunction4
 
 /**The FirstHeavenlyKing Class is child to Villain Class and one of the playable characters.
  * @constructor creates a FirstHeavenlyKing with a random name from a list of names
@@ -14,7 +18,14 @@ import utils.roundDouble
 
 class FirstHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name) {
 
-    fun bite(opponent: Hero) {
+    override var attacks: List<String> = listOf("Bite","Blood Letting","Dark Heal","Blood Rain")
+    override var abilities: List<KFunction4<Hero, Villain, List<Villain>, List<Hero>, Unit>> = listOf(
+        ::bite,
+        ::bloodLetting,
+        ::darkHeal,
+        ::bloodRain
+    )
+    fun bite(opponent: Hero,companion: Villain,companions: List<Villain>,opponents: List<Hero>) {
         attackPower = actualAttackPower(attackPower,attackFactor,0.1,0.25)
         if (opponent.shield > 0) {
             println("First Heavenly King $name tried to use Bite on ${opponent.name}, attack was blocked! No damage taken.")
@@ -24,7 +35,7 @@ class FirstHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name)
         }
     }
 
-    fun bloodLetting(opponent: Hero, companion: Villain) {
+    fun bloodLetting(opponent: Hero,companion: Villain,companions: List<Villain>,opponents: List<Hero>) {
         attackPower = actualAttackPower(attackPower,attackFactor,0.1,0.2)
         if (opponent.shield > 0) {
             println("First Heavenly King $name tried to use Blood Letting on ${opponent.name}, attack was blocked! No damage taken.")
@@ -35,15 +46,15 @@ class FirstHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name)
         }
     }
 
-    fun darkHeal(companions: List<Villain>) {
+    fun darkHeal(opponent: Hero,companion: Villain,companions: List<Villain>,opponents: List<Hero>) {
         healPower *= nextRandomDouble(0.25,0.35) * attackFactor
         companions.forEach { super.heal(healPower, it) }
-        println("First Heavenly King $name used dark Heal on ${companions.joinToString(", ") { it.name }} and healed each with $healPower points.")
+        println("First Heavenly King $name used Dark Heal on ${companions.joinToString(", ") { it.name }} and healed each with ${roundDouble(healPower)} points.")
     }
 
-    fun bloodRain(opponent: List<Hero>) {
-        var unblockedOpponents = opponent.filter { it.shield <= 0 }
-        var blockedOpponents = opponent.filter { it.shield > 0 }
+    fun bloodRain(opponent: Hero,companion: Villain,companions: List<Villain>,opponents: List<Hero>) {
+        var unblockedOpponents = opponents.filter { it.shield <= 0 }
+        var blockedOpponents = opponents.filter { it.shield > 0 }
         attackPower = actualAttackPower(attackPower,attackFactor,0.39,0.4)
         if (unblockedOpponents.isNotEmpty()) {
             var totalDamage = unblockedOpponents.sumOf {

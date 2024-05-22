@@ -4,21 +4,17 @@ import character.heroes.*
 import character.villains.*
 import itembox.*
 import itembox.consumable.StrengthBooster
+import utils.villainsMove2
 
 
 public fun main() {
-    var beutel: ItemBox = ItemBox()
-    var item = StrengthBooster()
+    var itemBox: ItemBox = ItemBox()
+    val villains = mutableListOf(DemonLord(), FirstHeavenlyKing(), SecondHeavenlyKing())
+    val heroes: MutableList<Hero> = mutableListOf(Savior())
 
-    var demonLord: DemonLord = DemonLord()
-    var savior : Savior = Savior()
-    var firstHeavenlyKing = FirstHeavenlyKing()
-    var secondHeavenlyKing = SecondHeavenlyKing()
-    var sidekick1 = savior.summoning()
-    var sidekick2 = savior.summoning()
+    itemBox.addItem(itemBox.itemBox)
+//    itemBox.useItem(villains[0],itemBox.itemBox)
 
-    demonLord.darkSword(savior)
-    secondHeavenlyKing.eternalIce(secondHeavenlyKing)
-    savior.holySword(secondHeavenlyKing)
+    villainsMove2(villains,heroes,itemBox)
 
 }

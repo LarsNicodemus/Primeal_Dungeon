@@ -1,6 +1,7 @@
 package character
 
 import character.villains.Villain
+import utils.Buff
 import utils.nextRandomDouble
 import utils.roundDouble
 
@@ -43,6 +44,7 @@ open class Character(var name: String, var hp: Double = 0.0) {
     var shield: Int = 0
     var cursedVillain: Villain? = null
     var buffRounds: Int = 0
+    var buff: Buff? = null
 
     open fun actualAttackPower(
         attackPower: Double,
@@ -54,21 +56,27 @@ open class Character(var name: String, var hp: Double = 0.0) {
         return this.attackPower
     }
 
-    fun applyBuff(rounds: Int, attackFactor: Double, shield: Int) {
-        buffRounds = rounds
-        this.attackFactor *= attackFactor
-        this.shield += shield
+    fun applyBuff(buff: Buff) {
+        this.buff = buff
+        this.attackFactor *= buff.attackFactorModifier
+        this.shield +=buff.shieldValue
     }
 
+
     fun decrementBuffRounds() {
-        if (buffRounds > 0) {
-            buffRounds--
-            if (buffRounds == 0) {
-                println("Buff's been liftet be aware.")
+        this.buff?.let {
+            it.duration--
+            if (it.duration<=0){
+                removeBuff()
             }
-        } else {
-            attackFactor = 1.0
-            shield = 0
         }
     }
+
+
+fun removeBuff(){
+    buff = null
+    attackFactor = 1.0
+    shield = 0
+    println("$name's Buff has been liftet, be aware!")
+}
 }

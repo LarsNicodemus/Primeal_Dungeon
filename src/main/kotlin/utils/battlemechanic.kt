@@ -17,24 +17,40 @@ fun fightRound(
     ) {
     var round = 1
     while (companions.isNotEmpty() && opponents.isNotEmpty()) {
-        println("----### Round $round ###----")
+        roundStart(round)
         villainsMove2(companions, opponents, itemBox)
+//        companions.forEach { companion -> println("${companion.shield} ${companion.attackFactor}") }
         heroMove2(companions, opponents)
-
-        println("----### End of Round $round ###----")
-        println()
-        println("Villains:")
-        companions.forEach { companion -> println("${companion.name} has ${roundDouble(companion.hp)} left.") }
-        companions.forEach { companion -> if (companion.isCursed) println("${ companion.name } is cursed.") }
-        println()
-        println("Heroes:")
-        opponents.forEach { opponent -> println("${opponent.name} has ${roundDouble(opponent.hp)} left.") }
-        println()
-        println("----###----###----###----")
-        gameEnd(companions, opponents)
+//        opponents.forEach { opponent -> println("${opponent.shield} ${opponent.attackFactor}") }
+        roundEnd(round, companions, opponents)
         round++
     }
+}
 
+fun roundStart(round:Int){
+    println("########## Round $round ##########")
+    println()
+}fun roundEnd(round:Int, companions: MutableList<Villain>, opponents: MutableList<Hero>){
+    println()
+    println("###### End of Round $round ######")
+    println()
+    println("Villains:")
+    companions.forEach { companion -> if (companions.isNotEmpty()) println("${companion.name} has ${roundDouble(companion.hp)} left.")}
+    companions.forEach { companion -> if (companion.isCursed) println("${ companion.name } is cursed.") }
+    if (companions.isEmpty()) {
+        gameEnd(companions,opponents)
+    }
+    println()
+    println("Heroes:")
+    opponents.forEach { opponent -> if (opponents.isNotEmpty()) println("${opponent.name} has ${roundDouble(opponent.hp)} left.")}
+    if (opponents.isEmpty()) {
+        gameEnd(companions,opponents)
+    }
+    println()
+    println("###### End of Round $round ######")
+
+}
+//        gameEnd(companions, opponents)
 //        var buffDebuffRoundVillain = 1
 //        var buffDebuffRoundHero = 1
 //        var buffDebuffRound = 0
@@ -43,7 +59,7 @@ fun fightRound(
 //        removeBuffDebuff(companions, opponents, buffDebuffRound)
 //        buffDebuffRoundVillain++
 //        buffDebuffRoundHero++
-}
+
 
 //fun villainsMove(
 //    companions: MutableList<Villain>, opponents: MutableList<Hero>, itemBox: ItemBox, buffDebuffRound: Int
@@ -90,8 +106,11 @@ fun villainsMove2(
 ) {
     for (companion in companions) {
         if (opponents.isNotEmpty()) {
-            companion.decrementBuffRounds()
             chosenAction2(companions, opponents, itemBox, companion)
+            companion.decrementBuffRounds()
+//            if (companion.buff != null) {
+//                companion.removeBuff()
+//            }
         } else continue
     }
 }
@@ -106,8 +125,11 @@ fun chosenAction2(
     println("${companion.name}'s turn, which attack should be carried out?")
     companion.attacks.forEachIndexed { index, attack -> println("[${index + 1}] -> $attack") }
     println("[5] -> ${itemBox.name}")
+    var validInput = false
+    while (!validInput) {
     val input = readln()
     if (input.toIntOrNull() != null && input.toInt() in 1..companion.attacks.size + 1) {
+        validInput = true
         when (input) {
             "1" -> if (companion is DemonLord) companion.darkSword(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bite(
                 opponents.random()
@@ -129,8 +151,10 @@ fun chosenAction2(
             "5" -> itemBox.useItem(companion, itemBox.itemBox)
         }
         println()
+        removeDeadOpponent(opponents)
+    } else println("Please insert a valid Index!")
     }
-    removeDeadOpponent(opponents)
+
 }
 
 
@@ -184,7 +208,12 @@ fun heroMove2(
 //    buffDebuffRound: Int
 ) {
     if (companions.isNotEmpty()) {
-        performHeroAction(opponents, companions)
+        val opponentsCopy = opponents.toMutableList()
+        for (opponent in opponentsCopy){
+            performHeroAction(opponents, companions)
+            opponent.decrementBuffRounds()
+        }
+
     }
 
 }

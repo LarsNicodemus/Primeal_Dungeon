@@ -3,6 +3,7 @@ package character.villains
 import character.Character
 import character.heroes.Hero
 import itembox.ItemBox
+import utils.Buff
 import utils.nextRandomDouble
 import utils.randomDouble
 import kotlin.reflect.KFunction4
@@ -86,7 +87,7 @@ open class Villain(name: String) : Character(name) {
         var blockChance: Double = nextRandomDouble(0.55,0.7)
         var randomChance = nextRandomDouble(0.0,1.0)
         return if (randomChance <= blockChance) {
-            villain.applyBuff(2,1.0,1)
+            villain.applyBuff(Buff(2,1.0,1))
             true
         } else {
             villain.shield = 0

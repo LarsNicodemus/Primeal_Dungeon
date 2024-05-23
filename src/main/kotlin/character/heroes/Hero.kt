@@ -2,6 +2,7 @@ package character.heroes
 
 import character.Character
 import character.villains.Villain
+import utils.Buff
 import utils.randomDouble
 import utils.randomSaviorName
 import utils.roundDouble
@@ -46,7 +47,7 @@ open class Hero(name: String = randomSaviorName()) : Character(name) {
         var blockChance: Double = 0.55 + Math.random() * (0.7 - 0.55)
         var randomChance = Math.random()
         return if (randomChance <= blockChance) {
-            companion.applyBuff(2,1.0,1)
+            companion.applyBuff(Buff(2,1.0,1))
             true
         } else {
             companion.shield = 0

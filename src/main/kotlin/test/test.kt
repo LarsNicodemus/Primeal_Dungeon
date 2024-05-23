@@ -5,6 +5,9 @@ import character.villains.*
 import itembox.*
 import utils.fightRound
 import utils.removeTheDead
+import utils.roundEnd
+import utils.roundStart
+
 //import utils.villainsMove
 
 
@@ -14,11 +17,11 @@ public fun main() {
     var firstHeavenlyKing = FirstHeavenlyKing()
     var secondHeavenlyKing = SecondHeavenlyKing()
     var savior = Savior()
-    var sidekick = Sidekick()
     val villains = mutableListOf(demonLord,firstHeavenlyKing,secondHeavenlyKing)
     val heroes: MutableList<Hero> = mutableListOf(savior)
-    itemBox.addItem(itemBox.itemBox)
-//    fightRound(villains,heroes,itemBox,savior, sidekick = Sidekick(), opponent = Hero())
+//    itemBox.addItem(itemBox.itemBox)
     fightRound(villains,heroes,itemBox)
+//    roundStart(round = 1)
+//    roundEnd(round = 1,villains,heroes)
 
 }

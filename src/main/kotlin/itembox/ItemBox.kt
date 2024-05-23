@@ -59,7 +59,9 @@ public class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Ite
             val input: String = readln().lowercase()
             if (input == "q") {
                 println("process canceled.")
+
                 return false
+
             }
             try {
                 val itemIndex = input.toInt()

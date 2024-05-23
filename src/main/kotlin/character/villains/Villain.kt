@@ -29,8 +29,8 @@ open class Villain(name: String) : Character(name) {
 //        maxMP = mp
 //        this.rage = randomDouble(70.0,100.0)
 //        maxRage = rage
-        this.attackPower = randomDouble(70.0,100.0)
-        this.healPower = 70.0 + Math.random() * (100.0 - 70.0)
+        this.attackPower = randomDouble(30.0,40.0)
+        this.healPower = randomDouble(30.0,40.0)
         this.shield = 0
         this.attackFactor = 1.0
     }
@@ -71,6 +71,9 @@ open class Villain(name: String) : Character(name) {
 
     open fun heal(healPower: Double, companion: Villain) {
         companion.hp += healPower
+        if (companion.hp>companion.maxHP) {
+            companion.hp = companion.maxHP
+        }
     }
 
     /**Performs a block of the next incoming attack
@@ -83,7 +86,7 @@ open class Villain(name: String) : Character(name) {
         var blockChance: Double = nextRandomDouble(0.55,0.7)
         var randomChance = nextRandomDouble(0.0,1.0)
         return if (randomChance <= blockChance) {
-            villain.shield = 1
+            villain.applyBuff(2,1.0,1)
             true
         } else {
             villain.shield = 0

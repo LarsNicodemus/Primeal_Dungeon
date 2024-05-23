@@ -3,6 +3,7 @@ package character.heroes
 import character.Character
 import character.villains.Villain
 import utils.randomDouble
+import utils.randomSaviorName
 import utils.roundDouble
 
 /** The Hero class is child class to character and mother class to Sidekick!
@@ -16,12 +17,12 @@ import utils.roundDouble
  * @property healPower defines the heal power of the character, the higher, the stronger is the given heal.
  * @see Character
  * */
-open class Hero(name: String) : Character(name) {
+open class Hero(name: String = randomSaviorName()) : Character(name) {
     init {
         this.hp = randomDouble(140.0, 200.0)
         this.maxHP = hp
-        this.attackPower = randomDouble(70.0, 100.0)
-        this.healPower = 70.0 + Math.random() * (100.0 - 70.0)
+        this.attackPower = randomDouble(30.0,40.0)
+        this.healPower = randomDouble(30.0,40.0)
         this.shield = 0
         this.attackFactor = 1.0
     }
@@ -36,13 +37,16 @@ open class Hero(name: String) : Character(name) {
 
     fun heal(companion: Hero, healPower: Double) {
         companion.hp += healPower
+        if (companion.hp>companion.maxHP) {
+            companion.hp = companion.maxHP
+        }
     }
 
     fun block(companion: Hero): Boolean {
         var blockChance: Double = 0.55 + Math.random() * (0.7 - 0.55)
         var randomChance = Math.random()
         return if (randomChance <= blockChance) {
-            companion.shield = 1
+            companion.applyBuff(2,1.0,1)
             true
         } else {
             companion.shield = 0
@@ -52,7 +56,7 @@ open class Hero(name: String) : Character(name) {
 
     fun applycurse(opponent: Villain){
         var curseActive = true
-            opponent.hp -= (opponent.hp * 0.1)
+            opponent.hp -= (opponent.maxHP * 0.1)
             println("${roundDouble(opponent.hp*0.1)} damage taken, ${roundDouble(opponent.hp)} health points left.")
             if (opponent.hp<(opponent.maxHP*0.2)){
                 curseActive = false
@@ -61,12 +65,12 @@ open class Hero(name: String) : Character(name) {
         }
     }
 
-    fun eternalIce(companion: Hero) {
-        if (!block(companion))
-            println("Second Heavenly King $name tried to used Eternal Ice but it failed.")
-        else println("Second Heavenly King $name used Eternal Ice to block the next attack.")
-
-    }
+//    fun eternalIce(companion: Hero) {
+//        if (!block(companion))
+//            println("Second Heavenly King $name tried to used Eternal Ice but it failed.")
+//        else println("Second Heavenly King $name used Eternal Ice to block the next attack.")
+//
+//    }
 //    fun aoe(opponent: List<Villain>,attackPower: Double) :Double{
 //            var totalDamage = opponent.sumOf {
 //                magicAttack(it, attackPower)

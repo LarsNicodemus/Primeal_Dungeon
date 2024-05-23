@@ -42,9 +42,33 @@ open class Character(var name: String, var hp: Double = 0.0) {
     var isCursed: Boolean = false
     var shield: Int = 0
     var cursedVillain: Villain? = null
+    var buffRounds: Int = 0
 
-    open fun actualAttackPower(attackPower: Double, attackFactor: Double, minValue: Double, maxValue: Double): Double {
-        this.attackPower *= (nextRandomDouble(minValue,maxValue)) * attackFactor
+    open fun actualAttackPower(
+        attackPower: Double,
+        attackFactor: Double,
+        minValue: Double = 0.8,
+        maxValue: Double = 1.2
+    ): Double {
+        this.attackPower *= (nextRandomDouble(minValue, maxValue)) * attackFactor
         return this.attackPower
+    }
+
+    fun applyBuff(rounds: Int, attackFactor: Double, shield: Int) {
+        buffRounds = rounds
+        this.attackFactor *= attackFactor
+        this.shield += shield
+    }
+
+    fun decrementBuffRounds() {
+        if (buffRounds > 0) {
+            buffRounds--
+            if (buffRounds == 0) {
+                println("Buff's been liftet be aware.")
+            }
+        } else {
+            attackFactor = 1.0
+            shield = 0
+        }
     }
 }

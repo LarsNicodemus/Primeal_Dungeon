@@ -23,7 +23,7 @@ class Savior(name: String = randomSaviorName()) : Hero(name) {
     }
 
     fun holySword(opponent: Villain) {
-        attackPower = actualAttackPower(attackPower, attackFactor, 0.2, 0.4)
+        attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             println("Savior $name tried to use Holy Sword on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
@@ -39,9 +39,9 @@ class Savior(name: String = randomSaviorName()) : Hero(name) {
     }
 
     fun holyHeal(companion: Hero) {
-        healPower *= nextRandomDouble(0.25, 0.35) * attackFactor
+        healPower *= nextRandomDouble(0.8,1.2) * attackFactor
         super.heal(companion, healPower)
-        println("Savior $name used Holy Heal on himself and healed $healPower points.")
+        println("Savior $name used Holy Heal on himself and healed ${roundDouble(healPower)} points.")
     }
 
     fun sacredCommand(opponent: List<Villain>) {
@@ -58,7 +58,7 @@ class Savior(name: String = randomSaviorName()) : Hero(name) {
     fun holyLight(opponent: List<Villain>) {
         var unblockedOpponents = opponent.filter { it.shield <= 0 }
         var blockedOpponents = opponent.filter { it.shield > 0 }
-        attackPower = actualAttackPower(attackPower, attackFactor, 0.39, 0.4)
+        attackPower = actualAttackPower(attackPower, attackFactor)
         if (unblockedOpponents.isNotEmpty()) {
             var totalDamage = unblockedOpponents.sumOf {
                 super.magicAttack(it, attackPower)

@@ -26,37 +26,16 @@ class DemonLord(name: String = randomDemonVillainName()) : Villain(name) {
 
     override var attacks: List<String> = listOf("Dark Sword","Hell Flame","Gravity Bomb","Rulers Grip")
 
-    override var abilities: List<KFunction4<Hero, Villain, List<Villain>, List<Hero>, Unit>> = listOf(
-        ::darkSword,
-        ::hellFlame,
-        ::gravityBomb,
-        ::rulersGrip
-    )
+//    override var abilities: List<KFunction4<Hero, Villain, List<Villain>, List<Hero>, Unit>> = listOf(
+//        ::darkSword,
+//        ::hellFlame,
+//        ::gravityBomb,
+//        ::rulersGrip
+//    )
 
-//    override fun chosenAction(
-//        opponent: Hero, itemBox: ItemBox, companion: Villain,opponents: List<Hero>,companions: List<Villain>,
-//        abilities: List<KFunction4<Hero, Villain, List<Villain>, List<Hero>, Unit>>
-//    ) {
-//        super.chosenAction(opponent,itemBox,companion,opponents,companions,abilities)
-//    }
-//    override fun chosenAction(opponent: Hero, itemBox: ItemBox, villain: Villain){
-//        println("$name's turn, which attack should be carried out?")
-//        attacks.forEachIndexed { index, attack -> println("[${index + 1}] -> $attack") }
-//        val input = readln()
-//        if (input.toIntOrNull() != null && input.toInt() in 1..attacks.size) {
-//            when (input) {
-//                "1" -> test[0](opponent)
-//                "2" -> test[1](opponent)
-//                "3" -> test[2](opponent)
-//                "4" -> test[3](opponent)
-//                "5" -> itemBox.useItem(villain,itemBox.itemBox)
-//                else -> chosenAction(opponent, itemBox, villain)
-//            }
-//        }
-//    }
-
-    fun darkSword(opponent: Hero,companion: Villain,companions: List<Villain>,opponents: List<Hero>) {
-        attackPower = actualAttackPower(attackPower, attackFactor, 0.2, 0.4)
+    fun darkSword(opponent: Hero) {
+        attackPower
+        attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             println("Demonlord $name tried to use Dark Sword on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
@@ -65,8 +44,8 @@ class DemonLord(name: String = randomDemonVillainName()) : Villain(name) {
         }
     }
 
-    fun hellFlame(opponent: Hero,companion: Villain,companions: List<Villain>,opponents: List<Hero>) {
-        attackPower = actualAttackPower(attackPower, attackFactor, 0.2, 0.55)
+    fun hellFlame(opponent: Hero) {
+        attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             println("Demonlord $name tried to use Hell Flame on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
@@ -75,8 +54,8 @@ class DemonLord(name: String = randomDemonVillainName()) : Villain(name) {
         }
     }
 
-    fun gravityBomb(opponent: Hero,companion: Villain,companions: List<Villain>,opponents: List<Hero>) {
-        attackPower = actualAttackPower(attackPower, attackFactor, 0.15, 0.35)
+    fun gravityBomb(opponent: Hero) {
+        attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             println("Demonlord $name tried to use Gravity Bomb on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
@@ -85,8 +64,8 @@ class DemonLord(name: String = randomDemonVillainName()) : Villain(name) {
         }
     }
 
-    fun rulersGrip(opponent: Hero,companion: Villain,companions: List<Villain>,opponents: List<Hero>) {
-        attackPower = actualAttackPower(attackPower, attackFactor, 0.25, 0.35)
+    fun rulersGrip(opponent: Hero) {
+        attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             println("Demonlord $name tried to use Ruler's Grip on ${opponent.name}, attack was blocked! No damage taken.")
         } else {

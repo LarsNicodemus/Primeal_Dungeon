@@ -25,7 +25,7 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
     }
 
     fun elementalArrow(opponent: Villain){
-        attackPower = actualAttackPower(attackPower, attackFactor, 0.2, 0.55)
+        attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             println("Attack was blocked! No damage taken.")
         } else {
@@ -34,13 +34,13 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
         }
     }
     fun holyHeal(companion: Hero) {
-        healPower *= nextRandomDouble(0.25, 0.35) * attackFactor
+        healPower *= nextRandomDouble(0.8, 1.2) * attackFactor
         super.heal(companion, healPower)
         println("Sidekick $name used Holy Heal on ${companion.name} and healed $healPower points.")
     }
 
     fun elementalBeam(opponent: Villain) {
-        attackPower = actualAttackPower(attackPower, attackFactor, 0.2, 0.55)
+        attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             println("Sidekick $name tried to use Elemental Beam on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
@@ -52,7 +52,7 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
     fun elementalWave(opponent: List<Villain>) {
         var unblockedOpponents = opponent.filter { it.shield <= 0 }
         var blockedOpponents = opponent.filter { it.shield > 0 }
-        attackPower = actualAttackPower(attackPower,attackFactor,0.39,0.4)
+        attackPower = actualAttackPower(attackPower,attackFactor)
         if (unblockedOpponents.isNotEmpty()) {
             var totalDamage = unblockedOpponents.sumOf {
                 super.magicAttack(it, attackPower)

@@ -19,14 +19,14 @@ class SecondHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name
 
 
     override var attacks: List<String> = listOf("Void","Eternal Ice","Chaos Burst","Blood Art")
-    override var abilities: List<KFunction4<Hero, Villain, List<Villain>, List<Hero>, Unit>> = listOf(
-        ::void,
-        ::eternalIce,
-        ::chaosBurst,
-        ::bloodArt
-    )
-    fun void(opponent: Hero,companion: Villain,companions: List<Villain>,opponents: List<Hero>) {
-        attackPower = actualAttackPower(attackPower, attackFactor, 0.15, 0.35)
+//    override var abilities: List<KFunction4<Hero, Villain, List<Villain>, List<Hero>, Unit>> = listOf(
+//        ::void,
+//        ::eternalIce,
+//        ::chaosBurst,
+//        ::bloodArt
+//    )
+    fun void(opponent: Hero) {
+        attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             println("Second Heavenly King $name tried to use Void on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
@@ -35,15 +35,15 @@ class SecondHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name
         }
     }
 
-    fun eternalIce(opponent: Hero,companion: Villain,companions: List<Villain>,opponents: List<Hero>) {
+    fun eternalIce(companion: Villain) {
         if (!block(companion))
             println("Second Heavenly King $name tried to used Eternal Ice but it failed.")
         else println("Second Heavenly King $name used Eternal Ice to block the next attack.")
 
     }
 
-    fun chaosBurst(opponent: Hero,companion: Villain,companions: List<Villain>,opponents: List<Hero>) {
-        attackPower = actualAttackPower(attackPower, attackFactor, 0.15, 0.35)
+    fun chaosBurst(opponent: Hero) {
+        attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             println("Second Heavenly King $name tried to use Chaos Burst on ${opponent.name}, attack was blocked! No damage taken.")
         } else {
@@ -52,8 +52,8 @@ class SecondHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name
         }
     }
 
-    fun bloodArt(opponent: Hero,companion: Villain,companions: List<Villain>,opponents: List<Hero>) {
-        attackPower = actualAttackPower(attackPower, attackFactor, 0.25, 0.35)
+    fun bloodArt(opponent: Hero) {
+        attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             println("Second Heavenly King $name tried to use Blood Art on ${opponent.name}, attack was blocked! No damage taken.")
         } else {

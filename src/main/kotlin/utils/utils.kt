@@ -14,6 +14,10 @@ fun roundDouble(input: Double): Double {
     return ((input * 100).roundToInt()) / 100.0
 }
 
+fun roundDouble2(input: Double): Double {
+    return ((input * 100).roundToInt()) / 100.0
+}
+
 /**A function that returns a random Double between min and max.
  * @param min a Double standing for the min. possible return of the Double.
  * @param max a Double standing for the max. possible return of the Double.

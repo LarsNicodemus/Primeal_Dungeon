@@ -18,14 +18,16 @@ import kotlin.reflect.KFunction4
 
 class FirstHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name) {
 
+    override fun toString(): String {
+        return """
+            First Heavenly King $name
+            Health Points ${roundDouble(hp)}
+            Attack Power ${roundDouble(attackPower)}
+        """.trimIndent()
+    }
     override var attacks: List<String> = listOf("Bite","Blood Letting","Dark Heal","Blood Rain")
-//    override var abilities: List<KFunction4<Hero, Villain, List<Villain>, List<Hero>, Unit>> = listOf(
-//        ::bite,
-//        ::bloodLetting,
-//        ::darkHeal,
-//        ::bloodRain
-//    )
-override var title: String = "First Heavenly King"
+
+    override var title: String = "First Heavenly King"
     fun bite(opponent: Hero) {
         attackPower = actualAttackPower(attackPower,attackFactor)
         if (opponent.shield > 0) {

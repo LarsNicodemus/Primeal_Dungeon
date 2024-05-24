@@ -4,6 +4,7 @@ import character.villains.Villain
 import itembox.consumable.ConsumableItem
 import itembox.consumable.HealingPotion
 import itembox.consumable.StrengthBooster
+import utils.printWithDelay
 
 public class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Item> = mutableListOf()) {
 val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooster(),HealingPotion(),StrengthBooster(),HealingPotion())
@@ -23,11 +24,12 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
  * @param itemBox is a mutable list of the class item.
  * */
     fun addItem(itemBox: MutableList<Item>) {
-        println("You may add up to four Items to you Item Box, choose wisely.")
+        println()
+        printWithDelay("You may add up to four Items to you Item Box, choose wisely.",25)
         val itemOptions = listOf(StrengthBooster(), HealingPotion())
-        itemOptions.indices.forEach { index -> println("${index + 1}. ${itemOptions[index].name}") }
+        itemOptions.indices.forEach { index -> printWithDelay("${index + 1}. ${itemOptions[index].name}",25) }
+        printWithDelay("Please enter the index of the item you want to add: ",25)
         while (itemBox.size < 4) {
-            print("Please enter the index of the item you want to add: ")
             var input: String = readln().lowercase()
             try {
                 val itemIndex = input.toInt()
@@ -43,7 +45,8 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
             }
         }
         println("Your Item Box contains: ")
-        itemBox.indices.forEach { index -> println("Nr.${index + 1}. ${itemBox[index].name}") }
+//        itemBox.indices.forEach { index -> println("Nr.${index + 1}. ${itemBox[index].name}") }
+        printWithDelay(itemBox.joinToString("][","[","]") { it.name },25)
     }
 
 /**This function let you use an item from the itembox on a villain. if The item is a consumable it will be deleted from the list.

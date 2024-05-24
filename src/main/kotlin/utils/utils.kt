@@ -74,14 +74,40 @@ fun randomDemonVillainName(): String {
     ).random()
 }
 
-fun useItemBox(itemBox: ItemBox) {
-    // inhalt beutel drucken
-    println("Wir haben noch itemBox.anzahlheiltraenke Heiltränke")
-    // user gibt über readln seine auswahl ein
-    // je nach auswahl:
-    // beutel.useHeiltrank(this) // hier muss der held übergeben werden der den Beutel nutzt
-    // beutel.useBooster(this) //
+fun threadsleep(version: Int){
+//    var stout = st
+//    Thread.sleep(stout)
+    when (version) {
+        1 -> Thread.sleep(100)
+        2 -> Thread.sleep(200)
+        3 -> Thread.sleep(300)
+        4 -> Thread.sleep(400)
+        5 -> Thread.sleep(500)
+        6 -> Thread.sleep(600)
+        7 -> Thread.sleep(700)
+        8 -> Thread.sleep(800)
+        9 -> Thread.sleep(900)
+        10 -> Thread.sleep(1000)
+        11 -> Thread.sleep(1100)
+        12 -> Thread.sleep(1200)
+    }
 }
+fun printWithDelay(string: String, delayMillis: Long) {
+    string.forEach { char ->
+        print(char)
+        Thread.sleep(delayMillis)
+    }
+    println()
+}
+
+//fun useItemBox(itemBox: ItemBox) {
+//    // inhalt beutel drucken
+//    println("Wir haben noch itemBox.anzahlheiltraenke Heiltränke")
+//    // user gibt über readln seine auswahl ein
+//    // je nach auswahl:
+//    // beutel.useHeiltrank(this) // hier muss der held übergeben werden der den Beutel nutzt
+//    // beutel.useBooster(this) //
+//}
 
 //fun addItem(itemBox: MutableList<Item>) {
 //    println("You may add up to four Items to you Item Box, choose wisely.")

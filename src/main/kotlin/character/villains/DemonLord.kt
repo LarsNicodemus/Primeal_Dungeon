@@ -4,6 +4,7 @@ import character.Character
 import character.heroes.Hero
 import itembox.ItemBox
 import utils.randomDemonVillainName
+import utils.randomVillainName
 import utils.roundDouble
 import kotlin.reflect.KFunction4
 
@@ -13,7 +14,7 @@ import kotlin.reflect.KFunction4
  * @see Character
  * */
 
-class DemonLord(name: String = randomDemonVillainName()) : Villain(name) {
+class DemonLord(name: String = randomVillainName()) : Villain(name) {
 
 
     override fun toString(): String {

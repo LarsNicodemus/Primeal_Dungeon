@@ -142,25 +142,25 @@ fun villainsMove2(
 ) {
     var avaliableCompanions = companions.toMutableList()
     removeDeadOpponent(opponents)
-
-    while (avaliableCompanions.isNotEmpty() && opponents.isNotEmpty()) {
+    var usedItemBox = false
     if (opponents.isNotEmpty()) {
-        printlnWithDelay("Which Defender should go next?",15)
-        threadsleep(5)
-        avaliableCompanions.forEachIndexed { index, it -> println("${index + 1} -> ${it.title} ${it.name} Attacks: -> ${it.attacks}")
-        threadsleep(5)
-        }
-        println()
+    while (avaliableCompanions.isNotEmpty() && opponents.isNotEmpty()) {
+            printlnWithDelay("Which Defender should go next?",15)
+            threadsleep(5)
+            avaliableCompanions.forEachIndexed { index, it -> println("${index + 1} -> ${it.title} ${it.name} Attacks: -> ${it.attacks}")
+                threadsleep(5)
+            }
+            println()
         printWithDelay("Your Choice: ",15)
         var input = readln()
-        println()
         try {
         var villainIndex = input.toInt()
             if (villainIndex in 1..avaliableCompanions.size) {
                 var chosenCompanion = avaliableCompanions[input.toIntOrNull()!!.minus(1)]
                 avaliableCompanions.remove(chosenCompanion)
                 if (opponents.isNotEmpty()) {
-                    chosenAction2(avaliableCompanions, opponents, itemBox, chosenCompanion)
+                    println()
+                    usedItemBox = chosenAction2(avaliableCompanions, opponents, itemBox, chosenCompanion, usedItemBox)
                     chosenCompanion.decrementBuffRounds()
                 } else continue
             } else println("Invalid Input. Please enter a number between 1 and ${avaliableCompanions.size}.")
@@ -173,20 +173,20 @@ fun villainsMove2(
 }
 
 fun chosenAction2(
-    companions: MutableList<Villain>, opponents: MutableList<Hero>, itemBox: ItemBox, companion: Villain) {
+    companions: MutableList<Villain>, opponents: MutableList<Hero>, itemBox: ItemBox, companion: Villain,usedItemBox: Boolean): Boolean {
     removeDeadOpponent(opponents)
     printlnWithDelay("${companion.name}'s turn, which attack should be carried out?",15)
     threadsleep(5)
     companion.attacks.forEachIndexed { index, attack -> println("[${index + 1}] -> $attack")
     threadsleep(5)
     }
-    println("[5] -> ${itemBox.name}")
-    threadsleep(5)
-
-
+    if (!usedItemBox) {
+        println("[5] -> ${itemBox.name}")
+        threadsleep(5)
+    }
     println()
-    printWithDelay("Your Choice: ",15)
     do  {
+        printWithDelay("Your Choice: ",15)
         val input = readln()
         println()
         try {
@@ -214,9 +214,11 @@ fun chosenAction2(
                     )
                     else if (companion is SecondHeavenlyKing) companion.chaosBurst(opponents.random())
 
-                    "5" -> if (itemBox.useItem(companion, itemBox.itemBox))
-                        else {
-                        printWithDelay("ItemBox closed, which attack should be carried out?",15)
+                    "5" -> if (!usedItemBox) {
+                        (itemBox.useItem(companion, itemBox.itemBox))
+                        return true
+                    } else {
+                        println("Invalid Input. Please enter a number between 1 and ${companion.attacks.size}.")
                         continue
                     }
                 }
@@ -231,6 +233,7 @@ fun chosenAction2(
             println("Invalid Input. Please enter a number between 1 and ${companion.attacks.size + 1}.")
         }
     } while (true)
+    return usedItemBox
 }
 
 

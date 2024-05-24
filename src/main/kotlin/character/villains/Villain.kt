@@ -36,6 +36,8 @@ open class Villain(name: String) : Character(name) {
         this.attackFactor = 1.0
     }
     open var attacks = listOf("")
+    open var title = ""
+
 
     open var abilities: List<KFunction4<Hero, Villain, List<Villain>, List<Hero>, Unit>> = listOf(
     )
@@ -84,8 +86,8 @@ open class Villain(name: String) : Character(name) {
      * */
 
     fun block(villain: Villain): Boolean {
-        var blockChance: Double = nextRandomDouble(0.55,0.7)
-        var randomChance = nextRandomDouble(0.0,1.0)
+        var blockChance: Double = randomDouble(0.7,1.0)
+        var randomChance = randomDouble(0.7,1.0)
         return if (randomChance <= blockChance) {
             villain.applyBuff(Buff(2,1.0,1))
             true

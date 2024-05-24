@@ -25,6 +25,7 @@ class FirstHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name)
 //        ::darkHeal,
 //        ::bloodRain
 //    )
+override var title: String = "First Heavenly King"
     fun bite(opponent: Hero) {
         attackPower = actualAttackPower(attackPower,attackFactor)
         if (opponent.shield > 0) {

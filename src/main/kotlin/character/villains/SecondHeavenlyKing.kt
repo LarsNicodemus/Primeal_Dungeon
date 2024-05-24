@@ -25,6 +25,7 @@ class SecondHeavenlyKing(name: String = randomDemonVillainName()) : Villain(name
 //        ::chaosBurst,
 //        ::bloodArt
 //    )
+override var title: String = "Second Heavenly King"
     fun void(opponent: Hero) {
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {

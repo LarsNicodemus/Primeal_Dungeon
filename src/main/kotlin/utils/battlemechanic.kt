@@ -8,17 +8,17 @@ import character.villains.FirstHeavenlyKing
 import character.villains.SecondHeavenlyKing
 import character.villains.Villain
 import itembox.ItemBox
-import kotlin.reflect.KFunction4
 
 fun fightRound(
     companions: MutableList<Villain>,
     opponents: MutableList<Hero>,
     itemBox: ItemBox,
-    ) {
+) {
     var round = 1
     while (companions.isNotEmpty() && opponents.isNotEmpty()) {
         roundStart(round)
         villainsMove2(companions, opponents, itemBox)
+
 //        companions.forEach { companion -> println("${companion.shield} ${companion.attackFactor}") }
         heroMove2(companions, opponents)
 //        opponents.forEach { opponent -> println("${opponent.shield} ${opponent.attackFactor}") }
@@ -27,24 +27,34 @@ fun fightRound(
     }
 }
 
-fun roundStart(round:Int){
+fun roundStart(round: Int) {
     println("########## Round $round ##########")
     println()
-}fun roundEnd(round:Int, companions: MutableList<Villain>, opponents: MutableList<Hero>){
+}
+
+fun roundEnd(round: Int, companions: MutableList<Villain>, opponents: MutableList<Hero>) {
     println()
     println("###### End of Round $round ######")
     println()
     println("Villains:")
-    companions.forEach { companion -> if (companions.isNotEmpty()) println("${companion.name} has ${roundDouble(companion.hp)} left.")}
-    companions.forEach { companion -> if (companion.isCursed) println("${ companion.name } is cursed.") }
+    companions.forEach { companion ->
+        if (companions.isNotEmpty()) println(
+            "${companion.name} has ${
+                roundDouble(
+                    companion.hp
+                )
+            } left."
+        )
+    }
+    companions.forEach { companion -> if (companion.isCursed) println("${companion.name} is cursed.") }
     if (companions.isEmpty()) {
-        gameEnd(companions,opponents)
+        gameEnd(companions, opponents)
     }
     println()
     println("Heroes:")
-    opponents.forEach { opponent -> if (opponents.isNotEmpty()) println("${opponent.name} has ${roundDouble(opponent.hp)} left.")}
+    opponents.forEach { opponent -> if (opponents.isNotEmpty()) println("${opponent.name} has ${roundDouble(opponent.hp)} left.") }
     if (opponents.isEmpty()) {
-        gameEnd(companions,opponents)
+        gameEnd(companions, opponents)
     }
     println()
     println("###### End of Round $round ######")
@@ -104,74 +114,113 @@ fun villainsMove2(
     itemBox: ItemBox,
 //    buffDebuffRound: Int
 ) {
-    for (companion in companions) {
-        if (opponents.isNotEmpty()) {
-            chosenAction2(companions, opponents, itemBox, companion)
-            companion.decrementBuffRounds()
-//            if (companion.buff != null) {
-//                companion.removeBuff()
-//            }
-        } else continue
+    var avaliableCompanions = companions.toMutableList()
+    removeDeadOpponent(opponents)
+    if (opponents.isNotEmpty()) {
+    while (avaliableCompanions.isNotEmpty() && opponents.isNotEmpty()) {
+        println("Which Defender should go next?")
+        avaliableCompanions.forEachIndexed { index, it -> println("${index + 1} -> ${it.title} ${it.name} Attacks: -> ${it.attacks}") }
+        println()
+        print("Your Choice: ")
+        var input = readln()
+        var validInput = false
+        while (!validInput) {
+            if (input.toIntOrNull() != null && input.toInt() in 1..avaliableCompanions.size + 1) {
+                var chosenCompanion = avaliableCompanions[input.toIntOrNull()!!.minus(1)]
+                avaliableCompanions.remove(chosenCompanion)
+                validInput = true
+                if (opponents.isNotEmpty()) {
+                    chosenAction2(avaliableCompanions, opponents, itemBox, chosenCompanion)
+                    chosenCompanion.decrementBuffRounds()
+                } else continue
+            }
+        }
+    }
     }
 }
 
 fun chosenAction2(
-    companions: MutableList<Villain>,
-    opponents: MutableList<Hero>,
-    itemBox: ItemBox,
-    companion: Villain
-) {
+    companions: MutableList<Villain>, opponents: MutableList<Hero>, itemBox: ItemBox, companion: Villain) {
     removeDeadOpponent(opponents)
     println("${companion.name}'s turn, which attack should be carried out?")
     companion.attacks.forEachIndexed { index, attack -> println("[${index + 1}] -> $attack") }
     println("[5] -> ${itemBox.name}")
     var validInput = false
     while (!validInput) {
-    val input = readln()
-    if (input.toIntOrNull() != null && input.toInt() in 1..companion.attacks.size + 1) {
-        validInput = true
-        when (input) {
-            "1" -> if (companion is DemonLord) companion.darkSword(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bite(
-                opponents.random()
-            ) else if (companion is SecondHeavenlyKing) companion.void(opponents.random())
-
-            "2" -> if (companion is DemonLord) companion.hellFlame(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodLetting(
-                opponents.random(),
-                companion
-            ) else if (companion is SecondHeavenlyKing) companion.eternalIce(companion)
-
-            "3" -> if (companion is DemonLord) companion.gravityBomb(opponents.random()) else if (companion is FirstHeavenlyKing) companion.darkHeal(
-                companions
-            ) else if (companion is SecondHeavenlyKing) companion.bloodArt(opponents.random())
-
-            "4" -> if (companion is DemonLord) companion.rulersGrip(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodRain(
-                opponents
-            ) else if (companion is SecondHeavenlyKing) companion.chaosBurst(opponents.random())
-
-            "5" -> itemBox.useItem(companion, itemBox.itemBox)
-        }
         println()
-        removeDeadOpponent(opponents)
-    } else println("Please insert a valid Index!")
-    }
+        print("Your Choice: ")
+        val input = readln()
+        if (input.toInt() in 1..companion.attacks.size+1) {
+            validInput = true
+            when (input) {
+                "1" -> if (companion is DemonLord) companion.darkSword(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bite(opponents.random())
+                else if (companion is SecondHeavenlyKing) companion.void(opponents.random())
+                "2" -> if (companion is DemonLord) companion.hellFlame(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodLetting(opponents.random(), companion)
+                else if (companion is SecondHeavenlyKing) companion.eternalIce(companion)
+                "3" -> if (companion is DemonLord) companion.gravityBomb(opponents.random()) else if (companion is FirstHeavenlyKing) companion.darkHeal(companions)
+                else if (companion is SecondHeavenlyKing) companion.bloodArt(opponents.random())
+                "4" -> if (companion is DemonLord) companion.rulersGrip(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodRain(opponents)
+                else if (companion is SecondHeavenlyKing) companion.chaosBurst(opponents.random())
+                "5" -> if (itemBox.useItem(companion, itemBox.itemBox)) else { print("ItemBox canceled, which attack should be carried out?")
+                    validInput = false }
 
+            }
+//            if (input == "5") {
+//                if (!itemBox.useItem(companion, itemBox.itemBox)) {
+//                    print("ItemBox canceled, which attack should be carried out?")
+//                    validInput = false
+//
+//                }
+
+
+//            }
+            println()
+            removeDeadOpponent(opponents)
+        } else println("Please insert a valid Index!")
+    }
 }
 
 
-fun removeTheDead(companions: MutableList<Villain>, opponents: MutableList<Hero>) {
-    val deadCompanions = companions.filter { it.hp < 0.0 }.toMutableList()
-    companions.removeAll(deadCompanions)
-    if (deadCompanions.isNotEmpty()) {
-        deadCompanions.forEach { companion -> println("${companion.name} has died.") }
-        deadCompanions.removeAll(deadCompanions)
-    }
-    val deadOpponents = opponents.filter { it.hp < 0.0 }.toMutableList()
-    opponents.removeAll(deadOpponents)
-    if (deadOpponents.isNotEmpty()) {
-        deadOpponents.forEach { opponent -> println("${opponent.name} has died.") }
-        deadOpponents.removeAll(deadOpponents)
-    }
-}
+//fun Villain.attack(attackIndex: Int, target: Hero, opponents: MutableList<Hero>, companions: MutableList<Villain>) {
+//    when (this) {
+//        is DemonLord -> when (attackIndex) {
+//            1 -> darkSword(target)
+//            2 -> hellFlame(target)
+//            3 -> gravityBomb(target)
+//            4 -> rulersGrip(target)
+//        }
+//
+//        is FirstHeavenlyKing -> when (attackIndex) {
+//            1 -> bite(target)
+//            2 -> bloodLetting(target, this)
+//            3 -> darkHeal(companions)
+//            4 -> bloodRain(opponents)
+//        }
+//
+//        is SecondHeavenlyKing -> when (attackIndex) {
+//            1 -> void(target)
+//            2 -> eternalIce(this)
+//            3 -> bloodArt(target)
+//            4 -> chaosBurst(target)
+//        }
+//    }
+//}
+
+
+//fun removeTheDead(companions: MutableList<Villain>, opponents: MutableList<Hero>) {
+//    val deadCompanions = companions.filter { it.hp < 0.0 }.toMutableList()
+//    companions.removeAll(deadCompanions)
+//    if (deadCompanions.isNotEmpty()) {
+//        deadCompanions.forEach { companion -> println("${companion.name} has died.") }
+//        deadCompanions.removeAll(deadCompanions)
+//    }
+//    val deadOpponents = opponents.filter { it.hp < 0.0 }.toMutableList()
+//    opponents.removeAll(deadOpponents)
+//    if (deadOpponents.isNotEmpty()) {
+//        deadOpponents.forEach { opponent -> println("${opponent.name} has died.") }
+//        deadOpponents.removeAll(deadOpponents)
+//    }
+//}
 
 fun removeDeadVillain(companions: MutableList<Villain>) {
     val deadCompanions = companions.filter { it.hp < 0.0 }.toMutableList()
@@ -209,7 +258,7 @@ fun heroMove2(
 ) {
     if (companions.isNotEmpty()) {
         val opponentsCopy = opponents.toMutableList()
-        for (opponent in opponentsCopy){
+        for (opponent in opponentsCopy) {
             performHeroAction(opponents, companions)
             opponent.decrementBuffRounds()
         }
@@ -218,8 +267,8 @@ fun heroMove2(
 
 }
 
-private fun performHeroAction(opponents: MutableList<Hero>, companions: MutableList<Villain>) {
-    if (opponents.isNotEmpty()) {
+fun performHeroAction(opponents: MutableList<Hero>, companions: MutableList<Villain>) {
+    if (opponents.isNotEmpty()&& companions.isNotEmpty()) {
         var randomHero: Hero = opponents.random()
 
         val random = when (randomHero) {

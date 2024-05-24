@@ -25,6 +25,7 @@ class DemonLord(name: String = randomDemonVillainName()) : Villain(name) {
     }
 
     override var attacks: List<String> = listOf("Dark Sword","Hell Flame","Gravity Bomb","Rulers Grip")
+    override var title: String = "Demonlord"
 
 //    override var abilities: List<KFunction4<Hero, Villain, List<Villain>, List<Hero>, Unit>> = listOf(
 //        ::darkSword,

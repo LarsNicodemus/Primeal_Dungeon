@@ -4,7 +4,7 @@ import character.heroes.*
 import character.villains.*
 import itembox.*
 import utils.fightRound
-import utils.removeTheDead
+//import utils.removeTheDead
 import utils.roundEnd
 import utils.roundStart
 
@@ -19,7 +19,7 @@ public fun main() {
     var savior = Savior()
     val villains = mutableListOf(demonLord,firstHeavenlyKing,secondHeavenlyKing)
     val heroes: MutableList<Hero> = mutableListOf(savior)
-//    itemBox.addItem(itemBox.itemBox)
+    itemBox.addItem(itemBox.itemBox)
     fightRound(villains,heroes,itemBox)
 //    roundStart(round = 1)
 //    roundEnd(round = 1,villains,heroes)

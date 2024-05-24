@@ -44,8 +44,8 @@ open class Hero(name: String = randomSaviorName()) : Character(name) {
     }
 
     fun block(companion: Hero): Boolean {
-        var blockChance: Double = 0.55 + Math.random() * (0.7 - 0.55)
-        var randomChance = Math.random()
+        var blockChance: Double = randomDouble(0.7,1.0)
+        var randomChance = randomDouble(0.0,1.0)
         return if (randomChance <= blockChance) {
             companion.applyBuff(Buff(2,1.0,1))
             true

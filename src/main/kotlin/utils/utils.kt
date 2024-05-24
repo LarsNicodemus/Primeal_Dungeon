@@ -1,7 +1,7 @@
 package utils
 
 
-import itembox.ItemBox
+import character.villains.Villain
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
@@ -65,12 +65,16 @@ fun randomHeroineName(): String {
 /**A function, returning a random name for a companion from the Villain from the list of names.
  * @return a random Name
  * */
-fun randomDemonVillainName(): String {
+fun randomDemonVillainNameFirst(): String {
     return listOf(
         "Amon", "Marbas", "Barbatos", "Marax", "Naberius", "Astaroth", "Stolas", "Shax", "Procel",
-        "Orobas", "Andras", "Dantalion", "Andromalius", "Valefar", "Vassago", "Sabnoc", "Allocer", "Gremory", "Valac", "Kimaris",
+        "Orobas", "Andras", "Dantalion", "Andromalius", "Valefar", "Vassago", "Sabnoc", "Allocer", "Gremory", "Valac", "Kimaris"
+    ).random()
+}
+fun randomDemonVillainNameSecond(): String {
+    return listOf(
         "Lilith", "Paimon", "Sitri", "Furfur", "Marchosias", "Lamia", "Hecate", "Aeshma", "Empusa",
-        "Akasha", "Carmilla", "Azrael", "Elena", "Abbadon", "Belphegora", "Lilim", "Naamah", "Sallosa", "Veparis", "Aswang", "Empusa"
+        "Akasha", "Carmilla", "Azrael", "Elena", "Abbadon", "Belphegora", "Lilim", "Naamah", "Sallosa", "Veparis", "Aswang"
     ).random()
 }
 
@@ -92,12 +96,40 @@ fun threadsleep(version: Int){
         12 -> Thread.sleep(1200)
     }
 }
-fun printWithDelay(string: String, delayMillis: Long) {
+fun printlnWithDelay(string: String, delayMillis: Long) {
     string.forEach { char ->
         print(char)
         Thread.sleep(delayMillis)
     }
     println()
+}
+fun printWithDelay(string: String, delayMillis: Long) {
+    string.forEach { char ->
+        print(char)
+        Thread.sleep(delayMillis)
+    }
+}
+fun lowestHPCompanions(companions: MutableList<Villain>): Villain {
+    var villainWithLowestHP: Villain? = null
+    var lowestHP = Double.MAX_VALUE
+    for (companion in companions) {
+        if (companion.hp < lowestHP) {
+            villainWithLowestHP = companion
+            lowestHP = companion.hp
+        }
+    }
+    return villainWithLowestHP!!
+}
+fun lowestHPOpponents(companions: MutableList<Villain>): Villain {
+    var villainWithLowestHP: Villain? = null
+    var lowestHP = Double.MAX_VALUE
+    for (companion in companions) {
+        if (companion.hp < lowestHP) {
+            villainWithLowestHP = companion
+            lowestHP = companion.hp
+        }
+    }
+    return villainWithLowestHP!!
 }
 
 //fun useItemBox(itemBox: ItemBox) {

@@ -5,7 +5,9 @@ import character.villains.Villain
 open class Item(var name: String) {
     open fun use(villain: Villain) {}
 
-
+    override fun toString(): String {
+        return "Attribute: "
+    }
 //    unterschiedliche Tränke darstellen
 // als Map, List oder jeden einzeln mit wert speichern.
 //var anzahlHeiltraenke: Int = 4

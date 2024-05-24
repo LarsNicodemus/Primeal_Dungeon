@@ -5,6 +5,8 @@ import itembox.consumable.ConsumableItem
 import itembox.consumable.HealingPotion
 import itembox.consumable.StrengthBooster
 import utils.printWithDelay
+import utils.printlnWithDelay
+import utils.threadsleep
 
 public class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Item> = mutableListOf()) {
 val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooster(),HealingPotion(),StrengthBooster(),HealingPotion())
@@ -25,10 +27,15 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
  * */
     fun addItem(itemBox: MutableList<Item>) {
         println()
-        printWithDelay("You may add up to four Items to you Item Box, choose wisely.",25)
+        printlnWithDelay("There is no time, we have to hurry. A quick peek at the Arsenal,",15)
+        printlnWithDelay("you may add up to four Items to you Item Box, choose wisely.",15)
         val itemOptions = listOf(StrengthBooster(), HealingPotion())
-        itemOptions.indices.forEach { index -> printWithDelay("${index + 1}. ${itemOptions[index].name}",25) }
-        printWithDelay("Please enter the index of the item you want to add: ",25)
+        threadsleep(6)
+        itemOptions.indices.forEach { index -> println("${index + 1}. ${itemOptions[index].name} ->  ${itemOptions[index]}")
+        threadsleep(6)
+        }
+//        threadsleep(4)
+        printlnWithDelay("Please enter the index of the item you want to add: ",15)
         while (itemBox.size < 4) {
             var input: String = readln().lowercase()
             try {
@@ -36,7 +43,7 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
                 if (itemIndex in 1..itemOptions.size) {
                     val item = itemOptions[itemIndex - 1]
                     itemBox.add(item)
-                    println("${item.name} added to your Item Box.")
+//                    println("${item.name} added to your Item Box.")
                 } else {
                     println("Invalid item index. Please enter a number between 1 and ${itemOptions.size}.")
                 }
@@ -44,9 +51,9 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
                 println("Invalid Input. Please enter a number between 1 and ${itemOptions.size}.")
             }
         }
-        println("Your Item Box contains: ")
+        printlnWithDelay("Your Item Box contains: ",25)
 //        itemBox.indices.forEach { index -> println("Nr.${index + 1}. ${itemBox[index].name}") }
-        printWithDelay(itemBox.joinToString("][","[","]") { it.name },25)
+        printlnWithDelay(itemBox.joinToString("][","[","]") { it.name },25)
     }
 
 /**This function let you use an item from the itembox on a villain. if The item is a consumable it will be deleted from the list.
@@ -56,7 +63,10 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
  *
  * */
     open fun useItem(villain: Villain, itemBox: MutableList<Item>): Boolean {
-        itemBox.indices.forEach { index -> println("${index + 1}. ${itemBox[index].name}") }
+        threadsleep(5)
+        itemBox.indices.forEach { index -> println("${index + 1}. ${itemBox[index].name}")
+        threadsleep(5)
+        }
 //        itemBox.forEach { item, count ->
 //            repeat(count) {
 //                println("[${itemBox.keys.indices}]$count x ${item.name}")
@@ -70,10 +80,10 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
 //    }
 //    itemList.forEach { println(it) }
         while (true) {
-            print("Please enter the index of the desired item (q to quit): ")
+            printWithDelay("Please enter the index of the desired item (q to quit): ",15)
             val input: String = readln().lowercase()
             if (input == "q") {
-                println("process canceled.")
+                printlnWithDelay("ItemBox closed.",15)
 
                 return false
 

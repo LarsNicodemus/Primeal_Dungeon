@@ -17,47 +17,73 @@ fun fightRound(
     var round = 1
     while (companions.isNotEmpty() && opponents.isNotEmpty()) {
         roundStart(round)
+//        println(companions.joinToString("][","[","]") { it.name +" "+ roundDouble( it.hp )})
+//        println(opponents.joinToString("][","[","]") { it.name +" "+ roundDouble( it.hp ) })
         villainsMove2(companions, opponents, itemBox)
-
-//        companions.forEach { companion -> println("${companion.shield} ${companion.attackFactor}") }
+//        println(companions.joinToString("][","[","]") { it.name +" "+ roundDouble( it.hp ) })
+//        println(opponents.joinToString("][","[","]") { it.name +" "+ roundDouble( it.hp ) })
         heroMove2(companions, opponents)
-//        opponents.forEach { opponent -> println("${opponent.shield} ${opponent.attackFactor}") }
+//        println(companions.joinToString("][","[","]") { it.name +" "+ roundDouble( it.hp ) })
+//        println(opponents.joinToString("][","[","]") { it.name +" "+ roundDouble( it.hp ) })
         roundEnd(round, companions, opponents)
         round++
     }
 }
 
 fun roundStart(round: Int) {
-    println("########## Round $round ##########")
+    threadsleep(4)
+    println()
+    println()
+    println()
+    println()
+    println()
+    println()
+    println()
+    println()
+    printlnWithDelay("########## Round $round ##########",15)
+    threadsleep(4)
+    println()
+    println()
     println()
 }
 
 fun roundEnd(round: Int, companions: MutableList<Villain>, opponents: MutableList<Hero>) {
+    threadsleep(4)
     println()
-    println("###### End of Round $round ######")
+    threadsleep(4)
+    printlnWithDelay("###### End of Round $round ######",15)
+    threadsleep(4)
     println()
     println("Villains:")
+    threadsleep(4)
     companions.forEach { companion ->
-        if (companions.isNotEmpty()) println(
+        if (companions.isNotEmpty()) printlnWithDelay(
             "${companion.name} has ${
                 roundDouble(
                     companion.hp
                 )
             } left."
-        )
+        ,25)
     }
-    companions.forEach { companion -> if (companion.isCursed) println("${companion.name} is cursed.") }
+    companions.forEach { companion -> if (companion.isCursed) printlnWithDelay("${companion.name} is cursed.",25) }
     if (companions.isEmpty()) {
         gameEnd(companions, opponents)
     }
     println()
+    threadsleep(4)
     println("Heroes:")
-    opponents.forEach { opponent -> if (opponents.isNotEmpty()) println("${opponent.name} has ${roundDouble(opponent.hp)} left.") }
+    opponents.forEach { opponent -> if (opponents.isNotEmpty()) printlnWithDelay("${opponent.name} has ${roundDouble(opponent.hp)} left.",25) }
     if (opponents.isEmpty()) {
         gameEnd(companions, opponents)
     }
     println()
+    threadsleep(4)
     println("###### End of Round $round ######")
+    threadsleep(4)
+    println()
+    println()
+    println()
+    println()
 
 }
 //        gameEnd(companions, opponents)
@@ -116,13 +142,18 @@ fun villainsMove2(
 ) {
     var avaliableCompanions = companions.toMutableList()
     removeDeadOpponent(opponents)
-    if (opponents.isNotEmpty()) {
-        println("Which Defender should go next?")
-        avaliableCompanions.forEachIndexed { index, it -> println("${index + 1} -> ${it.title} ${it.name} Attacks: -> ${it.attacks}") }
-        println()
-        print("Your Choice: ")
+
     while (avaliableCompanions.isNotEmpty() && opponents.isNotEmpty()) {
+    if (opponents.isNotEmpty()) {
+        printlnWithDelay("Which Defender should go next?",15)
+        threadsleep(5)
+        avaliableCompanions.forEachIndexed { index, it -> println("${index + 1} -> ${it.title} ${it.name} Attacks: -> ${it.attacks}")
+        threadsleep(5)
+        }
+        println()
+        printWithDelay("Your Choice: ",15)
         var input = readln()
+        println()
         try {
         var villainIndex = input.toInt()
             if (villainIndex in 1..avaliableCompanions.size) {
@@ -144,16 +175,20 @@ fun villainsMove2(
 fun chosenAction2(
     companions: MutableList<Villain>, opponents: MutableList<Hero>, itemBox: ItemBox, companion: Villain) {
     removeDeadOpponent(opponents)
-    println("${companion.name}'s turn, which attack should be carried out?")
-    companion.attacks.forEachIndexed { index, attack -> println("[${index + 1}] -> $attack") }
+    printlnWithDelay("${companion.name}'s turn, which attack should be carried out?",15)
+    threadsleep(5)
+    companion.attacks.forEachIndexed { index, attack -> println("[${index + 1}] -> $attack")
+    threadsleep(5)
+    }
     println("[5] -> ${itemBox.name}")
+    threadsleep(5)
 
 
     println()
-    print("Your Choice: ")
-
+    printWithDelay("Your Choice: ",15)
     do  {
         val input = readln()
+        println()
         try {
             var attackIndex = input.toInt()
             if (attackIndex in 1..companion.attacks.size + 1) {
@@ -165,7 +200,7 @@ fun chosenAction2(
 
                     "2" -> if (companion is DemonLord) companion.hellFlame(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodLetting(
                         opponents.random(),
-                        companions[0]
+                        lowestHPCompanions(companions)
                     )
                     else if (companion is SecondHeavenlyKing) companion.eternalIce(companion)
 
@@ -179,9 +214,10 @@ fun chosenAction2(
                     )
                     else if (companion is SecondHeavenlyKing) companion.chaosBurst(opponents.random())
 
-                    "5" -> if (itemBox.useItem(companion, itemBox.itemBox)) else {
-                        print("ItemBox canceled, which attack should be carried out?")
-
+                    "5" -> if (itemBox.useItem(companion, itemBox.itemBox))
+                        else {
+                        printWithDelay("ItemBox closed, which attack should be carried out?",15)
+                        continue
                     }
                 }
                 println()

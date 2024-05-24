@@ -58,7 +58,7 @@ open class Hero(name: String = randomSaviorName()) : Character(name) {
     fun applycurse(opponent: Villain){
         var curseActive = true
             opponent.hp -= (opponent.maxHP * 0.1)
-            println("${roundDouble(opponent.hp*0.1)} damage taken, ${roundDouble(opponent.hp)} health points left.")
+            println("${roundDouble(opponent.maxHP*0.1)} damage taken, ${roundDouble(opponent.hp)} health points left.")
             if (opponent.hp<(opponent.maxHP*0.2)){
                 curseActive = false
                 cursedVillain = null

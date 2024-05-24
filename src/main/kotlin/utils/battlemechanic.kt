@@ -117,23 +117,25 @@ fun villainsMove2(
     var avaliableCompanions = companions.toMutableList()
     removeDeadOpponent(opponents)
     if (opponents.isNotEmpty()) {
-    while (avaliableCompanions.isNotEmpty() && opponents.isNotEmpty()) {
         println("Which Defender should go next?")
         avaliableCompanions.forEachIndexed { index, it -> println("${index + 1} -> ${it.title} ${it.name} Attacks: -> ${it.attacks}") }
         println()
         print("Your Choice: ")
+    while (avaliableCompanions.isNotEmpty() && opponents.isNotEmpty()) {
         var input = readln()
-        var validInput = false
-        while (!validInput) {
-            if (input.toIntOrNull() != null && input.toInt() in 1..avaliableCompanions.size + 1) {
+        try {
+        var villainIndex = input.toInt()
+            if (villainIndex in 1..avaliableCompanions.size) {
                 var chosenCompanion = avaliableCompanions[input.toIntOrNull()!!.minus(1)]
                 avaliableCompanions.remove(chosenCompanion)
-                validInput = true
                 if (opponents.isNotEmpty()) {
                     chosenAction2(avaliableCompanions, opponents, itemBox, chosenCompanion)
                     chosenCompanion.decrementBuffRounds()
                 } else continue
-            }
+            } else println("Invalid Input. Please enter a number between 1 and ${avaliableCompanions.size}.")
+            continue
+        } catch (e: NumberFormatException) {
+            println("Invalid Input. Please enter a number between 1 and ${avaliableCompanions.size}.")
         }
     }
     }
@@ -145,39 +147,54 @@ fun chosenAction2(
     println("${companion.name}'s turn, which attack should be carried out?")
     companion.attacks.forEachIndexed { index, attack -> println("[${index + 1}] -> $attack") }
     println("[5] -> ${itemBox.name}")
-    var validInput = false
-    while (!validInput) {
-        println()
-        print("Your Choice: ")
+
+
+    println()
+    print("Your Choice: ")
+
+    do  {
         val input = readln()
-        if (input.toInt() in 1..companion.attacks.size+1) {
-            validInput = true
-            when (input) {
-                "1" -> if (companion is DemonLord) companion.darkSword(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bite(opponents.random())
-                else if (companion is SecondHeavenlyKing) companion.void(opponents.random())
-                "2" -> if (companion is DemonLord) companion.hellFlame(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodLetting(opponents.random(), companion)
-                else if (companion is SecondHeavenlyKing) companion.eternalIce(companion)
-                "3" -> if (companion is DemonLord) companion.gravityBomb(opponents.random()) else if (companion is FirstHeavenlyKing) companion.darkHeal(companions)
-                else if (companion is SecondHeavenlyKing) companion.bloodArt(opponents.random())
-                "4" -> if (companion is DemonLord) companion.rulersGrip(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodRain(opponents)
-                else if (companion is SecondHeavenlyKing) companion.chaosBurst(opponents.random())
-                "5" -> if (itemBox.useItem(companion, itemBox.itemBox)) else { print("ItemBox canceled, which attack should be carried out?")
-                    validInput = false }
+        try {
+            var attackIndex = input.toInt()
+            if (attackIndex in 1..companion.attacks.size + 1) {
+                when (input) {
+                    "1" -> if (companion is DemonLord) companion.darkSword(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bite(
+                        opponents.random()
+                    )
+                    else if (companion is SecondHeavenlyKing) companion.void(opponents.random())
 
+                    "2" -> if (companion is DemonLord) companion.hellFlame(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodLetting(
+                        opponents.random(),
+                        companions[0]
+                    )
+                    else if (companion is SecondHeavenlyKing) companion.eternalIce(companion)
+
+                    "3" -> if (companion is DemonLord) companion.gravityBomb(opponents.random()) else if (companion is FirstHeavenlyKing) companion.darkHeal(
+                        companions
+                    )
+                    else if (companion is SecondHeavenlyKing) companion.bloodArt(opponents.random())
+
+                    "4" -> if (companion is DemonLord) companion.rulersGrip(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodRain(
+                        opponents
+                    )
+                    else if (companion is SecondHeavenlyKing) companion.chaosBurst(opponents.random())
+
+                    "5" -> if (itemBox.useItem(companion, itemBox.itemBox)) else {
+                        print("ItemBox canceled, which attack should be carried out?")
+
+                    }
+                }
+                println()
+                removeDeadOpponent(opponents)
+                break
+            } else {
+                println("Invalid Input. Please enter a number between 1 and ${companion.attacks.size + 1}.")
+                continue
             }
-//            if (input == "5") {
-//                if (!itemBox.useItem(companion, itemBox.itemBox)) {
-//                    print("ItemBox canceled, which attack should be carried out?")
-//                    validInput = false
-//
-//                }
-
-
-//            }
-            println()
-            removeDeadOpponent(opponents)
-        } else println("Please insert a valid Index!")
-    }
+        } catch (e: Exception) {
+            println("Invalid Input. Please enter a number between 1 and ${companion.attacks.size + 1}.")
+        }
+    } while (true)
 }
 
 
@@ -286,12 +303,12 @@ fun performHeroAction(opponents: MutableList<Hero>, companions: MutableList<Vill
                     companions.random()
                 )
 
-                3 -> if (randomHero is Savior) randomHero.holyHeal(randomHero) else if (randomHero is Sidekick) randomHero.elementalWave(
+                3 -> if (randomHero is Savior) randomHero.holyHeal(opponents[0]) else if (randomHero is Sidekick) randomHero.elementalWave(
                     companions
                 )
 
                 4 -> if (randomHero is Savior) randomHero.holyLight(companions) else if (randomHero is Sidekick) randomHero.holyHeal(
-                    opponents.random()
+                    opponents[0]
                 )
 
                 5 -> if (randomHero is Savior) randomHero.sacredCommand(companions)

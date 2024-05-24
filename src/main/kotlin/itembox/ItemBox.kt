@@ -6,7 +6,7 @@ import itembox.consumable.HealingPotion
 import itembox.consumable.StrengthBooster
 
 public class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Item> = mutableListOf()) {
-
+val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooster(),HealingPotion(),StrengthBooster(),HealingPotion())
 
 //    fun useHeiltrank(villain: Villain) {
 //        // printlns, die bescheid sagen, was passiert
@@ -36,10 +36,10 @@ public class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Ite
                     itemBox.add(item)
                     println("${item.name} added to your Item Box.")
                 } else {
-                    println("Invalid item index")
+                    println("Invalid item index. Please enter a number between 1 and ${itemOptions.size}.")
                 }
             } catch (e: NumberFormatException) {
-                println("Invalid Input. Please enter a number.")
+                println("Invalid Input. Please enter a number between 1 and ${itemOptions.size}.")
             }
         }
         println("Your Item Box contains: ")
@@ -54,6 +54,18 @@ public class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Ite
  * */
     open fun useItem(villain: Villain, itemBox: MutableList<Item>): Boolean {
         itemBox.indices.forEach { index -> println("${index + 1}. ${itemBox[index].name}") }
+//        itemBox.forEach { item, count ->
+//            repeat(count) {
+//                println("[${itemBox.keys.indices}]$count x ${item.name}")
+//            }
+//        }
+//    val itemList = mutableListOf<String>()
+//    itemBox.forEach { item ->
+//        repeat(itemBox.count { it == item }) {
+//            itemList.add(item.name)
+//        }
+//    }
+//    itemList.forEach { println(it) }
         while (true) {
             print("Please enter the index of the desired item (q to quit): ")
             val input: String = readln().lowercase()
@@ -74,10 +86,10 @@ public class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Ite
                     }
                     return true
                 } else {
-                    println("Invalid item index")
+                    println("Invalid item index. Please enter a number between 1 and ${itemBox.size}.")
                 }
             } catch (e: NumberFormatException) {
-                println("Invalid Input. Please enter a number. (q to quit)")
+                println("Invalid Input. Please enter a number between 1 and ${itemBox.size}. (q to quit)")
             }
         }
     }

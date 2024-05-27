@@ -27,7 +27,7 @@ class FirstHeavenlyKing(name: String = randomDemonVillainNameFirst()) : Villain(
             printlnWithDelay("First Heavenly King $name tried to use Bite on ${opponent.name}, attack was blocked! No damage taken.",15)
         } else {
             super.swordAttack(opponent, attackPower)
-            printlnWithDelay("First Heavenly King $name used Bite on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.",15)
+            printlnWithDelay("First Heavenly King $name used Bite on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
         }
     }
 
@@ -38,14 +38,15 @@ class FirstHeavenlyKing(name: String = randomDemonVillainNameFirst()) : Villain(
         } else {
             super.swordAttack(opponent, attackPower)
             super.heal(attackPower, companion)
-            printlnWithDelay("First Heavenly King $name used Bloodletting on ${opponent.name}, healed ${companion.name} with the inflicted damage of ${roundDouble(attackPower)}.",15)
+            printlnWithDelay("First Heavenly King $name used Bloodletting on ${opponent.name}, healed ${companion.name} to a total of ${roundDouble(companion.hp)} Health Points with the inflicted damage of ${roundDouble(attackPower)}. ${hpLeft(opponent.hp)} Health Points left.",15)
         }
     }
 
     fun darkHeal(companions: List<Villain>) {
-        healPower *= nextRandomDouble(0.8,1.2) * attackFactor
+        healPower *= (nextRandomDouble(0.8,1.2) * attackFactor)
         companions.forEach { super.heal(healPower, it) }
-        printlnWithDelay("First Heavenly King $name used Dark Heal on ${companions.joinToString(", ") { it.name }} and healed each with ${roundDouble(healPower)} points.",15)
+        val healedCompanions = companions.joinToString(", ") { it.name }
+        printlnWithDelay("First Heavenly King $name used Dark Heal on $healedCompanions and healed each with ${roundDouble(healPower)} points to a total of ${companions.joinToString(", ","",".") { it.name +" "+ roundDouble(it.hp)+" Health Points" }}",15)
     }
 
     fun bloodRain(opponents: List<Hero>) {
@@ -57,7 +58,7 @@ class FirstHeavenlyKing(name: String = randomDemonVillainNameFirst()) : Villain(
                 super.magicAttack(it, attackPower)
                 attackPower
             }
-            printlnWithDelay("First Heavenly King $name used Blood Raid on ${unblockedOpponents.joinToString { it.name }} and inflicted ${roundDouble(totalDamage)} total damage and ${roundDouble(attackPower)} to each.",15)
+            printlnWithDelay("First Heavenly King $name used Blood Rain on ${unblockedOpponents.joinToString { it.name }} and inflicted ${roundDouble(totalDamage)} total damage and ${roundDouble(attackPower)} to each. ${unblockedOpponents.joinToString(", ","",".") { it.name +" "+ hpLeft(roundDouble(it.hp)) +" Health Points left" }}",15)
             printlnWithDelay(if (blockedOpponents.isNotEmpty()) "${blockedOpponents.joinToString { it.name }} blocked and took no Damage." else "",15)
         } else printlnWithDelay("First Heavenly King $name tried to use Blood Rain on ${blockedOpponents.joinToString { it.name }}, all attacks were blocked! No damage taken.",15)
     }

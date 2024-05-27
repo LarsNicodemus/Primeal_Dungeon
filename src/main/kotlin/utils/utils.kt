@@ -1,6 +1,7 @@
 package utils
 
 
+import character.heroes.Hero
 import character.villains.Villain
 import kotlin.math.roundToInt
 import kotlin.random.Random
@@ -109,7 +110,7 @@ fun printWithDelay(string: String, delayMillis: Long) {
         Thread.sleep(delayMillis)
     }
 }
-fun lowestHPCompanions(companions: MutableList<Villain>): Villain {
+fun lowestHPCompanions(companions: List<Villain>): Villain {
     var villainWithLowestHP: Villain? = null
     var lowestHP = Double.MAX_VALUE
     for (companion in companions) {
@@ -120,16 +121,23 @@ fun lowestHPCompanions(companions: MutableList<Villain>): Villain {
     }
     return villainWithLowestHP!!
 }
-fun lowestHPOpponents(companions: MutableList<Villain>): Villain {
-    var villainWithLowestHP: Villain? = null
+
+fun hpLeft(hp: Double): Double {
+    return if (hp <= 0.0) {
+        0.0
+    } else roundDouble2(hp)
+}
+
+fun lowestHPOpponents(opponents: List<Hero>): Hero {
+    var opponentWithLowestHP: Hero? = null
     var lowestHP = Double.MAX_VALUE
-    for (companion in companions) {
-        if (companion.hp < lowestHP) {
-            villainWithLowestHP = companion
-            lowestHP = companion.hp
+    for (opponent in opponents) {
+        if (opponent.hp < lowestHP) {
+            opponentWithLowestHP = opponent
+            lowestHP = opponent.hp
         }
     }
-    return villainWithLowestHP!!
+    return opponentWithLowestHP!!
 }
 
 //fun useItemBox(itemBox: ItemBox) {

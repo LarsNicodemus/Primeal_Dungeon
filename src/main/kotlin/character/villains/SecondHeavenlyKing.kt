@@ -2,6 +2,7 @@ package character.villains
 
 import character.Character
 import character.heroes.Hero
+import utils.hpLeft
 import utils.printlnWithDelay
 import utils.randomDemonVillainNameSecond
 import utils.roundDouble
@@ -21,7 +22,7 @@ class SecondHeavenlyKing(name: String = randomDemonVillainNameSecond()) : Villai
             Attack Power ${roundDouble(attackPower)}
         """.trimIndent()
     }
-    override var attacks: List<String> = listOf("Void","Eternal Ice","Chaos Burst","Blood Art")
+    override var attacks: List<String> = listOf("Void","Eternal Ice","Chaos Burst","Origins Doom")
 
 override var title: String = "Second Heavenly King"
     fun void(opponent: Hero) {
@@ -30,7 +31,7 @@ override var title: String = "Second Heavenly King"
             printlnWithDelay("Second Heavenly King $name tried to use Void on ${opponent.name}, attack was blocked! No damage taken.",15)
         } else {
             super.magicAttack(opponent, attackPower)
-            printlnWithDelay("Second Heavenly King $name used Void on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.",15)
+            printlnWithDelay("Second Heavenly King $name used Void on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
         }
     }
 
@@ -47,17 +48,17 @@ override var title: String = "Second Heavenly King"
             printlnWithDelay("Second Heavenly King $name tried to use Chaos Burst on ${opponent.name}, attack was blocked! No damage taken.",15)
         } else {
             super.magicAttack(opponent, attackPower)
-            printlnWithDelay("Second Heavenly King $name used Chaos Burst on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.",15)
+            printlnWithDelay("Second Heavenly King $name used Chaos Burst on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
         }
     }
 
-    fun bloodArt(opponent: Hero) {
+    fun originsDoom(opponent: Hero) {
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
-            printlnWithDelay("Second Heavenly King $name tried to use Blood Art on ${opponent.name}, attack was blocked! No damage taken.",15)
+            printlnWithDelay("Second Heavenly King $name tried to use Origins Doom on ${opponent.name}, attack was blocked! No damage taken.",15)
         } else {
             super.swordAttack(opponent, attackPower)
-            printlnWithDelay("Second Heavenly King $name used Blood Art on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.",15)
+            printlnWithDelay("Second Heavenly King $name used Origins Doom on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
         }
     }
 }

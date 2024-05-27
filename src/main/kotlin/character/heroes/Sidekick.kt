@@ -1,10 +1,7 @@
 package character.heroes
 import character.Character
 import character.villains.Villain
-import utils.nextRandomDouble
-import utils.printlnWithDelay
-import utils.randomHeroineName
-import utils.roundDouble
+import utils.*
 
 /**The Sidekick Class is child to Hero and the support antagonist.
  * @constructor creates a Sidekick with a random name from a list of names
@@ -21,7 +18,7 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
 //        """.trimIndent()
 //    }
     init {
-    this.hp *= 0.5
+    hp = randomDouble(70.0, 100.0)
     }
 
     fun elementalArrow(opponent: Villain){
@@ -30,13 +27,13 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
             printlnWithDelay("Attack was blocked! No damage taken.",15)
         } else {
             super.magicAttack(opponent, attackPower)
-            printlnWithDelay("Sidekick $name used elemental Arrow on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.",15)
+            printlnWithDelay("Sidekick $name used elemental Arrow on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
         }
     }
     fun holyHeal(companion: Hero) {
         healPower *= nextRandomDouble(0.8, 1.2) * attackFactor
         super.heal(companion, healPower)
-        printlnWithDelay("Sidekick $name used Holy Heal on ${companion.name} and healed $healPower points.",15)
+        printlnWithDelay("Sidekick $name used Holy Heal on ${companion.name} and restored ${roundDouble(healPower)} points to a total of ${companion.hp} Health points.",15)
     }
 
     fun elementalBeam(opponent: Villain) {
@@ -45,7 +42,7 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
             printlnWithDelay("Sidekick $name tried to use Elemental Beam on ${opponent.name}, attack was blocked! No damage taken.",15)
         } else {
             super.magicAttack(opponent, attackPower)
-            printlnWithDelay("Sidekick $name used Elemental Beam on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.",15)
+            printlnWithDelay("Sidekick $name used Elemental Beam on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
         }
     }
 
@@ -58,7 +55,7 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
                 super.magicAttack(it, attackPower)
                 attackPower
             }
-            printlnWithDelay("Sidekick $name used elemental Wave on ${unblockedOpponents.joinToString { it.name }} and inflicted ${roundDouble(totalDamage)} total damage and ${roundDouble(attackPower)} to each.",15)
+            printlnWithDelay("Sidekick $name used elemental Wave on ${unblockedOpponents.joinToString { it.name }} and inflicted ${roundDouble(totalDamage)} total damage and ${roundDouble(attackPower)} to each. ${unblockedOpponents.joinToString(", ","",".") { it.name +" "+ hpLeft(roundDouble(it.hp)) +" Health Points left" }}",15)
             printlnWithDelay(if (blockedOpponents.isNotEmpty()) "${blockedOpponents.joinToString { it.name }} blocked and took no Damage." else "",15)
         } else printlnWithDelay("All attacks were blocked! No damage taken.",15)
     }

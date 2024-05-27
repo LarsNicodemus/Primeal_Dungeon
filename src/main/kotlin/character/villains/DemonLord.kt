@@ -2,6 +2,7 @@ package character.villains
 
 import character.Character
 import character.heroes.Hero
+import utils.hpLeft
 import utils.printlnWithDelay
 import utils.randomVillainName
 import utils.roundDouble
@@ -33,7 +34,7 @@ class DemonLord(name: String = randomVillainName()) : Villain(name) {
             printlnWithDelay("Demonlord $name tried to use Dark Sword on ${opponent.name}, attack was blocked! No damage taken.",15)
         } else {
             super.swordAttack(opponent, attackPower)
-            printlnWithDelay("Demonlord $name used Dark Sword on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.",15)
+            printlnWithDelay("Demonlord $name used Dark Sword on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
         }
     }
 
@@ -43,7 +44,7 @@ class DemonLord(name: String = randomVillainName()) : Villain(name) {
             printlnWithDelay("Demonlord $name tried to use Hell Flame on ${opponent.name}, attack was blocked! No damage taken.",15)
         } else {
             super.magicAttack(opponent, attackPower)
-            printlnWithDelay("Demonlord $name used Hell Flame on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.",15)
+            printlnWithDelay("Demonlord $name used Hell Flame on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
         }
     }
 
@@ -53,7 +54,7 @@ class DemonLord(name: String = randomVillainName()) : Villain(name) {
             printlnWithDelay("Demonlord $name tried to use Gravity Bomb on ${opponent.name}, attack was blocked! No damage taken.",15)
         } else {
             super.magicAttack(opponent, attackPower)
-            printlnWithDelay("Demonlord $name used Gravity Bomb on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.",15)
+            printlnWithDelay("Demonlord $name used Gravity Bomb on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
         }
     }
 
@@ -63,7 +64,7 @@ class DemonLord(name: String = randomVillainName()) : Villain(name) {
             printlnWithDelay("Demonlord $name tried to use Ruler's Grip on ${opponent.name}, attack was blocked! No damage taken.",15)
         } else {
             super.swordAttack(opponent, attackPower)
-            printlnWithDelay("Demonlord $name used Ruler's Grip on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage.",15)
+            printlnWithDelay("Demonlord $name used Ruler's Grip on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
         }
     }
 

@@ -216,7 +216,7 @@ fun removeDeadOpponent(opponents: MutableList<Hero>) {
 
 fun gameEnd(companions: MutableList<Villain>, opponents: MutableList<Hero>, red: String, reset: String, green: String, bold: String): Boolean {
     if (companions.isEmpty()) {
-        println("All Villians died during Battle. you lost!!")
+        println("All Villians died during Battle")
         println("""$red
             
               ▄████     ▄▄▄          ███▄ ▄███▓   ▓█████           ▒█████      ██▒   █▓   ▓█████     ██▀███  
@@ -234,15 +234,15 @@ fun gameEnd(companions: MutableList<Villain>, opponents: MutableList<Hero>, red:
         """.trimIndent())
         return true
     } else if (opponents.isEmpty()) {
-        println("All Heroes died during Battle. you won!!")
+        println("All Heroes died during Battle")
         println("""
             $green$bold
-            _____.___.               __      __               ._.
-            \__  |   | ____  __ __  /  \    /  \____   ____   | |
-             /   |   |/  _ \|  |  \ \   \/\/   /  _ \ /    \  | |
-             \____   (  <_> )  |  /  \        (  <_> )   |  \  \|
-             / ______|\____/|____/    \__/\  / \____/|___|  /  __
-             \/                            \/             \/   \/
+         ▄· ▄▌      ▄• ▄▌    ▄▄▌ ▐ ▄▌       ▐ ▄     ▄▄ 
+        ▐█▪██▌▪     █▪██▌    ██· █▌▐█▪     •█▌▐█    ██▌
+        ▐█▌▐█▪ ▄█▀▄ █▌▐█▌    ██▪▐█▐▐▌ ▄█▀▄ ▐█▐▐▌    ▐█·
+         ▐█▀·.▐█▌.▐▌▐█▄█▌    ▐█▌██▐█▌▐█▌.▐▌██▐█▌    .▀ 
+          ▀ •  ▀█▄▀▪ ▀▀▀      ▀▀▀▀ ▀▪ ▀█▄▀▪▀▀ █▪     ▀ 
+        
         $reset
         """.trimIndent())
         return true

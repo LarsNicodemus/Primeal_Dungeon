@@ -36,7 +36,7 @@ fun game() {
     var savior = Savior()
     val opponents: MutableList<Hero> = mutableListOf(savior)
 
-    intro(demonLord,firstHeavenlyKing,secondHeavenlyKing)
+    intro(demonLord,firstHeavenlyKing,secondHeavenlyKing, red, bold, reset)
     itemChoice(itemBox)
     threadsleep(3)
     println("""${cyan} ${bold}
@@ -56,11 +56,13 @@ fun game() {
     threadsleep(2)
     println("""
         ${cyan} ${bold}
+        
          ▄▄ •  ▄▄▄· • ▌ ▄ ·. ▄▄▄ .    ▄▄▄ . ▐ ▄ ·▄▄▄▄  
         ▐█ ▀ ▪▐█ ▀█ ·██ ▐███▪▀▄.▀·    ▀▄.▀·•█▌▐███▪ ██ 
-         ▄█ ▀█▄▄█▀▀█ ▐█ ▌▐▌▐█·▐▀▀▪▄    ▐▀▀▪▄▐█▐▐▌▐█· ▐█▌
+        ▄█ ▀█▄▄█▀▀█ ▐█ ▌▐▌▐█·▐▀▀▪▄    ▐▀▀▪▄▐█▐▐▌▐█· ▐█▌
         ▐█▄▪▐█▐█ ▪▐▌██ ██▌▐█▌▐█▄▄▌    ▐█▄▄▌██▐█▌██. ██ 
         ·▀▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀      ▀▀▀ ▀▀ █▪▀▀▀▀▀• 
+
         ${reset}
     """.trimIndent())
     println()
@@ -104,13 +106,13 @@ fun villainChoice(demonLord: DemonLord) {
     println()
 }
 
-fun intro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeavenlyKing: SecondHeavenlyKing) {
+fun intro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeavenlyKing: SecondHeavenlyKing,red: String,bold: String, reset: String) {
     println()
     println()
     threadsleep(4)
     printlnWithDelay("A tremor echoed through the obsidian throne room, shaking the flickering torches that cast long, dancing shadows on the walls.",15)
     villainChoice(demonLord)
-    printlnWithDelay("${demonLord.name}, The Demonlord! ",15)
+    printlnWithDelay("${demonLord.name}, $red$bold The Demonlord!$reset ",15)
     printlnWithDelay("""
         the crimson-skinned Demonlord with ceiling-scraping horns, slammed his massive fist on the armrest. 
         
@@ -129,35 +131,10 @@ fun intro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeaven
         ${firstHeavenlyKing.name} and ${secondHeavenlyKing.name} exchanged a glance, a silent vow. 
         
         They would fight. Win. 
-        Or die defending their kind's last refuge.
+        
     """.trimIndent(),15)
-
-//    printlnWithDelay("A being of smoldering crimson skin and horns that scraped the ceiling, slammed his massive fist onto the armrest.",15)
-//    println()
-//    printlnWithDelay("The tremor originated from above, yet another human siege hammering at the gates of the Primeal Dungeon, the last bastion of their kind.",15)
-//
-//    printlnWithDelay("Beside him stood his two most loyal lieutenants, the Left Heavenly Kings.",15)
-//    println()
-//    printlnWithDelay("First Heavenly King ${firstHeavenlyKing.name}, the Duchess of Shadows,",15)
-//
-//    printlnWithDelay("her obsidian armor swirling with an inky mist, remained impassive, her violet eyes gleaming with a predatory hunger for battle.",15)
-//
-//    printlnWithDelay("In contrast,Second Heavenly King ${secondHeavenlyKing.name}, the Elemental King,",15)
-//
-//    printlnWithDelay("a tempestuous embodiment of all the elements, though not humanoid, his presence held a primal intelligence, the incarnation of nature's untamed fury.",15)
-//    println()
-//    printlnWithDelay("They had endured countless assaults on the Primeal Dungeon, human paladins, elven archers, and dwarven berserkers all throwing themselves against their demonic defenses.",15)
-//    println()
-//    printlnWithDelay("Yet, ${demonLord.name} knew this siege felt different, a desperate final push by a cornered enemy.",15)
-//
-//    printlnWithDelay("He rose from his throne, his gaze hardening. \"They will break,\" he declared, his voice a rumbling inferno,",15)
-//
-//    printlnWithDelay("\"but not the walls of the Primeal Dungeon. We will show them the wrath of a demon lord cornered!\"",15)
-//    println()
-//    printlnWithDelay("${firstHeavenlyKing.name} and ${secondHeavenlyKing.name} exchanged a glance, a silent promise flashing between them.",15)
-//
-//    printlnWithDelay("They would fight. They would win. Or die defending the last refuge of their kind.",15)
-//
+    threadsleep(3)
+    printlnWithDelay("Or die tryin'.",15)
 
 }
 

@@ -4,7 +4,6 @@ import character.villains.Villain
 import itembox.consumable.ConsumableItem
 import itembox.consumable.HealingPotion
 import itembox.consumable.StrengthBooster
-import utils.printWithDelay
 import utils.printlnWithDelay
 import utils.threadsleep
 
@@ -60,7 +59,10 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
     println()
         println("Your Item Box contains: ")
 //        itemBox.indices.forEach { index -> println("Nr.${index + 1}. ${itemBox[index].name}") }
-        printlnWithDelay(itemBox.joinToString("][","[","]") { it.name },10)
+    val groupedItemBox = itemBox.groupingBy { it }.eachCount().entries
+        .map { "[${it.key.name}]: ${it.value}" }
+    println(groupedItemBox)
+//        printlnWithDelay(itemBox.joinToString("][","[","]") { it.name },10)
     println()
     threadsleep(1)
     }
@@ -118,4 +120,7 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
         }
     }
 
+    fun formatItem(item: Item): String{
+        return "${item.count} x [${item.name}]"
+    }
 }

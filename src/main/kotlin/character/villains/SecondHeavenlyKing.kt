@@ -26,6 +26,15 @@ class SecondHeavenlyKing(name: String = randomDemonVillainNameSecond()) : Villai
 
 override var title: String = "Second Heavenly King"
     fun void(opponent: Hero) {
+        println("""
+            
+             ▌ ▐·      ▪  ·▄▄▄▄  
+            ▪█·█▌▪     ██ ██▪ ██ 
+            ▐█▐█• ▄█▀▄ ▐█·▐█· ▐█▌
+             ███ ▐█▌.▐▌▐█▌██. ██ 
+            . ▀   ▀█▄▀▪▀▀▀▀▀▀▀▀• 
+
+        """.trimIndent())
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Second Heavenly King $name tried to use Void on ${opponent.name}, attack was blocked! No damage taken.",15)
@@ -36,6 +45,15 @@ override var title: String = "Second Heavenly King"
     }
 
     fun eternalIce(companion: Villain) {
+        println("""
+            
+            ▄▄▄ .▄▄▄▄▄▄▄▄ .▄▄▄   ▐ ▄  ▄▄▄· ▄▄▌      ▪   ▄▄· ▄▄▄ .
+            ▀▄.▀·•██  ▀▄.▀·▀▄ █·•█▌▐█▐█ ▀█ ██•      ██ ▐█ ▌▪▀▄.▀·
+            ▐▀▀▪▄ ▐█.▪▐▀▀▪▄▐▀▀▄ ▐█▐▐▌▄█▀▀█ ██▪      ▐█·██ ▄▄▐▀▀▪▄
+            ▐█▄▄▌ ▐█▌·▐█▄▄▌▐█•█▌██▐█▌▐█ ▪▐▌▐█▌▐▌    ▐█▌▐███▌▐█▄▄▌
+             ▀▀▀  ▀▀▀  ▀▀▀ .▀  ▀▀▀ █▪ ▀  ▀ .▀▀▀     ▀▀▀·▀▀▀  ▀▀▀ 
+
+        """.trimIndent())
         if (!block(companion))
             printlnWithDelay("Second Heavenly King $name tried to used Eternal Ice but it failed.",15)
         else printlnWithDelay("Second Heavenly King $name used Eternal Ice to block the next attack.",15)
@@ -43,6 +61,15 @@ override var title: String = "Second Heavenly King"
     }
 
     fun chaosBurst(opponent: Hero) {
+        println("""
+            
+             ▄▄·  ▄ .▄ ▄▄▄·       .▄▄ ·     ▄▄▄▄· ▄• ▄▌▄▄▄  .▄▄ · ▄▄▄▄▄
+            ▐█ ▌▪██▪▐█▐█ ▀█ ▪     ▐█ ▀.     ▐█ ▀█▪█▪██▌▀▄ █·▐█ ▀. •██  
+            ██ ▄▄██▀▐█▄█▀▀█  ▄█▀▄ ▄▀▀▀█▄    ▐█▀▀█▄█▌▐█▌▐▀▀▄ ▄▀▀▀█▄ ▐█.▪
+            ▐███▌██▌▐▀▐█ ▪▐▌▐█▌.▐▌▐█▄▪▐█    ██▄▪▐█▐█▄█▌▐█•█▌▐█▄▪▐█ ▐█▌·
+            ·▀▀▀ ▀▀▀ · ▀  ▀  ▀█▄▀▪ ▀▀▀▀     ·▀▀▀▀  ▀▀▀ .▀  ▀ ▀▀▀▀  ▀▀▀ 
+
+        """.trimIndent())
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Second Heavenly King $name tried to use Chaos Burst on ${opponent.name}, attack was blocked! No damage taken.",15)
@@ -53,6 +80,15 @@ override var title: String = "Second Heavenly King"
     }
 
     fun originsDoom(opponent: Hero) {
+        println("""
+            
+                  ▄▄▄  ▪   ▄▄ • ▪   ▐ ▄ .▄▄ ·     ·▄▄▄▄              • ▌ ▄ ·. 
+            ▪     ▀▄ █·██ ▐█ ▀ ▪██ •█▌▐█▐█ ▀.     ██▪ ██ ▪     ▪     ·██ ▐███▪
+             ▄█▀▄ ▐▀▀▄ ▐█·▄█ ▀█▄▐█·▐█▐▐▌▄▀▀▀█▄    ▐█· ▐█▌ ▄█▀▄  ▄█▀▄ ▐█ ▌▐▌▐█·
+            ▐█▌.▐▌▐█•█▌▐█▌▐█▄▪▐█▐█▌██▐█▌▐█▄▪▐█    ██. ██ ▐█▌.▐▌▐█▌.▐▌██ ██▌▐█▌
+             ▀█▄▀▪.▀  ▀▀▀▀·▀▀▀▀ ▀▀▀▀▀ █▪ ▀▀▀▀     ▀▀▀▀▀•  ▀█▄▀▪ ▀█▄▀▪▀▀  █▪▀▀▀
+
+        """.trimIndent())
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Second Heavenly King $name tried to use Origins Doom on ${opponent.name}, attack was blocked! No damage taken.",15)

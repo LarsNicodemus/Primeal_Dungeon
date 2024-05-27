@@ -28,6 +28,13 @@ class DemonLord(name: String = randomVillainName()) : Villain(name) {
     override var title: String = "Demonlord"
 
     fun darkSword(opponent: Hero) {
+        println("""
+            ·▄▄▄▄   ▄▄▄· ▄▄▄  ▄ •▄     .▄▄ · ▄▄▌ ▐ ▄▌      ▄▄▄  ·▄▄▄▄  
+            ██▪ ██ ▐█ ▀█ ▀▄ █·█▌▄▌▪    ▐█ ▀. ██· █▌▐█▪     ▀▄ █·██▪ ██ 
+            ▐█· ▐█▌▄█▀▀█ ▐▀▀▄ ▐▀▀▄·    ▄▀▀▀█▄██▪▐█▐▐▌ ▄█▀▄ ▐▀▀▄ ▐█· ▐█▌
+            ██. ██ ▐█ ▪▐▌▐█•█▌▐█.█▌    ▐█▄▪▐█▐█▌██▐█▌▐█▌.▐▌▐█•█▌██. ██ 
+            ▀▀▀▀▀•  ▀  ▀ .▀  ▀·▀  ▀     ▀▀▀▀  ▀▀▀▀ ▀▪ ▀█▄▀▪.▀  ▀▀▀▀▀▀• 
+        """.trimIndent())
         attackPower
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
@@ -39,6 +46,13 @@ class DemonLord(name: String = randomVillainName()) : Villain(name) {
     }
 
     fun hellFlame(opponent: Hero) {
+        println("""
+        ▄ .▄▄▄▄ .▄▄▌  ▄▄▌      ·▄▄▄▄▄▌   ▄▄▄· • ▌ ▄ ·. ▄▄▄ .
+        ██▪▐█▀▄.▀·██•  ██•      ▐▄▄·██•  ▐█ ▀█ ·██ ▐███▪▀▄.▀·
+        ██▀▐█▐▀▀▪▄██▪  ██▪      ██▪ ██▪  ▄█▀▀█ ▐█ ▌▐▌▐█·▐▀▀▪▄
+        ██▌▐▀▐█▄▄▌▐█▌▐▌▐█▌▐▌    ██▌.▐█▌▐▌▐█ ▪▐▌██ ██▌▐█▌▐█▄▄▌
+        ▀▀▀ · ▀▀▀ .▀▀▀ .▀▀▀     ▀▀▀ .▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀ 
+        """.trimIndent())
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Demonlord $name tried to use Hell Flame on ${opponent.name}, attack was blocked! No damage taken.",15)
@@ -49,6 +63,13 @@ class DemonLord(name: String = randomVillainName()) : Villain(name) {
     }
 
     fun gravityBomb(opponent: Hero) {
+        println("""
+            ▄▄ • ▄▄▄   ▄▄▄·  ▌ ▐·▪  ▄▄▄▄▄ ▄· ▄▌    ▄▄▄▄·       • ▌ ▄ ·. ▄▄▄▄· 
+            ▐█ ▀ ▪▀▄ █·▐█ ▀█ ▪█·█▌██ •██  ▐█▪██▌    ▐█ ▀█▪▪     ·██ ▐███▪▐█ ▀█▪
+            ▄█ ▀█▄▐▀▀▄ ▄█▀▀█ ▐█▐█•▐█· ▐█.▪▐█▌▐█▪    ▐█▀▀█▄ ▄█▀▄ ▐█ ▌▐▌▐█·▐█▀▀█▄
+            ▐█▄▪▐█▐█•█▌▐█ ▪▐▌ ███ ▐█▌ ▐█▌· ▐█▀·.    ██▄▪▐█▐█▌.▐▌██ ██▌▐█▌██▄▪▐█
+            ·▀▀▀▀ .▀  ▀ ▀  ▀ . ▀  ▀▀▀ ▀▀▀   ▀ •     ·▀▀▀▀  ▀█▄▀▪▀▀  █▪▀▀▀·▀▀▀▀ 
+        """.trimIndent())
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Demonlord $name tried to use Gravity Bomb on ${opponent.name}, attack was blocked! No damage taken.",15)
@@ -59,6 +80,13 @@ class DemonLord(name: String = randomVillainName()) : Villain(name) {
     }
 
     fun rulersGrip(opponent: Hero) {
+        println("""
+            ▄▄▄  ▄• ▄▌▄▄▌  ▄▄▄ .▄▄▄  .▄▄ ·      ▄▄ • ▄▄▄  ▪   ▄▄▄·
+            ▀▄ █·█▪██▌██•  ▀▄.▀·▀▄ █·▐█ ▀.     ▐█ ▀ ▪▀▄ █·██ ▐█ ▄█
+            ▐▀▀▄ █▌▐█▌██▪  ▐▀▀▪▄▐▀▀▄ ▄▀▀▀█▄    ▄█ ▀█▄▐▀▀▄ ▐█· ██▀·
+            ▐█•█▌▐█▄█▌▐█▌▐▌▐█▄▄▌▐█•█▌▐█▄▪▐█    ▐█▄▪▐█▐█•█▌▐█▌▐█▪·•
+            .▀  ▀ ▀▀▀ .▀▀▀  ▀▀▀ .▀  ▀ ▀▀▀▀     ·▀▀▀▀ .▀  ▀▀▀▀.▀   
+        """.trimIndent())
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Demonlord $name tried to use Ruler's Grip on ${opponent.name}, attack was blocked! No damage taken.",15)

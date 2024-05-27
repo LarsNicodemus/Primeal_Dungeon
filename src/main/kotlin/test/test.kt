@@ -30,7 +30,7 @@ public fun main() {
     val companions = mutableListOf(demonLord,firstHeavenlyKing,secondHeavenlyKing)
     val opponents: MutableList<Hero> = mutableListOf(savior)
     var usedItemBox = false
-//    itemBox.addItem(itemBox.itemBox)
+    itemBox.addItem(itemBox.itemBox)
 //    fightRound(villains,heroes,itemBox)
 //    roundStart(round = 1)
 //    roundEnd(round = 1,villains,heroes)
@@ -41,14 +41,8 @@ public fun main() {
 //    chooseAttack(villains.random(),heroes,villains,itemBox,usedItemBox)
 //    attackChoice(villains.random(),heroes,villains,itemBox,usedItemBox)
 //    firstHeavenlyKing.darkHeal(companions)
-    println("""
-            $green$bold
-     ▄· ▄▌      ▄• ▄▌    ▄▄▌ ▐ ▄▌       ▐ ▄     ▄▄ 
-    ▐█▪██▌▪     █▪██▌    ██· █▌▐█▪     •█▌▐█    ██▌
-    ▐█▌▐█▪ ▄█▀▄ █▌▐█▌    ██▪▐█▐▐▌ ▄█▀▄ ▐█▐▐▌    ▐█·
-     ▐█▀·.▐█▌.▐▌▐█▄█▌    ▐█▌██▐█▌▐█▌.▐▌██▐█▌    .▀ 
-      ▀ •  ▀█▄▀▪ ▀▀▀      ▀▀▀▀ ▀▪ ▀█▄▀▪▀▀ █▪     ▀ 
-        
-        $reset
-        """.trimIndent())
+//    demonLord.darkSword(opponents.random())
+//    demonLord.hellFlame(opponents.random())
+//    demonLord.gravityBomb(opponents.random())
+//    demonLord.rulersGrip(opponents.random())
 }

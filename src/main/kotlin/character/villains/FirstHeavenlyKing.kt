@@ -22,6 +22,13 @@ class FirstHeavenlyKing(name: String = randomDemonVillainNameFirst()) : Villain(
 
     override var title: String = "First Heavenly King"
     fun bite(opponent: Hero) {
+        println("""
+            ▄▄▄▄· ▪  ▄▄▄▄▄▄▄▄ .
+            ▐█ ▀█▪██ •██  ▀▄.▀·
+            ▐█▀▀█▄▐█· ▐█.▪▐▀▀▪▄
+            ██▄▪▐█▐█▌ ▐█▌·▐█▄▄▌
+            ·▀▀▀▀ ▀▀▀ ▀▀▀  ▀▀▀ 
+        """.trimIndent())
         attackPower = actualAttackPower(attackPower,attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("First Heavenly King $name tried to use Bite on ${opponent.name}, attack was blocked! No damage taken.",15)
@@ -32,6 +39,15 @@ class FirstHeavenlyKing(name: String = randomDemonVillainNameFirst()) : Villain(
     }
 
     fun bloodLetting(opponent: Hero,companion: Villain) {
+        println("""
+            
+            ▄▄▄▄· ▄▄▌              ·▄▄▄▄      ▄▄▌  ▄▄▄ .▄▄▄▄▄▄▄▄▄▄▪   ▐ ▄  ▄▄ • 
+            ▐█ ▀█▪██•  ▪     ▪     ██▪ ██     ██•  ▀▄.▀·•██  •██  ██ •█▌▐█▐█ ▀ ▪
+            ▐█▀▀█▄██▪   ▄█▀▄  ▄█▀▄ ▐█· ▐█▌    ██▪  ▐▀▀▪▄ ▐█.▪ ▐█.▪▐█·▐█▐▐▌▄█ ▀█▄
+            ██▄▪▐█▐█▌▐▌▐█▌.▐▌▐█▌.▐▌██. ██     ▐█▌▐▌▐█▄▄▌ ▐█▌· ▐█▌·▐█▌██▐█▌▐█▄▪▐█
+            ·▀▀▀▀ .▀▀▀  ▀█▄▀▪ ▀█▄▀▪▀▀▀▀▀•     .▀▀▀  ▀▀▀  ▀▀▀  ▀▀▀ ▀▀▀▀▀ █▪·▀▀▀▀ 
+
+        """.trimIndent())
         attackPower = actualAttackPower(attackPower,attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("First Heavenly King $name tried to use Blood Letting on ${opponent.name}, attack was blocked! No damage taken.",15)
@@ -43,6 +59,15 @@ class FirstHeavenlyKing(name: String = randomDemonVillainNameFirst()) : Villain(
     }
 
     fun darkHeal(companions: List<Villain>) {
+        println("""
+            
+            ·▄▄▄▄   ▄▄▄· ▄▄▄  ▄ •▄      ▄ .▄▄▄▄ . ▄▄▄· ▄▄▌  
+            ██▪ ██ ▐█ ▀█ ▀▄ █·█▌▄▌▪    ██▪▐█▀▄.▀·▐█ ▀█ ██•  
+            ▐█· ▐█▌▄█▀▀█ ▐▀▀▄ ▐▀▀▄·    ██▀▐█▐▀▀▪▄▄█▀▀█ ██▪  
+            ██. ██ ▐█ ▪▐▌▐█•█▌▐█.█▌    ██▌▐▀▐█▄▄▌▐█ ▪▐▌▐█▌▐▌
+            ▀▀▀▀▀•  ▀  ▀ .▀  ▀·▀  ▀    ▀▀▀ · ▀▀▀  ▀  ▀ .▀▀▀ 
+
+        """.trimIndent())
         healPower *= (nextRandomDouble(0.8,1.2) * attackFactor)
         companions.forEach { super.heal(healPower, it) }
         val healedCompanions = companions.joinToString(", ") { it.name }
@@ -50,6 +75,15 @@ class FirstHeavenlyKing(name: String = randomDemonVillainNameFirst()) : Villain(
     }
 
     fun bloodRain(opponents: List<Hero>) {
+        println("""
+            
+            ▄▄▄▄· ▄▄▌              ·▄▄▄▄      ▄▄▄   ▄▄▄· ▪   ▐ ▄ 
+            ▐█ ▀█▪██•  ▪     ▪     ██▪ ██     ▀▄ █·▐█ ▀█ ██ •█▌▐█
+            ▐█▀▀█▄██▪   ▄█▀▄  ▄█▀▄ ▐█· ▐█▌    ▐▀▀▄ ▄█▀▀█ ▐█·▐█▐▐▌
+            ██▄▪▐█▐█▌▐▌▐█▌.▐▌▐█▌.▐▌██. ██     ▐█•█▌▐█ ▪▐▌▐█▌██▐█▌
+            ·▀▀▀▀ .▀▀▀  ▀█▄▀▪ ▀█▄▀▪▀▀▀▀▀•     .▀  ▀ ▀  ▀ ▀▀▀▀▀ █▪
+
+        """.trimIndent())
         var unblockedOpponents = opponents.filter { it.shield <= 0 }
         var blockedOpponents = opponents.filter { it.shield > 0 }
         attackPower = actualAttackPower(attackPower,attackFactor)

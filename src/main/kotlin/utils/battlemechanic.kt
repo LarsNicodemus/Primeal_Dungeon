@@ -117,6 +117,12 @@ fun villainsMove2(
                     println()
                     usedItemBox = chosenAction2(companions, opponents, itemBox, chosenCompanion, usedItemBox,deadOpponents)
                     chosenCompanion.decrementBuffRounds()
+                    for (opponent in opponents){
+                            if (opponent.block(opponent) && opponent.blockCounter>=1) {
+                                !opponent.block(opponent)
+                                opponent.shield = 0
+                        }
+                    }
                 } else continue
             } else println("Invalid Input. Please enter a number between 1 and ${activeCompanions.size}.")
             println()
@@ -125,6 +131,8 @@ fun villainsMove2(
             println("Invalid Input. Please enter a number between 1 and ${activeCompanions.size}.")
             println()
         }
+
+
     }
     }
 }
@@ -389,34 +397,11 @@ fun isDeadSideKickInDeadOpponents(sidekick: Sidekick?, deadOpponents: MutableLis
 fun gameEnd(companions: MutableList<Villain>, opponents: MutableList<Hero>, red: String, reset: String, green: String, bold: String): Boolean {
     if (companions.isEmpty()) {
         println("All Villians died during Battle")
-        println("""$red
-            
-              ▄████     ▄▄▄          ███▄ ▄███▓   ▓█████           ▒█████      ██▒   █▓   ▓█████     ██▀███  
-             ██▒ ▀█▒   ▒████▄       ▓██▒▀█▀ ██▒   ▓█   ▀          ▒██▒  ██▒   ▓██░   █▒   ▓█   ▀    ▓██ ▒ ██▒
-            ▒██░▄▄▄░   ▒██  ▀█▄     ▓██    ▓██░   ▒███            ▒██░  ██▒    ▓██  █▒░   ▒███      ▓██ ░▄█ ▒
-            ░▓█  ██▓   ░██▄▄▄▄██    ▒██    ▒██    ▒▓█  ▄          ▒██   ██░     ▒██ █░░   ▒▓█  ▄    ▒██▀▀█▄  
-            ░▒▓███▀▒    ▓█   ▓██▒   ▒██▒   ░██▒   ░▒████▒         ░ ████▓▒░      ▒▀█░     ░▒████▒   ░██▓ ▒██▒
-             ░▒   ▒     ▒▒   ▓▒█░   ░ ▒░   ░  ░   ░░ ▒░ ░         ░ ▒░▒░▒░       ░ ▐░     ░░ ▒░ ░   ░ ▒▓ ░▒▓░
-              ░   ░      ▒   ▒▒ ░   ░  ░      ░    ░ ░  ░           ░ ▒ ▒░       ░ ░░      ░ ░  ░     ░▒ ░ ▒░
-            ░ ░   ░      ░   ▒      ░      ░         ░            ░ ░ ░ ▒          ░░        ░        ░░   ░ 
-                  ░          ░  ░          ░         ░  ░             ░ ░           ░        ░  ░      ░     
-                                                                                   ░                         
-
-    $reset
-        """.trimIndent())
+        gameWinnerArt(2,red, green, bold, reset)
         return true
     } else if (opponents.isEmpty()) {
         println("All Heroes died during Battle")
-        println("""
-            $green$bold
-         ▄· ▄▌      ▄• ▄▌    ▄▄▌ ▐ ▄▌       ▐ ▄     ▄▄ 
-        ▐█▪██▌▪     █▪██▌    ██· █▌▐█▪     •█▌▐█    ██▌
-        ▐█▌▐█▪ ▄█▀▄ █▌▐█▌    ██▪▐█▐▐▌ ▄█▀▄ ▐█▐▐▌    ▐█·
-         ▐█▀·.▐█▌.▐▌▐█▄█▌    ▐█▌██▐█▌▐█▌.▐▌██▐█▌    .▀ 
-          ▀ •  ▀█▄▀▪ ▀▀▀      ▀▀▀▀ ▀▪ ▀█▄▀▪▀▀ █▪     ▀ 
-        
-        $reset
-        """.trimIndent())
+        gameWinnerArt(1,red, green, bold, reset)
         return true
     } else {
         return false

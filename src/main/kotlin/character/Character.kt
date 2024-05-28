@@ -55,7 +55,7 @@ open class Character(var name: String, var hp: Double = 0.0) {
     val underline = "\u001B[4m"
     val backgroundYellow = "\u001B[43m"
     val reset = "\u001B[0m"
-
+    var blockCounter = 0
     open fun actualAttackPower(
         attackPower: Double,
         attackFactor: Double,

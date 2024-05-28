@@ -23,15 +23,7 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
     }
 
     fun elementalArrow(opponent: Villain){
-        println("""
-            
-            ▄▄▄ .▄▄▌  ▄▄▄ .• ▌ ▄ ·. ▄▄▄ . ▐ ▄ ▄▄▄▄▄ ▄▄▄· ▄▄▌       ▄▄▄· ▄▄▄  ▄▄▄        ▄▄▌ ▐ ▄▌
-            ▀▄.▀·██•  ▀▄.▀··██ ▐███▪▀▄.▀·•█▌▐█•██  ▐█ ▀█ ██•      ▐█ ▀█ ▀▄ █·▀▄ █·▪     ██· █▌▐█
-            ▐▀▀▪▄██▪  ▐▀▀▪▄▐█ ▌▐▌▐█·▐▀▀▪▄▐█▐▐▌ ▐█.▪▄█▀▀█ ██▪      ▄█▀▀█ ▐▀▀▄ ▐▀▀▄  ▄█▀▄ ██▪▐█▐▐▌
-            ▐█▄▄▌▐█▌▐▌▐█▄▄▌██ ██▌▐█▌▐█▄▄▌██▐█▌ ▐█▌·▐█ ▪▐▌▐█▌▐▌    ▐█ ▪▐▌▐█•█▌▐█•█▌▐█▌.▐▌▐█▌██▐█▌
-             ▀▀▀ .▀▀▀  ▀▀▀ ▀▀  █▪▀▀▀ ▀▀▀ ▀▀ █▪ ▀▀▀  ▀  ▀ .▀▀▀      ▀  ▀ .▀  ▀.▀  ▀ ▀█▄▀▪ ▀▀▀▀ ▀▪
-
-        """.trimIndent())
+        opponentAttackArt(2,1)
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Attack was blocked! No damage taken.",15)
@@ -41,30 +33,14 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
         }
     }
     fun holyHeal(companion: Hero) {
-        println("""
-            
-             ▄ .▄      ▄▄▌   ▄· ▄▌     ▄ .▄▄▄▄ . ▄▄▄· ▄▄▌  
-            ██▪▐█▪     ██•  ▐█▪██▌    ██▪▐█▀▄.▀·▐█ ▀█ ██•  
-            ██▀▐█ ▄█▀▄ ██▪  ▐█▌▐█▪    ██▀▐█▐▀▀▪▄▄█▀▀█ ██▪  
-            ██▌▐▀▐█▌.▐▌▐█▌▐▌ ▐█▀·.    ██▌▐▀▐█▄▄▌▐█ ▪▐▌▐█▌▐▌
-            ▀▀▀ · ▀█▄▀▪.▀▀▀   ▀ •     ▀▀▀ · ▀▀▀  ▀  ▀ .▀▀▀ 
-
-        """.trimIndent())
+        opponentAttackArt(2,2)
         healPower *= nextRandomDouble(0.8, 1.2) * attackFactor
         super.heal(companion, healPower)
         printlnWithDelay("Sidekick $name used Holy Heal on ${companion.name} and restored ${roundDouble(healPower)} points to a total of ${roundDouble(companion.hp) } Health points.",15)
     }
 
     fun elementalBeam(opponent: Villain) {
-        println("""
-            
-            ▄▄▄ .▄▄▌  ▄▄▄ .• ▌ ▄ ·. ▄▄▄ . ▐ ▄ ▄▄▄▄▄ ▄▄▄· ▄▄▌      ▄▄▄▄· ▄▄▄ . ▄▄▄· • ▌ ▄ ·. 
-            ▀▄.▀·██•  ▀▄.▀··██ ▐███▪▀▄.▀·•█▌▐█•██  ▐█ ▀█ ██•      ▐█ ▀█▪▀▄.▀·▐█ ▀█ ·██ ▐███▪
-            ▐▀▀▪▄██▪  ▐▀▀▪▄▐█ ▌▐▌▐█·▐▀▀▪▄▐█▐▐▌ ▐█.▪▄█▀▀█ ██▪      ▐█▀▀█▄▐▀▀▪▄▄█▀▀█ ▐█ ▌▐▌▐█·
-            ▐█▄▄▌▐█▌▐▌▐█▄▄▌██ ██▌▐█▌▐█▄▄▌██▐█▌ ▐█▌·▐█ ▪▐▌▐█▌▐▌    ██▄▪▐█▐█▄▄▌▐█ ▪▐▌██ ██▌▐█▌
-             ▀▀▀ .▀▀▀  ▀▀▀ ▀▀  █▪▀▀▀ ▀▀▀ ▀▀ █▪ ▀▀▀  ▀  ▀ .▀▀▀     ·▀▀▀▀  ▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀
-
-        """.trimIndent())
+        opponentAttackArt(2,3)
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Sidekick $name tried to use Elemental Beam on ${opponent.name}, attack was blocked! No damage taken.",15)
@@ -75,15 +51,7 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
     }
 
     fun elementalWave(opponent: List<Villain>) {
-        println("""
-            
-            ▄▄▄ .▄▄▌  ▄▄▄ .• ▌ ▄ ·. ▄▄▄ . ▐ ▄ ▄▄▄▄▄ ▄▄▄· ▄▄▌      ▄▄▌ ▐ ▄▌ ▄▄▄·  ▌ ▐·▄▄▄ .
-            ▀▄.▀·██•  ▀▄.▀··██ ▐███▪▀▄.▀·•█▌▐█•██  ▐█ ▀█ ██•      ██· █▌▐█▐█ ▀█ ▪█·█▌▀▄.▀·
-            ▐▀▀▪▄██▪  ▐▀▀▪▄▐█ ▌▐▌▐█·▐▀▀▪▄▐█▐▐▌ ▐█.▪▄█▀▀█ ██▪      ██▪▐█▐▐▌▄█▀▀█ ▐█▐█•▐▀▀▪▄
-            ▐█▄▄▌▐█▌▐▌▐█▄▄▌██ ██▌▐█▌▐█▄▄▌██▐█▌ ▐█▌·▐█ ▪▐▌▐█▌▐▌    ▐█▌██▐█▌▐█ ▪▐▌ ███ ▐█▄▄▌
-             ▀▀▀ .▀▀▀  ▀▀▀ ▀▀  █▪▀▀▀ ▀▀▀ ▀▀ █▪ ▀▀▀  ▀  ▀ .▀▀▀      ▀▀▀▀ ▀▪ ▀  ▀ . ▀   ▀▀▀ 
-
-        """.trimIndent())
+        opponentAttackArt(2,4)
         var unblockedOpponents = opponent.filter { it.shield <= 0 }
         var blockedOpponents = opponent.filter { it.shield > 0 }
         attackPower = actualAttackPower(attackPower,attackFactor)

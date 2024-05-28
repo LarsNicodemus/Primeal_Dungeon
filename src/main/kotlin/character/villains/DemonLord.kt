@@ -2,6 +2,7 @@ package character.villains
 
 import character.Character
 import character.heroes.Hero
+import character.heroes.Savior
 import utils.*
 
 /**The DemonLord Class is child to Villain and one of the playable characters.
@@ -26,10 +27,10 @@ class DemonLord(name: String = randomVillainName()) : Villain(name) {
 
     fun darkSword(opponent: Hero) {
         companionAttackArt(1, 1)
-        attackPower
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Demonlord $name tried to use Dark Sword on ${opponent.name}, attack was blocked! No damage taken.",15)
+            opponent.blockCounter++
         } else {
             super.swordAttack(opponent, attackPower)
             printlnWithDelay("Demonlord $name used Dark Sword on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
@@ -41,6 +42,7 @@ class DemonLord(name: String = randomVillainName()) : Villain(name) {
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Demonlord $name tried to use Hell Flame on ${opponent.name}, attack was blocked! No damage taken.",15)
+            opponent.blockCounter++
         } else {
             super.magicAttack(opponent, attackPower)
             printlnWithDelay("Demonlord $name used Hell Flame on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
@@ -52,6 +54,7 @@ class DemonLord(name: String = randomVillainName()) : Villain(name) {
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Demonlord $name tried to use Gravity Bomb on ${opponent.name}, attack was blocked! No damage taken.",15)
+            opponent.blockCounter++
         } else {
             super.magicAttack(opponent, attackPower)
             printlnWithDelay("Demonlord $name used Gravity Bomb on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
@@ -63,6 +66,7 @@ class DemonLord(name: String = randomVillainName()) : Villain(name) {
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Demonlord $name tried to use Ruler's Grip on ${opponent.name}, attack was blocked! No damage taken.",15)
+            opponent.blockCounter++
         } else {
             super.swordAttack(opponent, attackPower)
             printlnWithDelay("Demonlord $name used Ruler's Grip on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)

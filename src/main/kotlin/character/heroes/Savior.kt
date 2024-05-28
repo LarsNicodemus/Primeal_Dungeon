@@ -21,15 +21,7 @@ class Savior(name: String = randomSaviorName()) : Hero(name) {
     }
 
     fun holySword(opponent: Villain) {
-        println("""
-            
-             ▄ .▄      ▄▄▌   ▄· ▄▌    .▄▄ · ▄▄▌ ▐ ▄▌      ▄▄▄  ·▄▄▄▄  
-            ██▪▐█▪     ██•  ▐█▪██▌    ▐█ ▀. ██· █▌▐█▪     ▀▄ █·██▪ ██ 
-            ██▀▐█ ▄█▀▄ ██▪  ▐█▌▐█▪    ▄▀▀▀█▄██▪▐█▐▐▌ ▄█▀▄ ▐▀▀▄ ▐█· ▐█▌
-            ██▌▐▀▐█▌.▐▌▐█▌▐▌ ▐█▀·.    ▐█▄▪▐█▐█▌██▐█▌▐█▌.▐▌▐█•█▌██. ██ 
-            ▀▀▀ · ▀█▄▀▪.▀▀▀   ▀ •      ▀▀▀▀  ▀▀▀▀ ▀▪ ▀█▄▀▪.▀  ▀▀▀▀▀▀• 
-
-        """.trimIndent())
+        opponentAttackArt(1,1)
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Savior $name tried to use Holy Sword on ${opponent.name}, attack was blocked! No damage taken.",15)
@@ -40,45 +32,21 @@ class Savior(name: String = randomSaviorName()) : Hero(name) {
     }
 
     fun holyShield(companion: Hero) {
-        println("""
-            
-             ▄ .▄      ▄▄▌   ▄· ▄▌    .▄▄ ·  ▄ .▄▪  ▄▄▄ .▄▄▌  ·▄▄▄▄  
-            ██▪▐█▪     ██•  ▐█▪██▌    ▐█ ▀. ██▪▐███ ▀▄.▀·██•  ██▪ ██ 
-            ██▀▐█ ▄█▀▄ ██▪  ▐█▌▐█▪    ▄▀▀▀█▄██▀▐█▐█·▐▀▀▪▄██▪  ▐█· ▐█▌
-            ██▌▐▀▐█▌.▐▌▐█▌▐▌ ▐█▀·.    ▐█▄▪▐███▌▐▀▐█▌▐█▄▄▌▐█▌▐▌██. ██ 
-            ▀▀▀ · ▀█▄▀▪.▀▀▀   ▀ •      ▀▀▀▀ ▀▀▀ ·▀▀▀ ▀▀▀ .▀▀▀ ▀▀▀▀▀• 
-
-        """.trimIndent())
+        opponentAttackArt(1,2)
         if (!block(companion))
             printlnWithDelay("Savior $name tried to used Holy Shield but it failed.",15)
         else printlnWithDelay("Savior $name used Holy Shield to block the next attack.",15)
     }
 
     fun holyHeal(companion: Hero) {
-        println("""
-            
-             ▄ .▄      ▄▄▌   ▄· ▄▌     ▄ .▄▄▄▄ . ▄▄▄· ▄▄▌  
-            ██▪▐█▪     ██•  ▐█▪██▌    ██▪▐█▀▄.▀·▐█ ▀█ ██•  
-            ██▀▐█ ▄█▀▄ ██▪  ▐█▌▐█▪    ██▀▐█▐▀▀▪▄▄█▀▀█ ██▪  
-            ██▌▐▀▐█▌.▐▌▐█▌▐▌ ▐█▀·.    ██▌▐▀▐█▄▄▌▐█ ▪▐▌▐█▌▐▌
-            ▀▀▀ · ▀█▄▀▪.▀▀▀   ▀ •     ▀▀▀ · ▀▀▀  ▀  ▀ .▀▀▀ 
-
-        """.trimIndent())
+        opponentAttackArt(1,3)
         healPower *= nextRandomDouble(0.8,1.2) * attackFactor
         super.heal(companion, healPower)
         printlnWithDelay("Savior $name used Holy Heal on ${companion.name} and healed ${roundDouble(healPower)} points.",15)
     }
 
     fun sacredCommand(opponents: List<Villain>) {
-        println("""
-            
-            .▄▄ ·  ▄▄▄·  ▄▄· ▄▄▄  ▄▄▄ .·▄▄▄▄       ▄▄·       • ▌ ▄ ·. • ▌ ▄ ·.  ▄▄▄·  ▐ ▄ ·▄▄▄▄  
-            ▐█ ▀. ▐█ ▀█ ▐█ ▌▪▀▄ █·▀▄.▀·██▪ ██     ▐█ ▌▪▪     ·██ ▐███▪·██ ▐███▪▐█ ▀█ •█▌▐███▪ ██ 
-            ▄▀▀▀█▄▄█▀▀█ ██ ▄▄▐▀▀▄ ▐▀▀▪▄▐█· ▐█▌    ██ ▄▄ ▄█▀▄ ▐█ ▌▐▌▐█·▐█ ▌▐▌▐█·▄█▀▀█ ▐█▐▐▌▐█· ▐█▌
-            ▐█▄▪▐█▐█ ▪▐▌▐███▌▐█•█▌▐█▄▄▌██. ██     ▐███▌▐█▌.▐▌██ ██▌▐█▌██ ██▌▐█▌▐█ ▪▐▌██▐█▌██. ██ 
-             ▀▀▀▀  ▀  ▀ ·▀▀▀ .▀  ▀ ▀▀▀ ▀▀▀▀▀•     ·▀▀▀  ▀█▄▀▪▀▀  █▪▀▀▀▀▀  █▪▀▀▀ ▀  ▀ ▀▀ █▪▀▀▀▀▀• 
-
-        """.trimIndent())
+        opponentAttackArt(1,4)
         if (opponents.none { it.isCursed }){
             cursedVillain = opponents.random()
             cursedVillain?.isCursed = true
@@ -88,15 +56,7 @@ class Savior(name: String = randomSaviorName()) : Hero(name) {
     }
 
     fun holyLight(opponent: List<Villain>) {
-        println("""
-            
-             ▄ .▄      ▄▄▌   ▄· ▄▌    ▄▄▌  ▪   ▄▄ •  ▄ .▄▄▄▄▄▄
-            ██▪▐█▪     ██•  ▐█▪██▌    ██•  ██ ▐█ ▀ ▪██▪▐█•██  
-            ██▀▐█ ▄█▀▄ ██▪  ▐█▌▐█▪    ██▪  ▐█·▄█ ▀█▄██▀▐█ ▐█.▪
-            ██▌▐▀▐█▌.▐▌▐█▌▐▌ ▐█▀·.    ▐█▌▐▌▐█▌▐█▄▪▐███▌▐▀ ▐█▌·
-            ▀▀▀ · ▀█▄▀▪.▀▀▀   ▀ •     .▀▀▀ ▀▀▀·▀▀▀▀ ▀▀▀ · ▀▀▀ 
-
-        """.trimIndent())
+        opponentAttackArt(1,5)
         var unblockedOpponents = opponent.filter { it.shield <= 0 }
         var blockedOpponents = opponent.filter { it.shield > 0 }
         attackPower = actualAttackPower(attackPower, attackFactor)
@@ -117,15 +77,7 @@ class Savior(name: String = randomSaviorName()) : Hero(name) {
     }
 
     fun summoning(companions: MutableList<Hero>){
-        println("""
-            
-            .▄▄ · ▄• ▄▌• ▌ ▄ ·. • ▌ ▄ ·.        ▐ ▄ ▪   ▐ ▄  ▄▄ • 
-            ▐█ ▀. █▪██▌·██ ▐███▪·██ ▐███▪▪     •█▌▐███ •█▌▐█▐█ ▀ ▪
-            ▄▀▀▀█▄█▌▐█▌▐█ ▌▐▌▐█·▐█ ▌▐▌▐█· ▄█▀▄ ▐█▐▐▌▐█·▐█▐▐▌▄█ ▀█▄
-            ▐█▄▪▐█▐█▄█▌██ ██▌▐█▌██ ██▌▐█▌▐█▌.▐▌██▐█▌▐█▌██▐█▌▐█▄▪▐█
-             ▀▀▀▀  ▀▀▀ ▀▀  █▪▀▀▀▀▀  █▪▀▀▀ ▀█▄▀▪▀▀ █▪▀▀▀▀▀ █▪·▀▀▀▀ 
-
-        """.trimIndent())
+        opponentAttackArt(1,6)
         var sidekick: Sidekick = Sidekick()
         companions.add(sidekick)
         printlnWithDelay("Sidekick ${sidekick.name} was summoned to support the hero. be cautious.",15)

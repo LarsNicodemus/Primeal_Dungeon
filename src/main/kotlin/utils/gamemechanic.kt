@@ -1,5 +1,7 @@
 package utils
 
+import audio.endSound
+import audio.playSound
 import character.Character
 import character.heroes.Hero
 import character.heroes.Savior
@@ -9,6 +11,7 @@ import character.villains.SecondHeavenlyKing
 import character.villains.Villain
 import itembox.ItemBox
 import java.util.*
+
 
 fun main() {
     game()
@@ -25,6 +28,7 @@ fun game() {
     val underline = "\u001B[4m"
     val backgroundYellow = "\u001B[43m"
     val reset = "\u001B[0m"
+    val intro = "src/main/kotlin/audio/Miracle of Sound - Valhalla Calling - Karaoke Instrumental Lyrics - ObsKure.wav"
 
 
     var index = 1
@@ -35,10 +39,11 @@ fun game() {
     val companions = mutableListOf(demonLord,firstHeavenlyKing,secondHeavenlyKing)
     var savior = Savior()
     val opponents: MutableList<Hero> = mutableListOf(savior)
-
+    val soundJob = playSound(intro,0.55f,3000000)
     intro(demonLord,firstHeavenlyKing,secondHeavenlyKing, red, bold, reset)
     itemChoice(itemBox)
     threadsleep(3)
+    endSound(soundJob)
     gameArt(1,cyan,bold,reset)
     fightRound(companions, opponents, itemBox,reset,red, green, yellow, bold)
     threadsleep(2)

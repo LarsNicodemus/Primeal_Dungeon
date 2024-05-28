@@ -47,8 +47,13 @@ open class Hero(name: String = randomSaviorName()) : Character(name) {
         var blockChance: Double = randomDouble(0.7,1.0)
         var randomChance = randomDouble(0.0,1.0)
         return if (randomChance <= blockChance) {
+            if (blockCounter==0){
             companion.applyBuff(Buff(2,1.0,1))
             true
+            } else {
+                companion.shield = 0
+                false
+            }
         } else {
             companion.shield = 0
             false

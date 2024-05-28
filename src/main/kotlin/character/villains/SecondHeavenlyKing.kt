@@ -2,10 +2,7 @@ package character.villains
 
 import character.Character
 import character.heroes.Hero
-import utils.hpLeft
-import utils.printlnWithDelay
-import utils.randomDemonVillainNameSecond
-import utils.roundDouble
+import utils.*
 
 /**The SecondHeavenlyKing Class is child to Villain Class and one of the playable characters.
  * @constructor creates a SecondHeavenlyKing with a random name from a list of names
@@ -26,15 +23,7 @@ class SecondHeavenlyKing(name: String = randomDemonVillainNameSecond()) : Villai
 
 override var title: String = "Second Heavenly King"
     fun void(opponent: Hero) {
-        println("""
-            
-             ▌ ▐·      ▪  ·▄▄▄▄  
-            ▪█·█▌▪     ██ ██▪ ██ 
-            ▐█▐█• ▄█▀▄ ▐█·▐█· ▐█▌
-             ███ ▐█▌.▐▌▐█▌██. ██ 
-            . ▀   ▀█▄▀▪▀▀▀▀▀▀▀▀• 
-
-        """.trimIndent())
+        companionAttackArt(3,1)
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Second Heavenly King $name tried to use Void on ${opponent.name}, attack was blocked! No damage taken.",15)
@@ -45,15 +34,7 @@ override var title: String = "Second Heavenly King"
     }
 
     fun eternalIce(companion: Villain) {
-        println("""
-            
-            ▄▄▄ .▄▄▄▄▄▄▄▄ .▄▄▄   ▐ ▄  ▄▄▄· ▄▄▌      ▪   ▄▄· ▄▄▄ .
-            ▀▄.▀·•██  ▀▄.▀·▀▄ █·•█▌▐█▐█ ▀█ ██•      ██ ▐█ ▌▪▀▄.▀·
-            ▐▀▀▪▄ ▐█.▪▐▀▀▪▄▐▀▀▄ ▐█▐▐▌▄█▀▀█ ██▪      ▐█·██ ▄▄▐▀▀▪▄
-            ▐█▄▄▌ ▐█▌·▐█▄▄▌▐█•█▌██▐█▌▐█ ▪▐▌▐█▌▐▌    ▐█▌▐███▌▐█▄▄▌
-             ▀▀▀  ▀▀▀  ▀▀▀ .▀  ▀▀▀ █▪ ▀  ▀ .▀▀▀     ▀▀▀·▀▀▀  ▀▀▀ 
-
-        """.trimIndent())
+        companionAttackArt(3,2)
         if (!block(companion))
             printlnWithDelay("Second Heavenly King $name tried to used Eternal Ice but it failed.",15)
         else printlnWithDelay("Second Heavenly King $name used Eternal Ice to block the next attack.",15)
@@ -61,15 +42,7 @@ override var title: String = "Second Heavenly King"
     }
 
     fun chaosBurst(opponent: Hero) {
-        println("""
-            
-             ▄▄·  ▄ .▄ ▄▄▄·       .▄▄ ·     ▄▄▄▄· ▄• ▄▌▄▄▄  .▄▄ · ▄▄▄▄▄
-            ▐█ ▌▪██▪▐█▐█ ▀█ ▪     ▐█ ▀.     ▐█ ▀█▪█▪██▌▀▄ █·▐█ ▀. •██  
-            ██ ▄▄██▀▐█▄█▀▀█  ▄█▀▄ ▄▀▀▀█▄    ▐█▀▀█▄█▌▐█▌▐▀▀▄ ▄▀▀▀█▄ ▐█.▪
-            ▐███▌██▌▐▀▐█ ▪▐▌▐█▌.▐▌▐█▄▪▐█    ██▄▪▐█▐█▄█▌▐█•█▌▐█▄▪▐█ ▐█▌·
-            ·▀▀▀ ▀▀▀ · ▀  ▀  ▀█▄▀▪ ▀▀▀▀     ·▀▀▀▀  ▀▀▀ .▀  ▀ ▀▀▀▀  ▀▀▀ 
-
-        """.trimIndent())
+        companionAttackArt(3,3)
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Second Heavenly King $name tried to use Chaos Burst on ${opponent.name}, attack was blocked! No damage taken.",15)
@@ -80,15 +53,7 @@ override var title: String = "Second Heavenly King"
     }
 
     fun originsDoom(opponent: Hero) {
-        println("""
-            
-                  ▄▄▄  ▪   ▄▄ • ▪   ▐ ▄ .▄▄ ·     ·▄▄▄▄              • ▌ ▄ ·. 
-            ▪     ▀▄ █·██ ▐█ ▀ ▪██ •█▌▐█▐█ ▀.     ██▪ ██ ▪     ▪     ·██ ▐███▪
-             ▄█▀▄ ▐▀▀▄ ▐█·▄█ ▀█▄▐█·▐█▐▐▌▄▀▀▀█▄    ▐█· ▐█▌ ▄█▀▄  ▄█▀▄ ▐█ ▌▐▌▐█·
-            ▐█▌.▐▌▐█•█▌▐█▌▐█▄▪▐█▐█▌██▐█▌▐█▄▪▐█    ██. ██ ▐█▌.▐▌▐█▌.▐▌██ ██▌▐█▌
-             ▀█▄▀▪.▀  ▀▀▀▀·▀▀▀▀ ▀▀▀▀▀ █▪ ▀▀▀▀     ▀▀▀▀▀•  ▀█▄▀▪ ▀█▄▀▪▀▀  █▪▀▀▀
-
-        """.trimIndent())
+        companionAttackArt(3,4)
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
             printlnWithDelay("Second Heavenly King $name tried to use Origins Doom on ${opponent.name}, attack was blocked! No damage taken.",15)

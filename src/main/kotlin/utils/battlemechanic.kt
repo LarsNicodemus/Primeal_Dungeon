@@ -41,7 +41,7 @@ fun roundStart(round: Int) {
     println()
     println()
     threadsleep(4)
-    println("########## Round $round ##########")
+    roundStartArt(round)
     threadsleep(4)
     println()
     println()
@@ -57,13 +57,12 @@ fun roundEnd(
     green: String,
     yellow: String,
     bold: String,
-
 ) {
     threadsleep(4)
     println()
     println()
     threadsleep(4)
-    println("###### End of Round $round ######")
+    roundEndArt(round)
     println()
     threadsleep(4)
     println("Villains:")
@@ -116,7 +115,7 @@ fun villainsMove2(
                 activeCompanions.remove(chosenCompanion)
                 if (opponents.isNotEmpty()) {
                     println()
-                    usedItemBox = chosenAction2(activeCompanions, opponents, itemBox, chosenCompanion, usedItemBox,deadOpponents)
+                    usedItemBox = chosenAction2(companions, opponents, itemBox, chosenCompanion, usedItemBox,deadOpponents)
                     chosenCompanion.decrementBuffRounds()
                 } else continue
             } else println("Invalid Input. Please enter a number between 1 and ${activeCompanions.size}.")
@@ -131,11 +130,11 @@ fun villainsMove2(
 }
 
 fun chosenAction2(
-    companions: MutableList<Villain>, opponents: MutableList<Hero>, itemBox: ItemBox, companion: Villain,usedItemBox: Boolean, deadOpponents: MutableList<Hero>): Boolean {
+    companions: List<Villain>, opponents: MutableList<Hero>, itemBox: ItemBox, companion: Villain,usedItemBox: Boolean, deadOpponents: MutableList<Hero>): Boolean {
     removeDeadOpponent(opponents,deadOpponents)
     println("${companion.name}'s turn, which attack should be carried out?")
     threadsleep(5)
-    showCompanionOptions(companion,usedItemBox,itemBox)
+    showAttackOptions(companion,usedItemBox,itemBox)
     println()
     while (true)  {
         print("Your Choice: ")
@@ -175,7 +174,7 @@ fun chosenAction2(
     return usedItemBox
 }
 
-fun showCompanionOptions(companion: Villain, usedItemBox: Boolean, itemBox: ItemBox) {
+fun showAttackOptions(companion: Villain, usedItemBox: Boolean, itemBox: ItemBox) {
     companion.attacks.forEachIndexed { index, attack -> println("[${index + 1}] -> $attack")
         threadsleep(5)
     }
@@ -190,7 +189,7 @@ fun showCompanionOptions(availableCompanions: MutableList<Villain>) {
     }
 }
 
-fun villainAttackOne(villain: Villain, companions: MutableList<Villain>, opponents: MutableList<Hero>) {
+fun villainAttackOne(villain: Villain, companions: List<Villain>, opponents: MutableList<Hero>) {
     val target = opponents.random()
     when (villain) {
         is DemonLord -> villain.darkSword(target)
@@ -198,7 +197,7 @@ fun villainAttackOne(villain: Villain, companions: MutableList<Villain>, opponen
         is SecondHeavenlyKing -> villain.void(target)
     }
 }
-fun villainAttackTwo(villain: Villain, companions: MutableList<Villain>, opponents: MutableList<Hero>) {
+fun villainAttackTwo(villain: Villain, companions: List<Villain>, opponents: MutableList<Hero>) {
     val target = opponents.random()
     when (villain) {
         is DemonLord -> villain.hellFlame(target)
@@ -206,89 +205,20 @@ fun villainAttackTwo(villain: Villain, companions: MutableList<Villain>, opponen
         is SecondHeavenlyKing -> villain.eternalIce(villain)
     }
 }
-fun villainAttackThree(villain: Villain, companions: MutableList<Villain>, opponents: MutableList<Hero>) {
+fun villainAttackThree(villain: Villain, companions: List<Villain>, opponents: MutableList<Hero>) {
     val target = opponents.random()
-    val friendlyTargets = companions + villain
     when (villain) {
         is DemonLord -> villain.gravityBomb(target)
-        is FirstHeavenlyKing -> villain.darkHeal(friendlyTargets)
+        is FirstHeavenlyKing -> villain.darkHeal(companions)
         is SecondHeavenlyKing -> villain.chaosBurst(target)
     }
 }
-fun villainAttackFour(villain: Villain, companions: MutableList<Villain>, opponents: MutableList<Hero>) {
+fun villainAttackFour(villain: Villain, companions: List<Villain>, opponents: MutableList<Hero>) {
     val target = opponents.random()
     when (villain) {
         is DemonLord -> villain.rulersGrip(target)
         is FirstHeavenlyKing -> villain.bloodRain(opponents)
         is SecondHeavenlyKing -> villain.originsDoom(target)
-    }
-}
-
-fun removeDeadVillain(companions: MutableList<Villain>, deadCompanions: MutableList<Villain>) {
-    var deadCompanion = companions.filter { it.hp < 0.0 }.toMutableList()
-    companions.removeAll(deadCompanion)
-    deadCompanions.addAll(deadCompanion)
-    if (deadCompanion.isNotEmpty()) {
-        deadCompanion.forEach { companion -> println("${companion.name} has died.") }
-    }
-}
-fun isDeadDemonInDeadOpponents(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeavenlyKing: SecondHeavenlyKing, deadCompanions: MutableList<Villain>): Boolean {
-    return if (deadCompanions.contains(firstHeavenlyKing)){
-        deadCompanions.contains(firstHeavenlyKing)
-    } else if (deadCompanions.contains(secondHeavenlyKing)){
-        deadCompanions.contains(secondHeavenlyKing)
-    } else deadCompanions.contains(demonLord)
-}
-
-
-fun removeDeadOpponent(opponents: MutableList<Hero>, deadOpponents: MutableList<Hero>) {
-    val deadOpponent = opponents.filter { it.hp < 0.0 }.toMutableList()
-    opponents.removeAll(deadOpponent)
-    deadOpponents.addAll(deadOpponent)
-    if (deadOpponent.isNotEmpty()) {
-        deadOpponent.forEach { opponent -> println("${opponent.name} has died.") }
-    }
-}
-
-fun isDeadSideKickInDeadOpponents(sidekick: Sidekick?, deadOpponents: MutableList<Hero>): Boolean {
-    return sidekick != null && deadOpponents.contains(sidekick)
-}
-
-
-fun gameEnd(companions: MutableList<Villain>, opponents: MutableList<Hero>, red: String, reset: String, green: String, bold: String): Boolean {
-    if (companions.isEmpty()) {
-        println("All Villians died during Battle")
-        println("""$red
-            
-              ▄████     ▄▄▄          ███▄ ▄███▓   ▓█████           ▒█████      ██▒   █▓   ▓█████     ██▀███  
-             ██▒ ▀█▒   ▒████▄       ▓██▒▀█▀ ██▒   ▓█   ▀          ▒██▒  ██▒   ▓██░   █▒   ▓█   ▀    ▓██ ▒ ██▒
-            ▒██░▄▄▄░   ▒██  ▀█▄     ▓██    ▓██░   ▒███            ▒██░  ██▒    ▓██  █▒░   ▒███      ▓██ ░▄█ ▒
-            ░▓█  ██▓   ░██▄▄▄▄██    ▒██    ▒██    ▒▓█  ▄          ▒██   ██░     ▒██ █░░   ▒▓█  ▄    ▒██▀▀█▄  
-            ░▒▓███▀▒    ▓█   ▓██▒   ▒██▒   ░██▒   ░▒████▒         ░ ████▓▒░      ▒▀█░     ░▒████▒   ░██▓ ▒██▒
-             ░▒   ▒     ▒▒   ▓▒█░   ░ ▒░   ░  ░   ░░ ▒░ ░         ░ ▒░▒░▒░       ░ ▐░     ░░ ▒░ ░   ░ ▒▓ ░▒▓░
-              ░   ░      ▒   ▒▒ ░   ░  ░      ░    ░ ░  ░           ░ ▒ ▒░       ░ ░░      ░ ░  ░     ░▒ ░ ▒░
-            ░ ░   ░      ░   ▒      ░      ░         ░            ░ ░ ░ ▒          ░░        ░        ░░   ░ 
-                  ░          ░  ░          ░         ░  ░             ░ ░           ░        ░  ░      ░     
-                                                                                   ░                         
-
-    $reset
-        """.trimIndent())
-        return true
-    } else if (opponents.isEmpty()) {
-        println("All Heroes died during Battle")
-        println("""
-            $green$bold
-         ▄· ▄▌      ▄• ▄▌    ▄▄▌ ▐ ▄▌       ▐ ▄     ▄▄ 
-        ▐█▪██▌▪     █▪██▌    ██· █▌▐█▪     •█▌▐█    ██▌
-        ▐█▌▐█▪ ▄█▀▄ █▌▐█▌    ██▪▐█▐▐▌ ▄█▀▄ ▐█▐▐▌    ▐█·
-         ▐█▀·.▐█▌.▐▌▐█▄█▌    ▐█▌██▐█▌▐█▌.▐▌██▐█▌    .▀ 
-          ▀ •  ▀█▄▀▪ ▀▀▀      ▀▀▀▀ ▀▪ ▀█▄▀▪▀▀ █▪     ▀ 
-        
-        $reset
-        """.trimIndent())
-        return true
-    } else {
-        return false
     }
 }
 
@@ -422,5 +352,73 @@ fun dot(anyVillainsCursed: Boolean,companions: MutableList<Villain>) {
             }
             }
         }
+    }
+}
+
+fun removeDeadVillain(companions: MutableList<Villain>, deadCompanions: MutableList<Villain>) {
+    var deadCompanion = companions.filter { it.hp < 0.0 }.toMutableList()
+    companions.removeAll(deadCompanion)
+    deadCompanions.addAll(deadCompanion)
+    if (deadCompanion.isNotEmpty()) {
+        deadCompanion.forEach { companion -> println("${companion.name} has died.") }
+    }
+}
+fun isDeadDemonInDeadOpponents(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeavenlyKing: SecondHeavenlyKing, deadCompanions: MutableList<Villain>): Boolean {
+    return if (deadCompanions.contains(firstHeavenlyKing)){
+        deadCompanions.contains(firstHeavenlyKing)
+    } else if (deadCompanions.contains(secondHeavenlyKing)){
+        deadCompanions.contains(secondHeavenlyKing)
+    } else deadCompanions.contains(demonLord)
+}
+
+
+fun removeDeadOpponent(opponents: MutableList<Hero>, deadOpponents: MutableList<Hero>) {
+    val deadOpponent = opponents.filter { it.hp < 0.0 }.toMutableList()
+    opponents.removeAll(deadOpponent)
+    deadOpponents.addAll(deadOpponent)
+    if (deadOpponent.isNotEmpty()) {
+        deadOpponent.forEach { opponent -> println("${opponent.name} has died.") }
+    }
+}
+
+fun isDeadSideKickInDeadOpponents(sidekick: Sidekick?, deadOpponents: MutableList<Hero>): Boolean {
+    return sidekick != null && deadOpponents.contains(sidekick)
+}
+
+
+fun gameEnd(companions: MutableList<Villain>, opponents: MutableList<Hero>, red: String, reset: String, green: String, bold: String): Boolean {
+    if (companions.isEmpty()) {
+        println("All Villians died during Battle")
+        println("""$red
+            
+              ▄████     ▄▄▄          ███▄ ▄███▓   ▓█████           ▒█████      ██▒   █▓   ▓█████     ██▀███  
+             ██▒ ▀█▒   ▒████▄       ▓██▒▀█▀ ██▒   ▓█   ▀          ▒██▒  ██▒   ▓██░   █▒   ▓█   ▀    ▓██ ▒ ██▒
+            ▒██░▄▄▄░   ▒██  ▀█▄     ▓██    ▓██░   ▒███            ▒██░  ██▒    ▓██  █▒░   ▒███      ▓██ ░▄█ ▒
+            ░▓█  ██▓   ░██▄▄▄▄██    ▒██    ▒██    ▒▓█  ▄          ▒██   ██░     ▒██ █░░   ▒▓█  ▄    ▒██▀▀█▄  
+            ░▒▓███▀▒    ▓█   ▓██▒   ▒██▒   ░██▒   ░▒████▒         ░ ████▓▒░      ▒▀█░     ░▒████▒   ░██▓ ▒██▒
+             ░▒   ▒     ▒▒   ▓▒█░   ░ ▒░   ░  ░   ░░ ▒░ ░         ░ ▒░▒░▒░       ░ ▐░     ░░ ▒░ ░   ░ ▒▓ ░▒▓░
+              ░   ░      ▒   ▒▒ ░   ░  ░      ░    ░ ░  ░           ░ ▒ ▒░       ░ ░░      ░ ░  ░     ░▒ ░ ▒░
+            ░ ░   ░      ░   ▒      ░      ░         ░            ░ ░ ░ ▒          ░░        ░        ░░   ░ 
+                  ░          ░  ░          ░         ░  ░             ░ ░           ░        ░  ░      ░     
+                                                                                   ░                         
+
+    $reset
+        """.trimIndent())
+        return true
+    } else if (opponents.isEmpty()) {
+        println("All Heroes died during Battle")
+        println("""
+            $green$bold
+         ▄· ▄▌      ▄• ▄▌    ▄▄▌ ▐ ▄▌       ▐ ▄     ▄▄ 
+        ▐█▪██▌▪     █▪██▌    ██· █▌▐█▪     •█▌▐█    ██▌
+        ▐█▌▐█▪ ▄█▀▄ █▌▐█▌    ██▪▐█▐▐▌ ▄█▀▄ ▐█▐▐▌    ▐█·
+         ▐█▀·.▐█▌.▐▌▐█▄█▌    ▐█▌██▐█▌▐█▌.▐▌██▐█▌    .▀ 
+          ▀ •  ▀█▄▀▪ ▀▀▀      ▀▀▀▀ ▀▪ ▀█▄▀▪▀▀ █▪     ▀ 
+        
+        $reset
+        """.trimIndent())
+        return true
+    } else {
+        return false
     }
 }

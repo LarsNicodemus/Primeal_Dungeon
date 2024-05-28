@@ -39,32 +39,13 @@ fun game() {
     intro(demonLord,firstHeavenlyKing,secondHeavenlyKing, red, bold, reset)
     itemChoice(itemBox)
     threadsleep(3)
-    println("""${cyan} ${bold}
-        
-         ▄▄ •  ▄▄▄· • ▌ ▄ ·. ▄▄▄ .    .▄▄ · ▄▄▄▄▄ ▄▄▄· ▄▄▄  ▄▄▄▄▄
-        ▐█ ▀ ▪▐█ ▀█ ·██ ▐███▪▀▄.▀·    ▐█ ▀. •██  ▐█ ▀█ ▀▄ █·•██  
-        ▄█ ▀█▄▄█▀▀█ ▐█ ▌▐▌▐█·▐▀▀▪▄    ▄▀▀▀█▄ ▐█.▪▄█▀▀█ ▐▀▀▄  ▐█.▪
-        ▐█▄▪▐█▐█ ▪▐▌██ ██▌▐█▌▐█▄▄▌    ▐█▄▪▐█ ▐█▌·▐█ ▪▐▌▐█•█▌ ▐█▌·
-        ·▀▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀      ▀▀▀▀  ▀▀▀  ▀  ▀ .▀  ▀ ▀▀▀ 
-                                                               
-    ${reset}
-    """.trimIndent())
+    gameArt(1,cyan,bold,reset)
     fightRound(companions, opponents, itemBox,reset,red, green, yellow, bold)
     threadsleep(2)
     println()
     println()
     threadsleep(2)
-    println("""
-        ${cyan} ${bold}
-        
-         ▄▄ •  ▄▄▄· • ▌ ▄ ·. ▄▄▄ .    ▄▄▄ . ▐ ▄ ·▄▄▄▄  
-        ▐█ ▀ ▪▐█ ▀█ ·██ ▐███▪▀▄.▀·    ▀▄.▀·•█▌▐███▪ ██ 
-        ▄█ ▀█▄▄█▀▀█ ▐█ ▌▐▌▐█·▐▀▀▪▄    ▐▀▀▪▄▐█▐▐▌▐█· ▐█▌
-        ▐█▄▪▐█▐█ ▪▐▌██ ██▌▐█▌▐█▄▄▌    ▐█▄▄▌██▐█▌██. ██ 
-        ·▀▀▀▀  ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀      ▀▀▀ ▀▀ █▪▀▀▀▀▀• 
-
-        ${reset}
-    """.trimIndent())
+    gameArt(2,cyan,bold,reset)
     println()
     println()
 

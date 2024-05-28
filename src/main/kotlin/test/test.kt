@@ -4,6 +4,7 @@ import character.heroes.*
 import character.villains.*
 import itembox.*
 import utils.fightRound
+import utils.heroMove2
 import utils.villainsMove2
 
 //import utils.removeTheDead
@@ -30,14 +31,17 @@ public fun main() {
     val companions = mutableListOf(demonLord,firstHeavenlyKing,secondHeavenlyKing)
     val opponents: MutableList<Hero> = mutableListOf(savior)
     var usedItemBox = false
-    itemBox.addItem(itemBox.itemBox)
+    var deadOpponents: MutableList<Hero> = mutableListOf()
+    var deadCompanions: MutableList<Villain> = mutableListOf()
+//    itemBox.addItem(itemBox.itemBox)
 //    fightRound(villains,heroes,itemBox)
 //    roundStart(round = 1)
 //    roundEnd(round = 1,villains,heroes)
 //    firstHeavenlyKing.bloodLetting(heroes.random(), lowestHPCompanions(villains))
+//
 //    villainsMove2(villains,heroes,itemBox)
-//    villainsMove2(companions,opponents,itemBox)
-//    fightRound(companions, opponents, itemBox, reset, red, green, yellow)
+    villainsMove2(companions,opponents,itemBox,deadOpponents)
+//    fightRound(companions, opponents, itemBox, reset, red, green, yellow, bold)
 //    chooseAttack(villains.random(),heroes,villains,itemBox,usedItemBox)
 //    attackChoice(villains.random(),heroes,villains,itemBox,usedItemBox)
 //    firstHeavenlyKing.darkHeal(companions)
@@ -45,4 +49,5 @@ public fun main() {
 //    demonLord.hellFlame(opponents.random())
 //    demonLord.gravityBomb(opponents.random())
 //    demonLord.rulersGrip(opponents.random())
+
 }

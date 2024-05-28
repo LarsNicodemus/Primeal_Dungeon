@@ -12,91 +12,91 @@ import utils.removeDeadOpponent
 import utils.threadsleep
 
 
-fun villainsMove3(
-    companions: MutableList<Villain>,
-    opponents: MutableList<Hero>,
-    itemBox: ItemBox,
-) {
-    removeDeadOpponent(opponents)
-    var availableCompanions = companions.toMutableList()
-    var usedItemBox = false
-    if (opponents.isNotEmpty()) {
-        while (availableCompanions.isNotEmpty() && opponents.isNotEmpty()) {
-            println("Which Defender should go next?")
-            threadsleep(5)
-            availableCompanions.forEachIndexed { index, it -> println("${index + 1} -> ${it.title} ${it.name} Attacks: -> ${it.attacks}")
-                threadsleep(5)
-            }
-            println()
-            print("Your Choice: ")
-            val input = readln()
-            try {
-                val villainIndex = input.toInt()
-                if (villainIndex in 1..availableCompanions.size) {
-                    val chosenCompanion = availableCompanions[input.toIntOrNull()!!.minus(1)]
-                    availableCompanions.remove(chosenCompanion)
-                    if (opponents.isNotEmpty()) {
-                        println()
-                        usedItemBox = chosenAction2(availableCompanions, opponents, itemBox, chosenCompanion, usedItemBox)
-                        chosenCompanion.decrementBuffRounds()
-                    } else continue
-                } else println("Invalid Input. Please enter a number between 1 and ${availableCompanions.size}.")
-                println()
-                continue
-            } catch (e: NumberFormatException) {
-                println("Invalid Input. Please enter a number between 1 and ${availableCompanions.size}.")
-                println()
-            }
-        }
-    }
-}
-fun chosenAction3(companions: MutableList<Villain>, opponents: MutableList<Hero>, itemBox: ItemBox, companion: Villain, usedItemBox: Boolean): Boolean {
-    removeDeadOpponent(opponents)
-    println("${companion.name}'s turn, which attack should be carried out?")
-    threadsleep(5)
-    companion.attacks.forEachIndexed { index, attack ->
-        println("[${index + 1}] -> $attack")
-        threadsleep(5)
-    }
-    if (!usedItemBox) {
-        println("[${companion.attacks.size + 1}] -> ${itemBox.name}")
-        threadsleep(5)
-    }
-    println()
-
-    var validInput = false
-    while (!validInput) {
-        print("Your Choice: ")
-        val input = readln()
-        println()
-        try {
-            val attackIndex = input.toInt()
-            if (attackIndex in 1..(companion.attacks.size + if (usedItemBox) 0 else 1)) {
-                when (attackIndex) {
-                    1 -> if (companion is DemonLord) companion.darkSword(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bite(opponents.random()) else if (companion is SecondHeavenlyKing) companion.void(opponents.random())
-                    2 -> if (companion is DemonLord) companion.hellFlame(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodLetting(opponents.random(), lowestHPCompanions(companions + companion)) else if (companion is SecondHeavenlyKing) companion.eternalIce(companion)
-                    3 -> if (companion is DemonLord) companion.gravityBomb(opponents.random()) else if (companion is FirstHeavenlyKing) companion.darkHeal(companions + companion) else if (companion is SecondHeavenlyKing) companion.chaosBurst(opponents.random())
-                    4 -> if (companion is DemonLord) companion.rulersGrip(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodRain(opponents) else if (companion is SecondHeavenlyKing) companion.originsDoom(opponents.random())
-                    companion.attacks.size + 1 -> if (!usedItemBox) {
-                        itemBox.useItem(companion, itemBox.itemBox)
-                        return true
-                    } else {
-                        println("Invalid Input. Please enter a number between 1 and ${companion.attacks.size}.")
-                    }
-                }
-                println()
-                removeDeadOpponent(opponents)
-                validInput = true
-            } else {
-                println("Invalid Input. Please enter a number between 1 and ${companion.attacks.size + if (usedItemBox) 0 else 1}.")
-            }
-        } catch (e: Exception) {
-            println("Invalid Input. Please enter a number between 1 and ${companion.attacks.size + if (usedItemBox) 0 else 1}.")
-        }
-    }
-
-    return usedItemBox
-}
+//fun villainsMove3(
+//    companions: MutableList<Villain>,
+//    opponents: MutableList<Hero>,
+//    itemBox: ItemBox,
+//) {
+//    removeDeadOpponent(opponents,)
+//    var availableCompanions = companions.toMutableList()
+//    var usedItemBox = false
+//    if (opponents.isNotEmpty()) {
+//        while (availableCompanions.isNotEmpty() && opponents.isNotEmpty()) {
+//            println("Which Defender should go next?")
+//            threadsleep(5)
+//            availableCompanions.forEachIndexed { index, it -> println("${index + 1} -> ${it.title} ${it.name} Attacks: -> ${it.attacks}")
+//                threadsleep(5)
+//            }
+//            println()
+//            print("Your Choice: ")
+//            val input = readln()
+//            try {
+//                val villainIndex = input.toInt()
+//                if (villainIndex in 1..availableCompanions.size) {
+//                    val chosenCompanion = availableCompanions[input.toIntOrNull()!!.minus(1)]
+//                    availableCompanions.remove(chosenCompanion)
+//                    if (opponents.isNotEmpty()) {
+//                        println()
+//                        usedItemBox = chosenAction2(availableCompanions, opponents, itemBox, chosenCompanion, usedItemBox)
+//                        chosenCompanion.decrementBuffRounds()
+//                    } else continue
+//                } else println("Invalid Input. Please enter a number between 1 and ${availableCompanions.size}.")
+//                println()
+//                continue
+//            } catch (e: NumberFormatException) {
+//                println("Invalid Input. Please enter a number between 1 and ${availableCompanions.size}.")
+//                println()
+//            }
+//        }
+//    }
+//}
+//fun chosenAction3(companions: MutableList<Villain>, opponents: MutableList<Hero>, itemBox: ItemBox, companion: Villain, usedItemBox: Boolean): Boolean {
+//    removeDeadOpponent(opponents)
+//    println("${companion.name}'s turn, which attack should be carried out?")
+//    threadsleep(5)
+//    companion.attacks.forEachIndexed { index, attack ->
+//        println("[${index + 1}] -> $attack")
+//        threadsleep(5)
+//    }
+//    if (!usedItemBox) {
+//        println("[${companion.attacks.size + 1}] -> ${itemBox.name}")
+//        threadsleep(5)
+//    }
+//    println()
+//
+//    var validInput = false
+//    while (!validInput) {
+//        print("Your Choice: ")
+//        val input = readln()
+//        println()
+//        try {
+//            val attackIndex = input.toInt()
+//            if (attackIndex in 1..(companion.attacks.size + if (usedItemBox) 0 else 1)) {
+//                when (attackIndex) {
+//                    1 -> if (companion is DemonLord) companion.darkSword(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bite(opponents.random()) else if (companion is SecondHeavenlyKing) companion.void(opponents.random())
+//                    2 -> if (companion is DemonLord) companion.hellFlame(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodLetting(opponents.random(), lowestHPCompanions(companions + companion)) else if (companion is SecondHeavenlyKing) companion.eternalIce(companion)
+//                    3 -> if (companion is DemonLord) companion.gravityBomb(opponents.random()) else if (companion is FirstHeavenlyKing) companion.darkHeal(companions + companion) else if (companion is SecondHeavenlyKing) companion.chaosBurst(opponents.random())
+//                    4 -> if (companion is DemonLord) companion.rulersGrip(opponents.random()) else if (companion is FirstHeavenlyKing) companion.bloodRain(opponents) else if (companion is SecondHeavenlyKing) companion.originsDoom(opponents.random())
+//                    companion.attacks.size + 1 -> if (!usedItemBox) {
+//                        itemBox.useItem(companion, itemBox.itemBox)
+//                        return true
+//                    } else {
+//                        println("Invalid Input. Please enter a number between 1 and ${companion.attacks.size}.")
+//                    }
+//                }
+//                println()
+//                removeDeadOpponent(opponents)
+//                validInput = true
+//            } else {
+//                println("Invalid Input. Please enter a number between 1 and ${companion.attacks.size + if (usedItemBox) 0 else 1}.")
+//            }
+//        } catch (e: Exception) {
+//            println("Invalid Input. Please enter a number between 1 and ${companion.attacks.size + if (usedItemBox) 0 else 1}.")
+//        }
+//    }
+//
+//    return usedItemBox
+//}
 //fun villainsMove3(companions: MutableList<Villain>, opponents: MutableList<Hero>, itemBox: ItemBox) {
 //    var availableCompanions = companions.toMutableList()
 //    var usedItemBox = false

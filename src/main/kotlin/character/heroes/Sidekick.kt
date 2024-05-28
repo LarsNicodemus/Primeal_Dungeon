@@ -18,7 +18,8 @@ class Sidekick(name: String = randomHeroineName()) : Hero(name) {
 //        """.trimIndent()
 //    }
     init {
-    hp = randomDouble(70.0, 100.0)
+    this.hp = randomDouble(70.0, 100.0)
+    this.maxHP = hp
     }
 
     fun elementalArrow(opponent: Villain){

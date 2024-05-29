@@ -57,11 +57,11 @@ class Savior(name: String = randomSaviorName()) : Hero(name) {
 
     fun holyLight(opponent: List<Villain>) {
         opponentAttackArt(1,5)
-        var unblockedOpponents = opponent.filter { it.shield <= 0 }
-        var blockedOpponents = opponent.filter { it.shield > 0 }
+        val unblockedOpponents = opponent.filter { it.shield <= 0 }
+        val blockedOpponents = opponent.filter { it.shield > 0 }
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (unblockedOpponents.isNotEmpty()) {
-            var totalDamage = unblockedOpponents.sumOf {
+            val totalDamage = unblockedOpponents.sumOf {
                 super.magicAttack(it, attackPower)
                 attackPower
             }
@@ -78,7 +78,7 @@ class Savior(name: String = randomSaviorName()) : Hero(name) {
 
     fun summoning(companions: MutableList<Hero>){
         opponentAttackArt(1,6)
-        var sidekick: Sidekick = Sidekick()
+        val sidekick: Sidekick = Sidekick()
         companions.add(sidekick)
         printlnWithDelay("Sidekick ${sidekick.name} was summoned to support the hero. be cautious.",15)
     }

@@ -120,6 +120,7 @@ fun villainsMove2(
                     opponents.forEach { opponent -> if (opponent is Savior) {
                         if (opponent.blockCounter > 0) {
                             !opponent.block(opponent)
+                            opponent.decrementBuffRounds()
                         }
                     }
                     }

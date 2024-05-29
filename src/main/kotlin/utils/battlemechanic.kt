@@ -9,7 +9,11 @@ import character.villains.SecondHeavenlyKing
 import character.villains.Villain
 import itembox.ItemBox
 
-
+/*
+#######################################
+##############Fight Round##############
+#######################################
+**/
 fun fightRound(
     companions: MutableList<Villain>,
     opponents: MutableList<Hero>,
@@ -28,77 +32,12 @@ fun fightRound(
         anyVillainIsCursed(companions)
         round++
     }
-
 }
-
-fun roundStart(round: Int) {
-    threadsleep(4)
-    println()
-    println()
-    threadsleep(4)
-    roundStartArt(round)
-    threadsleep(4)
-    println()
-    println()
-    threadsleep(4)
-}
-
-fun roundEnd(
-    round: Int,
-    companions: MutableList<Villain>,
-    opponents: MutableList<Hero>
-) {
-    threadsleep(4)
-    println()
-    println()
-    threadsleep(4)
-    roundEndArt(round)
-    println()
-    threadsleep(4)
-    println("Villains:")
-    threadsleep(4)
-    companions.forEach { companion ->
-        if (companions.isNotEmpty()) println(
-            "${
-                colorChoice(
-                    companion,
-                    red,
-                    green,
-                    yellow
-                )
-            }${companion.name} has ${roundDouble(companion.hp)} left.${reset}"
-        )
-    }
-    companions.forEach { companion ->
-        if (companion.isCursed) println("${companion.name} is cursed.")
-        threadsleep(4)
-    }
-    if (companions.isEmpty()) {
-        gameEnd(companions, opponents, red, reset, green, bold)
-    }
-    println()
-    threadsleep(4)
-    println("Heroes:")
-    opponents.forEach { opponent ->
-        if (opponents.isNotEmpty()) println(
-            "${
-                colorChoice(
-                    opponent,
-                    red,
-                    green,
-                    yellow
-                )
-            }${opponent.name} has ${roundDouble(opponent.hp)} left.${reset}"
-        )
-        threadsleep(4)
-    }
-    if (opponents.isEmpty()) {
-        gameEnd(companions, opponents, red, reset, green, bold)
-    }
-    println()
-    threadsleep(4)
-}
-
+/*
+#######################################
+##############Villain#Move#############
+#######################################
+**/
 fun villainsMove2(
     companions: MutableList<Villain>,
     opponents: MutableList<Hero>,
@@ -252,7 +191,11 @@ fun villainAttackFour(villain: Villain, companions: List<Villain>, opponents: Mu
         is SecondHeavenlyKing -> villain.originsDoom(target)
     }
 }
-
+/*
+#######################################
+################Hero#Move##############
+#######################################
+**/
 fun heroMove2(
     companions: MutableList<Villain>,
     opponents: MutableList<Hero>,
@@ -370,6 +313,12 @@ fun heroAttackSix(
     }
 }
 
+/*
+#######################################
+##############Battle#Utils#############
+#######################################
+**/
+
 fun anyVillainIsCursed(companions: MutableList<Villain>): Boolean {
     for (companion in companions) {
         if (companion.isCursed) {
@@ -425,23 +374,3 @@ fun removeDeadOpponent(opponents: MutableList<Hero>, deadOpponents: MutableList<
     }
 }
 
-fun gameEnd(
-    companions: MutableList<Villain>,
-    opponents: MutableList<Hero>,
-    red: String,
-    reset: String,
-    green: String,
-    bold: String
-): Boolean {
-    if (companions.isEmpty()) {
-        println("All Villians died during Battle")
-        gameWinnerArt(2, red, green, bold, reset)
-        return true
-    } else if (opponents.isEmpty()) {
-        println("All Heroes died during Battle")
-        gameWinnerArt(1, red, green, bold, reset)
-        return true
-    } else {
-        return false
-    }
-}

@@ -7,18 +7,8 @@ import itembox.consumable.StrengthBooster
 import utils.printlnWithDelay
 import utils.threadsleep
 
-public class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Item> = mutableListOf()) {
-val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooster(),HealingPotion(),StrengthBooster(),HealingPotion())
-
-//    fun useHeiltrank(villain: Villain) {
-//        // printlns, die bescheid sagen, was passiert
-//        // hp um 50% der gesamthp heilen
-//        if (anzahlHeiltraenke > 0 ) {
-//            villain.hp += (villain.maxHP / 2)
-//            // anzahl der heiltraenke im beutel um 1 verringern
-//            anzahlHeiltraenke--
-//        } // else bescheid sagen, dass traenke leer sind
-//    }
+class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Item> = mutableListOf()) {
+//val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooster(),HealingPotion(),StrengthBooster(),HealingPotion())
 
 
 /**This function let you add an item to the itembox which can be used once every round until the Box is empty. There are two options in the listOf(), a strength Booster and a Healing Potion.
@@ -36,7 +26,6 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
         threadsleep(5)
         }
         println()
-//        threadsleep(4)
         while (itemBox.size < 4) {
             print("your pick: ") ;threadsleep(1)
             var input: String = readln().lowercase()
@@ -47,7 +36,6 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
                     val item = itemOptions[itemIndex - 1]
                     itemBox.add(item)
                     println("${item.name} added.")
-//                    println("${item.name} added to your Item Box.")
                 } else {
                     println("Invalid item index. Please enter a number between 1 and ${itemOptions.size}.")
                 }
@@ -58,11 +46,9 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
     threadsleep(1)
     println()
         println("Your Item Box contains: ")
-//        itemBox.indices.forEach { index -> println("Nr.${index + 1}. ${itemBox[index].name}") }
     val groupedItemBox = itemBox.groupingBy { it }.eachCount().entries
         .map { "[${it.key.name}]: ${it.value}" }
     println(groupedItemBox)
-//        printlnWithDelay(itemBox.joinToString("][","[","]") { it.name },10)
     println()
     threadsleep(1)
     }
@@ -79,18 +65,6 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
         itemBox.indices.forEach { index -> println("[${index + 1}] -> ${itemBox[index].name}")
         threadsleep(5)
         }
-//        itemBox.forEach { item, count ->
-//            repeat(count) {
-//                println("[${itemBox.keys.indices}]$count x ${item.name}")
-//            }
-//        }
-//    val itemList = mutableListOf<String>()
-//    itemBox.forEach { item ->
-//        repeat(itemBox.count { it == item }) {
-//            itemList.add(item.name)
-//        }
-//    }
-//    itemList.forEach { println(it) }
     println()
         while (true) {
             print("Please enter the index of the desired item (q to quit): ")
@@ -118,9 +92,5 @@ val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooste
                 println("Invalid Input. Please enter a number between 1 and ${itemBox.size}. (q to quit)")
             }
         }
-    }
-
-    fun formatItem(item: Item): String{
-        return "${item.count} x [${item.name}]"
     }
 }

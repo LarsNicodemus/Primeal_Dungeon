@@ -8,12 +8,6 @@ import javax.sound.sampled.FloatControl
 import java.util.Timer
 import java.util.TimerTask
 
-//val intro: String = "src/main/kotlin/audio/Heart Of Courage (TSFH)- Medieval Version [Two Steps From Hell] Kopie.wav"
-//fun main() {
-//    playSound(intro)
-//    Thread.sleep(40000)
-//}
-
 fun playSound(audioPath: String, volume: Float, durationMills: Long): Clip {
     val audio: File = File(audioPath)
     val audioInput: AudioInputStream = AudioSystem.getAudioInputStream(audio)

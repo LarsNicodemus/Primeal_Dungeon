@@ -26,10 +26,6 @@ open class Villain(name: String) : Character(name) {
     init {
         this.hp = randomDouble(70.0,100.0)
         this.maxHP = hp
-//        this.mp = nextRandomDouble(70.0,100.0)
-//        maxMP = mp
-//        this.rage = randomDouble(70.0,100.0)
-//        maxRage = rage
         this.attackPower = randomDouble(30.0,40.0)
         this.healPower = randomDouble(30.0,40.0)
         this.shield = 0
@@ -38,19 +34,11 @@ open class Villain(name: String) : Character(name) {
     open var attacks = listOf("")
     open var title = ""
 
-
-    open var abilities: List<KFunction4<Hero, Villain, List<Villain>, List<Hero>, Unit>> = listOf(
-    )
-
-
-
     /** Performs a sword attack against an opposing hero.
      * @param opponent The opposing hero to perform the attack against.
      * @param attackPower the strength of the attack performed by the current villain.
      * The value of attack power will be subtracted from the heroes remaining health points.
      */
-
-
 
     open fun swordAttack(opponent: Hero, attackPower: Double) {
         opponent.hp -= attackPower
@@ -96,10 +84,4 @@ open class Villain(name: String) : Character(name) {
             false
         }
     }
-
-    fun useItemBox(itemBox: ItemBox,villain: Villain){
-        itemBox.useItem(villain,itemBox.itemBox)
-    }
-
-
 }

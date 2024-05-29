@@ -117,11 +117,11 @@ fun villainsMove2(
                     println()
                     usedItemBox = chosenAction2(companions, opponents, itemBox, chosenCompanion, usedItemBox,deadOpponents)
                     chosenCompanion.decrementBuffRounds()
-                    for (opponent in opponents){
-                            if (opponent.block(opponent) && opponent.blockCounter>=1) {
-                                !opponent.block(opponent)
-                                opponent.shield = 0
+                    opponents.forEach { opponent -> if (opponent is Savior) {
+                        if (opponent.blockCounter > 0) {
+                            !opponent.block(opponent)
                         }
+                    }
                     }
                 } else continue
             } else println("Invalid Input. Please enter a number between 1 and ${activeCompanions.size}.")

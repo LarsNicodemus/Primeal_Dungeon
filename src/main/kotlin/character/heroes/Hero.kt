@@ -71,18 +71,4 @@ open class Hero(name: String = randomSaviorName()) : Character(name) {
         }
     }
 
-//    fun eternalIce(companion: Hero) {
-//        if (!block(companion))
-//            println("Second Heavenly King $name tried to used Eternal Ice but it failed.")
-//        else println("Second Heavenly King $name used Eternal Ice to block the next attack.")
-//
-//    }
-//    fun aoe(opponent: List<Villain>,attackPower: Double) :Double{
-//            var totalDamage = opponent.sumOf {
-//                magicAttack(it, attackPower)
-//                attackPower
-//            }
-//        return totalDamage
-//    }
-
 }

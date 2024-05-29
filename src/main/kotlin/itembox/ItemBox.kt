@@ -8,8 +8,6 @@ import utils.printlnWithDelay
 import utils.threadsleep
 
 class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Item> = mutableListOf()) {
-//val arsenal: Set <Item> = setOf(StrengthBooster(),HealingPotion(),StrengthBooster(),HealingPotion(),StrengthBooster(),HealingPotion())
-
 
     /**This function let you add an item to the itembox which can be used once every round until the Box is empty. There are two options in the listOf(), a strength Booster and a Healing Potion.
      * @param itemBox is a mutable list of the class item.

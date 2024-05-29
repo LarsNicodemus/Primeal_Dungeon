@@ -13,23 +13,18 @@ import itembox.ItemBox
 fun fightRound(
     companions: MutableList<Villain>,
     opponents: MutableList<Hero>,
-    itemBox: ItemBox,
-    reset: String,
-    red: String,
-    green: String,
-    yellow: String,
-    bold: String
+    itemBox: ItemBox
 ) {
     var round = 1
-    var deadCompanions: MutableList<Villain> = mutableListOf()
-    var deadOpponents: MutableList<Hero> = mutableListOf()
+    val deadCompanions: MutableList<Villain> = mutableListOf()
+    val deadOpponents: MutableList<Hero> = mutableListOf()
 
     while (companions.isNotEmpty() && opponents.isNotEmpty()) {
         roundStart(round)
         villainsMove2(companions, opponents, itemBox, deadOpponents)
         dot(anyVillainIsCursed(companions), companions)
         heroMove2(companions, opponents, deadCompanions, deadOpponents)
-        roundEnd(round, companions, opponents, reset, red, green, yellow, bold)
+        roundEnd(round, companions, opponents)
         anyVillainIsCursed(companions)
         round++
     }
@@ -51,12 +46,7 @@ fun roundStart(round: Int) {
 fun roundEnd(
     round: Int,
     companions: MutableList<Villain>,
-    opponents: MutableList<Hero>,
-    reset: String,
-    red: String,
-    green: String,
-    yellow: String,
-    bold: String,
+    opponents: MutableList<Hero>
 ) {
     threadsleep(4)
     println()
@@ -106,8 +96,6 @@ fun roundEnd(
         gameEnd(companions, opponents, red, reset, green, bold)
     }
     println()
-//    println()
-//    println("###### End of Round $round ######")
     threadsleep(4)
 }
 
@@ -428,20 +416,6 @@ fun removeDeadVillain(companions: MutableList<Villain>, deadCompanions: MutableL
     }
 }
 
-fun isDeadDemonInDeadOpponents(
-    demonLord: DemonLord,
-    firstHeavenlyKing: FirstHeavenlyKing,
-    secondHeavenlyKing: SecondHeavenlyKing,
-    deadCompanions: MutableList<Villain>
-): Boolean {
-    return if (deadCompanions.contains(firstHeavenlyKing)) {
-        deadCompanions.contains(firstHeavenlyKing)
-    } else if (deadCompanions.contains(secondHeavenlyKing)) {
-        deadCompanions.contains(secondHeavenlyKing)
-    } else deadCompanions.contains(demonLord)
-}
-
-
 fun removeDeadOpponent(opponents: MutableList<Hero>, deadOpponents: MutableList<Hero>) {
     val deadOpponent = opponents.filter { it.hp < 0.0 }.toMutableList()
     opponents.removeAll(deadOpponent)
@@ -450,11 +424,6 @@ fun removeDeadOpponent(opponents: MutableList<Hero>, deadOpponents: MutableList<
         deadOpponent.forEach { opponent -> println("${opponent.name} has died.") }
     }
 }
-
-fun isDeadSideKickInDeadOpponents(sidekick: Sidekick?, deadOpponents: MutableList<Hero>): Boolean {
-    return sidekick != null && deadOpponents.contains(sidekick)
-}
-
 
 fun gameEnd(
     companions: MutableList<Villain>,

@@ -45,16 +45,6 @@ open class Character(var name: String, var hp: Double = 0.0) {
     var cursedVillain: Villain? = null
     var buffRounds: Int = 0
     var buff: Buff? = null
-    val red = "\u001B[31m"
-    val green = "\u001B[32m"
-    val yellow = "\u001B[33m"
-    val blue = "\u001B[34m"
-    val magenta = "\u001B[35m"
-    val cyan = "\u001B[36m"
-    val bold = "\u001B[1m"
-    val underline = "\u001B[4m"
-    val backgroundYellow = "\u001B[43m"
-    val reset = "\u001B[0m"
     var blockCounter = 0
     open fun actualAttackPower(
         attackPower: Double,

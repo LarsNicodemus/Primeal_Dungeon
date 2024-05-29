@@ -19,23 +19,7 @@ fun main() {
 }
 
 fun game() {
-    val red = "\u001B[31m"
-    val green = "\u001B[32m"
-    val yellow = "\u001B[33m"
-    val blue = "\u001B[34m"
-    val magenta = "\u001B[35m"
-    val cyan = "\u001B[36m"
-    val bold = "\u001B[1m"
-    val underline = "\u001B[4m"
-    val backgroundYellow = "\u001B[43m"
-    val reset = "\u001B[0m"
-    val gameSound =
-        "src/main/kotlin/audio/Miracle of Sound - Valhalla Calling - Karaoke Instrumental Lyrics - ObsKure.wav"
-    val outroSound = "src/main/kotlin/audio/Fairy Tail Theme End.wav"
-    val doorkickSound = "src/main/kotlin/audio/Door Kick.wav"
-    val introSound = "src/main/kotlin/audio/Fairy Tail Theme (Violin Cover) Taylor Davis.wav"
     var endGame = false
-    var index = 1
     var itemBox: ItemBox = ItemBox()
     var demonLord = DemonLord()
     var firstHeavenlyKing = FirstHeavenlyKing()
@@ -45,22 +29,22 @@ fun game() {
     val opponents: MutableList<Hero> = mutableListOf(savior)
     while (!endGame) {
         val intro = playSound(introSound, 0.30f, 100000)
-        intro(demonLord, firstHeavenlyKing, secondHeavenlyKing, red, bold, reset)
+        intro(demonLord, firstHeavenlyKing, secondHeavenlyKing)
         itemChoice(itemBox)
         threadsleep(12)
         playSound(doorkickSound, 0.40f, 1200)
         endSound(intro)
         val gameMusic = playSound(gameSound, 0.30f, 300000)
-        gameArt(1, cyan, bold, reset)
-        fightRound(companions, opponents, itemBox, reset, red, green, yellow, bold)
+        gameArt(1)
+        fightRound(companions, opponents, itemBox)
         threadsleep(2)
         endSound(gameMusic)
         val outro = playSound(outroSound, 0.35f, 29000)
-        outro(demonLord, firstHeavenlyKing, secondHeavenlyKing, red, bold, reset, opponents, companions)
+        outro(demonLord, firstHeavenlyKing, secondHeavenlyKing, opponents, companions)
         println()
         println()
         threadsleep(2)
-        gameArt(2, cyan, bold, reset)
+        gameArt(2)
         println()
         println()
         Thread.sleep(2000)
@@ -74,7 +58,7 @@ fun game() {
         if (choice == "y") {
             endGame = false
             endSound(outro)
-            gameArt(3, cyan, bold, reset)
+            gameArt(3)
             game()
         } else {
             endSound(outro)
@@ -123,10 +107,7 @@ fun villainChoice(demonLord: DemonLord) {
 fun intro(
     demonLord: DemonLord,
     firstHeavenlyKing: FirstHeavenlyKing,
-    secondHeavenlyKing: SecondHeavenlyKing,
-    red: String,
-    bold: String,
-    reset: String
+    secondHeavenlyKing: SecondHeavenlyKing
 ) {
     println()
     println()
@@ -168,9 +149,6 @@ fun outro(
     demonLord: DemonLord,
     firstHeavenlyKing: FirstHeavenlyKing,
     secondHeavenlyKing: SecondHeavenlyKing,
-    red: String,
-    bold: String,
-    reset: String,
     opponents: MutableList<Hero>,
     companions: MutableList<Villain>
 ) {

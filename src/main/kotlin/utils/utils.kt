@@ -19,6 +19,23 @@ fun roundDouble2(input: Double): Double {
     return ((input * 100).roundToInt()) / 100.0
 }
 
+val red = "\u001B[31m"
+val green = "\u001B[32m"
+val yellow = "\u001B[33m"
+val blue = "\u001B[34m"
+val magenta = "\u001B[35m"
+val cyan = "\u001B[36m"
+val bold = "\u001B[1m"
+val underline = "\u001B[4m"
+val backgroundYellow = "\u001B[43m"
+val reset = "\u001B[0m"
+
+val gameSound =
+    "src/main/kotlin/audio/Miracle of Sound - Valhalla Calling - Karaoke Instrumental Lyrics - ObsKure.wav"
+val outroSound = "src/main/kotlin/audio/Fairy Tail Theme End.wav"
+val doorkickSound = "src/main/kotlin/audio/Door Kick.wav"
+val introSound = "src/main/kotlin/audio/Fairy Tail Theme (Violin Cover) Taylor Davis.wav"
+
 /**A function that returns a random Double between min and max.
  * @param min a Double standing for the min. possible return of the Double.
  * @param max a Double standing for the max. possible return of the Double.

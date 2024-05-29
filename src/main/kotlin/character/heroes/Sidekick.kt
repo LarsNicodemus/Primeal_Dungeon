@@ -11,13 +11,7 @@ import utils.*
  * */
 
 class Sidekick(name: String = randomHeroineName()) : Hero(name) {
-    //    override fun toString(): String {
-//        return """
-//            Sidekick $name
-//            Health Points ${roundDouble(hp)}
-//            Attack Power ${roundDouble(attackPower)}
-//        """.trimIndent()
-//    }
+
     init {
         this.hp = randomDouble(70.0, 100.0)
         this.maxHP = hp

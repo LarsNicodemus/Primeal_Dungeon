@@ -1,11 +1,7 @@
 package utils
 
-import character.villains.DemonLord
-import character.villains.FirstHeavenlyKing
-import character.villains.SecondHeavenlyKing
-import character.villains.Villain
 
-fun gameArt(choice: Int, cyan: String, bold: String, reset: String) {
+fun gameArt(choice: Int) {
     when (choice) {
         1 -> println(
             """

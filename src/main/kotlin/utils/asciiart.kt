@@ -27,7 +27,8 @@ fun gameArt(choice: Int, cyan: String, bold: String, reset: String) {
 """.trimIndent()
         )
 
-        3 -> println("""
+        3 -> println(
+            """
             
             
        _  _                 ___                        
@@ -38,7 +39,8 @@ fun gameArt(choice: Int, cyan: String, bold: String, reset: String) {
                                                        
                                                        
                                                        
-""".trimIndent())
+""".trimIndent()
+        )
     }
 }
 
@@ -79,7 +81,8 @@ fun roundStartArt(round: Int) {
  |___||   // _ \| || || ' \ / _` | | ||___|
       |_|_\\___/ \_,_||_||_|\__,_| |_|     
                                            
-""".trimIndent())
+""".trimIndent()
+        )
 
         2 -> println(
             """
@@ -101,21 +104,25 @@ fun roundStartArt(round: Int) {
 """.trimIndent()
         )
 
-        4 -> println("""
+        4 -> println(
+            """
        ___                      _   _ _       
   ___ | _ \ ___  _  _  _ _   __| | | | |  ___ 
  |___||   // _ \| || || ' \ / _` | |_  _||___|
       |_|_\\___/ \_,_||_||_|\__,_|   |_|      
                                               
-""".trimIndent())
+""".trimIndent()
+        )
 
-        5 -> println("""
+        5 -> println(
+            """
        ___                      _   ___      
   ___ | _ \ ___  _  _  _ _   __| | | __| ___ 
  |___||   // _ \| || || ' \ / _` | |__ \|___|
       |_|_\\___/ \_,_||_||_|\__,_| |___/     
                                              
-""".trimIndent())
+""".trimIndent()
+        )
 
         6 -> println(
             """
@@ -127,13 +134,15 @@ fun roundStartArt(round: Int) {
 """.trimIndent()
         )
 
-        7 -> println("""
+        7 -> println(
+            """
        ___                      _   ____     
   ___ | _ \ ___  _  _  _ _   __| | |__  |___ 
  |___||   // _ \| || || ' \ / _` |   / /|___|
       |_|_\\___/ \_,_||_||_|\__,_|  /_/      
                                              
-""".trimIndent())
+""".trimIndent()
+        )
 
         8 -> println(
             """
@@ -155,13 +164,15 @@ fun roundStartArt(round: Int) {
 """.trimIndent()
         )
 
-        10 -> println("""
+        10 -> println(
+            """
        ___                      _   _   __       
   ___ | _ \ ___  _  _  _ _   __| | / | /  \  ___ 
  |___||   // _ \| || || ' \ / _` | | || () ||___|
       |_|_\\___/ \_,_||_||_|\__,_| |_| \__/      
                                                  
- """.trimIndent())
+ """.trimIndent()
+        )
 
         11 -> println(
             """
@@ -322,21 +333,25 @@ fun roundEndArt(round: Int) {
 """.trimIndent()
         )
 
-        5 -> println("""
+        5 -> println(
+            """
        ___                      _   ___   ___           _      
   ___ | _ \ ___  _  _  _ _   __| | | __| | __| _ _   __| | ___ 
  |___||   // _ \| || || ' \ / _` | |__ \ | _| | ' \ / _` ||___|
       |_|_\\___/ \_,_||_||_|\__,_| |___/ |___||_||_|\__,_|     
                                                                
-""".trimIndent())
+""".trimIndent()
+        )
 
-        6 -> println("""
+        6 -> println(
+            """
        ___                      _    __   ___           _      
   ___ | _ \ ___  _  _  _ _   __| |  / /  | __| _ _   __| | ___ 
  |___||   // _ \| || || ' \ / _` | / _ \ | _| | ' \ / _` ||___|
       |_|_\\___/ \_,_||_||_|\__,_| \___/ |___||_||_|\__,_|     
                                                                
-""".trimIndent())
+""".trimIndent()
+        )
 
         7 -> println(
             """

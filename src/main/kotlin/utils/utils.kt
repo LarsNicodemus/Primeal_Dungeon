@@ -29,6 +29,7 @@ fun roundDouble2(input: Double): Double {
 fun randomDouble(min: Double, max: Double): Double {
     return min + Math.random() * (max - min)
 }
+
 /**A function that returns a random Double between min and max.
  * @param min a Double standing for the min. possible return of the Double.
  * @param max a Double standing for the max. possible return of the Double.
@@ -36,9 +37,10 @@ fun randomDouble(min: Double, max: Double): Double {
  * @author https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.random/-random/next-double.html
  * @author https://stackoverflow.com/questions/59200033/how-to-generate-a-random-double-value-in-a-specific-range-using-kotlin
  * */
-fun nextRandomDouble(min: Double,max:Double):Double{
-    return Random.nextDouble(min,max)
+fun nextRandomDouble(min: Double, max: Double): Double {
+    return Random.nextDouble(min, max)
 }
+
 /**A function, returning a random name for the Savior from the list of names.
  * @return a random Name
  * */
@@ -47,39 +49,104 @@ fun randomSaviorName(): String {
         "Avalera", "Zephyros", "Kaldra", "Thalassus", "Aezira", "Vaelros", "Xaren"
     ).random()
 }
+
 /**A function, returning a random name for the Sidekick of the Hero from the list of names.
-* @return a random Name
-* */
-fun randomHeroineName(): String {
-    return listOf(
-        "Anja", "Artemis", "Athena", "Belle", "Callisto", "Ivy", "Shuri", "Kara", "Scarlett", "Clara", "Alice", "Eloise", "Mae",
-        "Amelia", "Freya", "Eleanor", "Cordelia", "Josephine", "Emma", "Florence", "Elizabeth", "Grace", "Audrey", "Maya", "Juno", "Harlow",
-    ).random()
-/**A function, returning a random name for the Villain from the list of names.
  * @return a random Name
  * */
-}fun randomVillainName(): String {
+fun randomHeroineName(): String {
+    return listOf(
+        "Anja",
+        "Artemis",
+        "Athena",
+        "Belle",
+        "Callisto",
+        "Ivy",
+        "Shuri",
+        "Kara",
+        "Scarlett",
+        "Clara",
+        "Alice",
+        "Eloise",
+        "Mae",
+        "Amelia",
+        "Freya",
+        "Eleanor",
+        "Cordelia",
+        "Josephine",
+        "Emma",
+        "Florence",
+        "Elizabeth",
+        "Grace",
+        "Audrey",
+        "Maya",
+        "Juno",
+        "Harlow",
+    ).random()
+    /**A function, returning a random name for the Villain from the list of names.
+     * @return a random Name
+     * */
+}
+
+fun randomVillainName(): String {
     return listOf(
         "Belial", "Bael", "Azazel", "Leviathan", "Beelzebub", "Balphegor", "Mammon"
     ).random()
 }
+
 /**A function, returning a random name for a companion from the Villain from the list of names.
  * @return a random Name
  * */
 fun randomDemonVillainNameFirst(): String {
     return listOf(
-        "Amon", "Marbas", "Barbatos", "Marax", "Naberius", "Astaroth", "Stolas", "Shax", "Procel",
-        "Orobas", "Andras", "Dantalion", "Andromalius", "Valefar", "Vassago", "Sabnoc", "Allocer", "Gremory", "Valac", "Kimaris"
-    ).random()
-}
-fun randomDemonVillainNameSecond(): String {
-    return listOf(
-        "Lilith", "Paimon", "Sitri", "Furfur", "Marchosias", "Lamia", "Hecate", "Aeshma", "Empusa",
-        "Akasha", "Carmilla", "Azrael", "Elena", "Abbadon", "Belphegora", "Lilim", "Naamah", "Sallosa", "Veparis", "Aswang"
+        "Amon",
+        "Marbas",
+        "Barbatos",
+        "Marax",
+        "Naberius",
+        "Astaroth",
+        "Stolas",
+        "Shax",
+        "Procel",
+        "Orobas",
+        "Andras",
+        "Dantalion",
+        "Andromalius",
+        "Valefar",
+        "Vassago",
+        "Sabnoc",
+        "Allocer",
+        "Gremory",
+        "Valac",
+        "Kimaris"
     ).random()
 }
 
-fun threadsleep(version: Int){
+fun randomDemonVillainNameSecond(): String {
+    return listOf(
+        "Lilith",
+        "Paimon",
+        "Sitri",
+        "Furfur",
+        "Marchosias",
+        "Lamia",
+        "Hecate",
+        "Aeshma",
+        "Empusa",
+        "Akasha",
+        "Carmilla",
+        "Azrael",
+        "Elena",
+        "Abbadon",
+        "Belphegora",
+        "Lilim",
+        "Naamah",
+        "Sallosa",
+        "Veparis",
+        "Aswang"
+    ).random()
+}
+
+fun threadsleep(version: Int) {
 //    var stout = st
 //    Thread.sleep(stout)
     when (version) {
@@ -97,6 +164,7 @@ fun threadsleep(version: Int){
         12 -> Thread.sleep(1200)
     }
 }
+
 fun printlnWithDelay(string: String, delayMillis: Long) {
     string.forEach { char ->
         print(char)
@@ -104,12 +172,14 @@ fun printlnWithDelay(string: String, delayMillis: Long) {
     }
     println()
 }
+
 fun printWithDelay(string: String, delayMillis: Long) {
     string.forEach { char ->
         print(char)
         Thread.sleep(delayMillis)
     }
 }
+
 fun lowestHPCompanions(companions: List<Villain>): Villain {
     var villainWithLowestHP: Villain? = null
     var lowestHP = Double.MAX_VALUE

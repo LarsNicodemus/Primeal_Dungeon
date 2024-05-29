@@ -29,7 +29,8 @@ fun game() {
     val underline = "\u001B[4m"
     val backgroundYellow = "\u001B[43m"
     val reset = "\u001B[0m"
-    val gameSound = "src/main/kotlin/audio/Miracle of Sound - Valhalla Calling - Karaoke Instrumental Lyrics - ObsKure.wav"
+    val gameSound =
+        "src/main/kotlin/audio/Miracle of Sound - Valhalla Calling - Karaoke Instrumental Lyrics - ObsKure.wav"
     val outroSound = "src/main/kotlin/audio/Fairy Tail Theme End.wav"
     val doorkickSound = "src/main/kotlin/audio/Door Kick.wav"
     val introSound = "src/main/kotlin/audio/Fairy Tail Theme (Violin Cover) Taylor Davis.wav"
@@ -39,7 +40,7 @@ fun game() {
     var demonLord = DemonLord()
     var firstHeavenlyKing = FirstHeavenlyKing()
     var secondHeavenlyKing = SecondHeavenlyKing()
-    val companions = mutableListOf(demonLord,firstHeavenlyKing,secondHeavenlyKing)
+    val companions = mutableListOf(demonLord, firstHeavenlyKing, secondHeavenlyKing)
     var savior = Savior()
     val opponents: MutableList<Hero> = mutableListOf(savior)
     while (!endGame) {
@@ -63,17 +64,17 @@ fun game() {
         println()
         println()
         Thread.sleep(2000)
-        printlnWithDelay("Mortal, do you wish to test your fate once more? (y/n)",15)
-        printWithDelay("Your Choice: ",15)
+        printlnWithDelay("Mortal, do you wish to test your fate once more? (y/n)", 15)
+        printWithDelay("Your Choice: ", 15)
         var choice = readln().lowercase()
-        while (choice !="y" && choice != "n"){
+        while (choice != "y" && choice != "n") {
             println("Please enter y for yes or n for no.")
             choice = readln().lowercase()
         }
         if (choice == "y") {
             endGame = false
             endSound(outro)
-            gameArt(3,cyan, bold, reset)
+            gameArt(3, cyan, bold, reset)
             game()
         } else {
             endSound(outro)
@@ -86,7 +87,7 @@ fun itemChoice(itemBox: ItemBox) {
     itemBox.addItem(itemBox.itemBox)
 }
 
-fun colorChoice(character: Character, red: String,green:String,yellow: String) :String{
+fun colorChoice(character: Character, red: String, green: String, yellow: String): String {
     val hpPercent = (character.hp / character.maxHP) * 100
     return when {
         hpPercent < 30 -> red
@@ -97,20 +98,21 @@ fun colorChoice(character: Character, red: String,green:String,yellow: String) :
 
 fun villainChoice(demonLord: DemonLord) {
     println()
-    printlnWithDelay("Oh dear Player, bestow a name please, but choose wisely! ",15)
-    printlnWithDelay("If you want fate to guide you press [f] and a name shall be granted!",15)
-    printWithDelay("Your choice: ",15)
+    printlnWithDelay("Oh dear Player, bestow a name please, but choose wisely! ", 15)
+    printlnWithDelay("If you want fate to guide you press [f] and a name shall be granted!", 15)
+    printWithDelay("Your choice: ", 15)
     val input: String = readln().lowercase()
     do {
         if (input.isNotEmpty()) {
             if (input == "f") {
                 demonLord.name
-                printlnWithDelay("Fate decided, the name shall be ${demonLord.name} ",15)
+                printlnWithDelay("Fate decided, the name shall be ${demonLord.name} ", 15)
                 break
             } else {
                 var name = input
-                demonLord.name = name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-                printlnWithDelay("Names bear power, ${demonLord.name} is a powerful and great name.",15)
+                demonLord.name =
+                    name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+                printlnWithDelay("Names bear power, ${demonLord.name} is a powerful and great name.", 15)
                 break
             }
         }
@@ -118,14 +120,25 @@ fun villainChoice(demonLord: DemonLord) {
     println()
 }
 
-fun intro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeavenlyKing: SecondHeavenlyKing,red: String,bold: String, reset: String) {
+fun intro(
+    demonLord: DemonLord,
+    firstHeavenlyKing: FirstHeavenlyKing,
+    secondHeavenlyKing: SecondHeavenlyKing,
+    red: String,
+    bold: String,
+    reset: String
+) {
     println()
     println()
     threadsleep(4)
-    printlnWithDelay("A tremor echoed through the obsidian throne room, shaking the flickering torches that cast long, dancing shadows on the walls.",15)
+    printlnWithDelay(
+        "A tremor echoed through the obsidian throne room, shaking the flickering torches that cast long, dancing shadows on the walls.",
+        15
+    )
     villainChoice(demonLord)
-    printlnWithDelay("${demonLord.name}, $red$bold The Demonlord!$reset ",15)
-    printlnWithDelay("""
+    printlnWithDelay("${demonLord.name}, $red$bold The Demonlord!$reset ", 15)
+    printlnWithDelay(
+        """
         the crimson-skinned Demonlord with ceiling-scraping horns, slammed his massive fist on the armrest. 
         
         The tremor came from above, another human siege pounding at the gates of the Primeal Dungeon, the last bastion of their kind. 
@@ -144,27 +157,38 @@ fun intro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeaven
         
         They would fight. Win. 
         
-    """.trimIndent(),15)
+    """.trimIndent(), 15
+    )
     threadsleep(3)
-    printlnWithDelay("Or die tryin'.",15)
+    printlnWithDelay("Or die tryin'.", 15)
 
 }
 
-fun outro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeavenlyKing: SecondHeavenlyKing,red: String,bold: String, reset: String, opponents: MutableList<Hero>,companions: MutableList<Villain>) {
-    var possibilityOne = mutableListOf(demonLord,firstHeavenlyKing,secondHeavenlyKing)
-    var possibilityTwo = mutableListOf(demonLord,firstHeavenlyKing)
+fun outro(
+    demonLord: DemonLord,
+    firstHeavenlyKing: FirstHeavenlyKing,
+    secondHeavenlyKing: SecondHeavenlyKing,
+    red: String,
+    bold: String,
+    reset: String,
+    opponents: MutableList<Hero>,
+    companions: MutableList<Villain>
+) {
+    var possibilityOne = mutableListOf(demonLord, firstHeavenlyKing, secondHeavenlyKing)
+    var possibilityTwo = mutableListOf(demonLord, firstHeavenlyKing)
     var possibilityThree = mutableListOf(demonLord)
     var possibilityFour = mutableListOf(firstHeavenlyKing)
     var possibilityFive = mutableListOf(secondHeavenlyKing)
-    var possibilitySix = mutableListOf(demonLord,secondHeavenlyKing)
-    var possibilitySeven = mutableListOf(firstHeavenlyKing,secondHeavenlyKing)
+    var possibilitySix = mutableListOf(demonLord, secondHeavenlyKing)
+    var possibilitySeven = mutableListOf(firstHeavenlyKing, secondHeavenlyKing)
     println()
     println()
     threadsleep(4)
     if (opponents.isEmpty()) {
         when (companions) {
-            possibilityOne  -> {
-                printlnWithDelay("""
+            possibilityOne -> {
+                printlnWithDelay(
+                    """
                         Silence. 
                         Smoke curled from the battlefield, a final plume before dispersing. 
                         ${demonLord.name}, chest heaving, surveyed the carnage. 
@@ -175,8 +199,10 @@ fun outro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeaven
                 )
                 threadsleep(3)
             }
-            possibilityTwo ->{
-                printlnWithDelay("""
+
+            possibilityTwo -> {
+                printlnWithDelay(
+                    """
                         Silence. 
                         Smoke curled from the battlefield, a final plume before dispersing. 
                         ${demonLord.name}, chest heaving, surveyed the carnage. 
@@ -186,8 +212,10 @@ fun outro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeaven
                 )
                 threadsleep(3)
             }
-            possibilityThree ->{
-                printlnWithDelay("""
+
+            possibilityThree -> {
+                printlnWithDelay(
+                    """
                     Silence. 
                     Smoke curled from the battlefield, a final plume before dispersing. 
                     ${demonLord.name}, his eyes hollow, surveyed the carnage. 
@@ -197,8 +225,10 @@ fun outro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeaven
                 )
                 threadsleep(3)
             }
-            possibilityFour ->{
-                printlnWithDelay("""
+
+            possibilityFour -> {
+                printlnWithDelay(
+                    """
                     Silence. 
                     Smoke curled from the battlefield, a final plume before dispersing. 
                     ${firstHeavenlyKing.name}, her armor gleaming under the setting sun, surveyed the carnage. 
@@ -209,8 +239,10 @@ fun outro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeaven
                 )
                 threadsleep(3)
             }
-            possibilityFive ->{
-                printlnWithDelay("""
+
+            possibilityFive -> {
+                printlnWithDelay(
+                    """
                     Silence. 
                     Smoke curled from the battlefield, a final plume before dispersing. 
                     ${secondHeavenlyKing.name}, his storm cloud swirling with newfound power, surveyed the carnage. 
@@ -221,8 +253,10 @@ fun outro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeaven
                 )
                 threadsleep(3)
             }
-            possibilitySix ->{
-                printlnWithDelay("""
+
+            possibilitySix -> {
+                printlnWithDelay(
+                    """
                     Silence. 
                     Smoke curled from the battlefield, a final plume before dispersing. 
                     ${demonLord.name}, his crimson skin streaked with ash, surveyed the carnage. 
@@ -233,8 +267,10 @@ fun outro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeaven
                 )
                 threadsleep(3)
             }
-            possibilitySeven ->{
-                printlnWithDelay("""
+
+            possibilitySeven -> {
+                printlnWithDelay(
+                    """
                     Silence. 
                     Smoke curled from the battlefield, a final plume before dispersing. 
                     ${firstHeavenlyKing.name}, her eyes burning with determination, surveyed the carnage. 
@@ -250,7 +286,8 @@ fun outro(demonLord: DemonLord,firstHeavenlyKing: FirstHeavenlyKing,secondHeaven
 
         }
     } else {
-        printlnWithDelay("""
+        printlnWithDelay(
+            """
                     A blinding flash. Silence. 
                     Dust settled on the shattered throne. 
                     ${demonLord.name} lay still, an extinguished ember. 

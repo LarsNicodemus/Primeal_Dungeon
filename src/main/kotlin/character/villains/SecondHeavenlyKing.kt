@@ -20,53 +20,81 @@ class SecondHeavenlyKing(name: String = randomDemonVillainNameSecond()) : Villai
             Attack Power ${roundDouble(attackPower)}
         """.trimIndent()
     }
-    override var attacks: List<String> = listOf("Void","Eternal Ice","Chaos Burst","Origins Doom")
 
-override var title: String = "Second Heavenly King"
+    override var attacks: List<String> = listOf("Void", "Eternal Ice", "Chaos Burst", "Origins Doom")
+
+    override var title: String = "Second Heavenly King"
 
     fun void(opponent: Hero) {
-        companionAttackArt(3,1)
+        companionAttackArt(3, 1)
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
-            printlnWithDelay("Second Heavenly King $name tried to use Void on ${opponent.name}, attack was blocked! No damage taken.",15)
+            printlnWithDelay(
+                "Second Heavenly King $name tried to use Void on ${opponent.name}, attack was blocked! No damage taken.",
+                15
+            )
             opponent.blockCounter++
         } else {
             super.magicAttack(opponent, attackPower)
-            printlnWithDelay("Second Heavenly King $name used Void on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
+            printlnWithDelay(
+                "Second Heavenly King $name used Void on ${opponent.name} and inflicted ${
+                    roundDouble(
+                        attackPower
+                    )
+                } damage. ${hpLeft(opponent.hp)} Health Points left.", 15
+            )
 
         }
     }
 
     fun eternalIce(companion: Villain) {
-        companionAttackArt(3,2)
+        companionAttackArt(3, 2)
         if (!block(companion))
-            printlnWithDelay("Second Heavenly King $name tried to used Eternal Ice but it failed.",15)
-        else printlnWithDelay("Second Heavenly King $name used Eternal Ice to block the next attack.",15)
+            printlnWithDelay("Second Heavenly King $name tried to used Eternal Ice but it failed.", 15)
+        else printlnWithDelay("Second Heavenly King $name used Eternal Ice to block the next attack.", 15)
 
     }
 
     fun chaosBurst(opponent: Hero) {
-        companionAttackArt(3,3)
+        companionAttackArt(3, 3)
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
-            printlnWithDelay("Second Heavenly King $name tried to use Chaos Burst on ${opponent.name}, attack was blocked! No damage taken.",15)
+            printlnWithDelay(
+                "Second Heavenly King $name tried to use Chaos Burst on ${opponent.name}, attack was blocked! No damage taken.",
+                15
+            )
             opponent.blockCounter++
         } else {
             super.magicAttack(opponent, attackPower)
-            printlnWithDelay("Second Heavenly King $name used Chaos Burst on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
+            printlnWithDelay(
+                "Second Heavenly King $name used Chaos Burst on ${opponent.name} and inflicted ${
+                    roundDouble(
+                        attackPower
+                    )
+                } damage. ${hpLeft(opponent.hp)} Health Points left.", 15
+            )
 
         }
     }
 
     fun originsDoom(opponent: Hero) {
-        companionAttackArt(3,4)
+        companionAttackArt(3, 4)
         attackPower = actualAttackPower(attackPower, attackFactor)
         if (opponent.shield > 0) {
-            printlnWithDelay("Second Heavenly King $name tried to use Origins Doom on ${opponent.name}, attack was blocked! No damage taken.",15)
+            printlnWithDelay(
+                "Second Heavenly King $name tried to use Origins Doom on ${opponent.name}, attack was blocked! No damage taken.",
+                15
+            )
             opponent.blockCounter++
         } else {
             super.swordAttack(opponent, attackPower)
-            printlnWithDelay("Second Heavenly King $name used Origins Doom on ${opponent.name} and inflicted ${roundDouble(attackPower)} damage. ${hpLeft(opponent.hp)} Health Points left.",15)
+            printlnWithDelay(
+                "Second Heavenly King $name used Origins Doom on ${opponent.name} and inflicted ${
+                    roundDouble(
+                        attackPower
+                    )
+                } damage. ${hpLeft(opponent.hp)} Health Points left.", 15
+            )
 
         }
     }

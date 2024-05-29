@@ -13,9 +13,9 @@ fun playSound(audioPath: String, volume: Float, durationMills: Long): Clip {
     val audioInput: AudioInputStream = AudioSystem.getAudioInputStream(audio)
     val clip: Clip = AudioSystem.getClip()
     clip.open(audioInput)
-    if (clip.isControlSupported(FloatControl.Type.MASTER_GAIN)){
+    if (clip.isControlSupported(FloatControl.Type.MASTER_GAIN)) {
         val lautstärke: FloatControl = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
-        lautstärke.value = lautstärke.minimum+(volume*(lautstärke.maximum-lautstärke.minimum))
+        lautstärke.value = lautstärke.minimum + (volume * (lautstärke.maximum - lautstärke.minimum))
         clip.start()
     } else {
         println("Master gain control wird nicht unterstuetzt, wir konnten die Lautstärke so nicht beeinflussen...")
@@ -31,10 +31,12 @@ fun playSound(audioPath: String, volume: Float, durationMills: Long): Clip {
     }, durationMills)
     return clip
 }
-fun endSound(clip: Clip){
+
+fun endSound(clip: Clip) {
     clip.stop()
     clip.close()
 }
-fun startSound(clip: Clip){
+
+fun startSound(clip: Clip) {
     clip.start()
 }

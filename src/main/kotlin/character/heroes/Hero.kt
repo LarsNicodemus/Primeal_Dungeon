@@ -22,8 +22,8 @@ open class Hero(name: String = randomSaviorName()) : Character(name) {
     init {
         this.hp = randomDouble(140.0, 200.0)
         this.maxHP = hp
-        this.attackPower = randomDouble(30.0,40.0)
-        this.healPower = randomDouble(30.0,40.0)
+        this.attackPower = randomDouble(30.0, 40.0)
+        this.healPower = randomDouble(30.0, 40.0)
         this.shield = 0
         this.attackFactor = 1.0
     }
@@ -38,18 +38,18 @@ open class Hero(name: String = randomSaviorName()) : Character(name) {
 
     fun heal(companion: Hero, healPower: Double) {
         companion.hp += healPower
-        if (companion.hp>companion.maxHP) {
+        if (companion.hp > companion.maxHP) {
             companion.hp = companion.maxHP
         }
     }
 
     fun block(companion: Hero): Boolean {
-        var blockChance: Double = randomDouble(0.7,1.0)
-        var randomChance = randomDouble(0.0,1.0)
+        var blockChance: Double = randomDouble(0.7, 1.0)
+        var randomChance = randomDouble(0.0, 1.0)
         return if (randomChance <= blockChance) {
-            if (blockCounter==0){
-            companion.applyBuff(Buff(2,1.0,1))
-            true
+            if (blockCounter == 0) {
+                companion.applyBuff(Buff(2, 1.0, 1))
+                true
             } else {
                 companion.shield = 0
                 false
@@ -60,14 +60,14 @@ open class Hero(name: String = randomSaviorName()) : Character(name) {
         }
     }
 
-    fun applycurse(opponent: Villain){
+    fun applycurse(opponent: Villain) {
         var curseActive = true
-            opponent.hp -= (opponent.maxHP * 0.1)
-            println("${roundDouble(opponent.maxHP*0.1)} damage taken, ${roundDouble(opponent.hp)} health points left.")
-            if (opponent.hp<(opponent.maxHP*0.2)){
-                curseActive = false
-                cursedVillain = null
-                println("Curse on ${opponent.name} is liftet.")
+        opponent.hp -= (opponent.maxHP * 0.1)
+        println("${roundDouble(opponent.maxHP * 0.1)} damage taken, ${roundDouble(opponent.hp)} health points left.")
+        if (opponent.hp < (opponent.maxHP * 0.2)) {
+            curseActive = false
+            cursedVillain = null
+            println("Curse on ${opponent.name} is liftet.")
         }
     }
 

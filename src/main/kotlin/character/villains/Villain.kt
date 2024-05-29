@@ -24,13 +24,14 @@ open class Villain(name: String) : Character(name) {
 
 
     init {
-        this.hp = randomDouble(70.0,100.0)
+        this.hp = randomDouble(70.0, 100.0)
         this.maxHP = hp
-        this.attackPower = randomDouble(30.0,40.0)
-        this.healPower = randomDouble(30.0,40.0)
+        this.attackPower = randomDouble(30.0, 40.0)
+        this.healPower = randomDouble(30.0, 40.0)
         this.shield = 0
         this.attackFactor = 1.0
     }
+
     open var attacks = listOf("")
     open var title = ""
 
@@ -62,7 +63,7 @@ open class Villain(name: String) : Character(name) {
 
     open fun heal(healPower: Double, companion: Villain) {
         companion.hp += healPower
-        if (companion.hp>companion.maxHP) {
+        if (companion.hp > companion.maxHP) {
             companion.hp = companion.maxHP
         }
     }
@@ -74,10 +75,10 @@ open class Villain(name: String) : Character(name) {
      * */
 
     fun block(villain: Villain): Boolean {
-        var blockChance: Double = randomDouble(0.7,1.0)
-        var randomChance = randomDouble(0.7,1.0)
+        var blockChance: Double = randomDouble(0.7, 1.0)
+        var randomChance = randomDouble(0.7, 1.0)
         return if (randomChance <= blockChance) {
-            villain.applyBuff(Buff(2,1.0,1))
+            villain.applyBuff(Buff(2, 1.0, 1))
             true
         } else {
             villain.shield = 0

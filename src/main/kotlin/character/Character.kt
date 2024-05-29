@@ -69,24 +69,24 @@ open class Character(var name: String, var hp: Double = 0.0) {
     fun applyBuff(buff: Buff) {
         this.buff = buff
         this.attackFactor *= buff.attackFactorModifier
-        this.shield +=buff.shieldValue
+        this.shield += buff.shieldValue
     }
 
 
     fun decrementBuffRounds() {
         this.buff?.let {
             it.duration--
-            if (it.duration<=0){
+            if (it.duration <= 0) {
                 removeBuff()
             }
         }
     }
 
 
-fun removeBuff(){
-    buff = null
-    attackFactor = 1.0
-    shield = 0
-    println("$name's Buff has been liftet!")
-}
+    fun removeBuff() {
+        buff = null
+        attackFactor = 1.0
+        shield = 0
+        println("$name's Buff has been liftet!")
+    }
 }

@@ -26,10 +26,8 @@ fun fightRound(
     while (companions.isNotEmpty() && opponents.isNotEmpty()) {
         roundStart(round)
         villainsMove2(companions, opponents, itemBox, deadOpponents)
-        dot(anyVillainIsCursed(companions), companions)
         heroMove2(companions, opponents, deadCompanions, deadOpponents)
         roundEnd(round, companions, opponents)
-        anyVillainIsCursed(companions)
         round++
     }
 }
@@ -202,8 +200,15 @@ fun heroMove2(
     deadCompanions: MutableList<Villain>,
     deadOpponents: MutableList<Hero>
 ) {
+    println()
+    println()
+    threadsleep(5)
     val opponentsCopy: MutableList<Hero> = opponents.toMutableList()
     val deadSidekicks: List<Hero> = opponents.filter { sidekick -> deadOpponents.contains(sidekick) }
+    dot(anyVillainIsCursed(companions), companions, opponents)
+    println()
+    threadsleep(2)
+    println()
     if (companions.isNotEmpty() && opponentsCopy.isNotEmpty() && deadSidekicks.isEmpty()) {
         val chosenOpponent: Hero = opponentsCopy.random()
         performHeroAction(opponents, companions, deadOpponents, deadCompanions)
@@ -328,12 +333,13 @@ fun anyVillainIsCursed(companions: MutableList<Villain>): Boolean {
     return false
 }
 
-fun dot(anyVillainsCursed: Boolean, companions: MutableList<Villain>) {
+fun dot(anyVillainsCursed: Boolean, companions: MutableList<Villain>,opponents: MutableList<Hero>) {
     if (anyVillainsCursed) {
         companions.forEach {
             if (it.isCursed) {
-                if (it.hp <= it.maxHP * 0.2) {
+                if (it.hp < (it.maxHP * 0.2) || opponents.isEmpty()) {
                     it.isCursed = false
+                    it.cursedVillain = null
                     println(
                         "Sacred Command on ${it.name} is no longer active. ${
                             roundDouble(

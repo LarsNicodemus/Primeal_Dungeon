@@ -13,7 +13,7 @@ import utils.*
 class Sidekick(name: String = randomHeroineName()) : Hero(name) {
 
     init {
-        this.hp = randomDouble(70.0, 100.0)
+        this.hp = randomDouble(80.0, 100.0)
         this.maxHP = hp
     }
 

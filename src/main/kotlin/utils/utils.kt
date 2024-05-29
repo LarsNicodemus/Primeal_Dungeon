@@ -12,6 +12,12 @@ import java.util.*
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
+
+/*
+##########################################
+##############Rounding Utils##############
+##########################################
+**/
 /**A function that rounds a Double to two decimal places.
  * @author Marianne Leal
  * @author respectively the internet.
@@ -25,6 +31,11 @@ fun roundDouble2(input: Double): Double {
     return ((input * 100).roundToInt()) / 100.0
 }
 
+/*
+############################################
+##############Global Variables##############
+############################################
+**/
 val red = "\u001B[31m"
 val green = "\u001B[32m"
 val yellow = "\u001B[33m"
@@ -36,12 +47,16 @@ val underline = "\u001B[4m"
 val backgroundYellow = "\u001B[43m"
 val reset = "\u001B[0m"
 
-val gameSound =
-    "src/main/kotlin/audio/Miracle of Sound - Valhalla Calling - Karaoke Instrumental Lyrics - ObsKure.wav"
-val outroSound = "src/main/kotlin/audio/Fairy Tail Theme End.wav"
+val gameSound = "src/main/kotlin/audio/Viking Sound.wav"
+val outroSound = "src/main/kotlin/audio/Ending Theme.wav"
 val doorkickSound = "src/main/kotlin/audio/Door Kick.wav"
-val introSound = "src/main/kotlin/audio/Fairy Tail Theme (Violin Cover) Taylor Davis.wav"
+val introSound = "src/main/kotlin/audio/Opening Theme.wav"
 
+/*
+#######################################
+#############Random Utils##############
+#######################################
+**/
 /**A function that returns a random Double between min and max.
  * @param min a Double standing for the min. possible return of the Double.
  * @param max a Double standing for the max. possible return of the Double.
@@ -169,6 +184,11 @@ fun randomDemonVillainNameSecond(): String {
     ).random()
 }
 
+/*
+#######################################
+##############Delay Utils##############
+#######################################
+**/
 fun threadsleep(version: Int) {
 //    var stout = st
 //    Thread.sleep(stout)
@@ -203,6 +223,11 @@ fun printWithDelay(string: String, delayMillis: Long) {
     }
 }
 
+/*
+#######################################
+################HP Utils###############
+#######################################
+**/
 fun lowestHPCompanions(companions: List<Villain>): Villain {
     var villainWithLowestHP: Villain? = null
     var lowestHP = Double.MAX_VALUE
@@ -233,6 +258,11 @@ fun lowestHPOpponents(opponents: List<Hero>): Hero {
     return opponentWithLowestHP!!
 }
 
+/*
+#############################################
+##############Intro Outro Utils##############
+#############################################
+**/
 fun intro(
     demonLord: DemonLord,
     firstHeavenlyKing: FirstHeavenlyKing,
@@ -408,6 +438,11 @@ fun outro(
     }
 }
 
+/*
+########################################
+##############Choice Utils##############
+########################################
+**/
 fun itemChoice(itemBox: ItemBox) {
     itemBox.addItem(itemBox.itemBox)
 }
@@ -420,6 +455,12 @@ fun colorChoice(character: Character, red: String, green: String, yellow: String
         else -> yellow
     }
 }
+
+/*
+#######################################
+##############Round Utils##############
+#######################################
+**/
 
 fun introNameChoice(demonLord: DemonLord) {
     println()

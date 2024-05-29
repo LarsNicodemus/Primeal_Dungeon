@@ -20,10 +20,10 @@ import utils.roundDouble
  * */
 open class Hero(name: String = randomSaviorName()) : Character(name) {
     init {
-        this.hp = randomDouble(140.0, 200.0)
+        this.hp = randomDouble(200.0, 220.0)
         this.maxHP = hp
-        this.attackPower = randomDouble(30.0, 40.0)
-        this.healPower = randomDouble(30.0, 40.0)
+        this.attackPower = randomDouble(35.0, 40.0)
+        this.healPower = randomDouble(40.0, 45.0)
         this.shield = 0
         this.attackFactor = 1.0
     }
@@ -61,14 +61,8 @@ open class Hero(name: String = randomSaviorName()) : Character(name) {
     }
 
     fun applycurse(opponent: Villain) {
-        var curseActive = true
         opponent.hp -= (opponent.maxHP * 0.1)
         println("${roundDouble(opponent.maxHP * 0.1)} damage taken, ${roundDouble(opponent.hp)} health points left.")
-        if (opponent.hp < (opponent.maxHP * 0.2)) {
-            curseActive = false
-            cursedVillain = null
-            println("Curse on ${opponent.name} is liftet.")
-        }
     }
 
 }

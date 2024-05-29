@@ -49,8 +49,8 @@ open class Character(var name: String, var hp: Double = 0.0) {
     open fun actualAttackPower(
         attackPower: Double,
         attackFactor: Double,
-        minValue: Double = 0.8,
-        maxValue: Double = 1.2
+        minValue: Double = 0.9,
+        maxValue: Double = 1.1
     ): Double {
         this.attackPower *= (nextRandomDouble(minValue, maxValue)) * attackFactor
         return this.attackPower

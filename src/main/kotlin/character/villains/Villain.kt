@@ -24,10 +24,10 @@ open class Villain(name: String) : Character(name) {
 
 
     init {
-        this.hp = randomDouble(70.0, 100.0)
+        this.hp = randomDouble(80.0, 100.0)
         this.maxHP = hp
-        this.attackPower = randomDouble(30.0, 40.0)
-        this.healPower = randomDouble(30.0, 40.0)
+        this.attackPower = randomDouble(20.0, 25.0)
+        this.healPower = randomDouble(30.0, 35.0)
         this.shield = 0
         this.attackFactor = 1.0
     }

@@ -44,10 +44,10 @@ class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Item> = mu
         }
         threadsleep(1)
         println()
-        println("Your Item Box contains: ")
-        val groupedItemBox = itemBox.groupingBy { it }.eachCount().entries
-            .map { "[${it.key.name}]: ${it.value}" }
-        println(groupedItemBox)
+        printlnWithDelay("Your Item Box contains: ", 15)
+        itemBox.groupingBy { it.name }
+            .eachCount()
+            .forEach { (name, count) -> printlnWithDelay("${count} x [$name]", 15) }
         println()
         threadsleep(1)
     }
@@ -65,6 +65,7 @@ class ItemBox(var name: String = "Item Box", var itemBox: MutableList<Item> = mu
             println("[${index + 1}] -> ${itemBox[index].name}")
             threadsleep(5)
         }
+
         println()
         while (true) {
             print("Please enter the index of the desired item (q to quit): ")

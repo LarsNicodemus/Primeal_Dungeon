@@ -35,3 +35,6 @@ fun endSound(clip: Clip){
     clip.stop()
     clip.close()
 }
+fun startSound(clip: Clip){
+    clip.start()
+}

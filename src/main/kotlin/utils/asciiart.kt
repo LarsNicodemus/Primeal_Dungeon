@@ -26,6 +26,19 @@ fun gameArt(choice: Int, cyan: String, bold: String, reset: String) {
                                                      
 """.trimIndent()
         )
+
+        3 -> println("""
+            
+            
+       _  _                 ___                        
+  ___ | \| | ___ __ __ __  / __| __ _  _ __   ___  ___ 
+ |___|| .` |/ -_)\ V  V / | (_ |/ _` || '  \ / -_)|___|
+      |_|\_|\___| \_/\_/   \___|\__,_||_|_|_|\___|     
+                                                       
+                                                       
+                                                       
+                                                       
+""".trimIndent())
     }
 }
 

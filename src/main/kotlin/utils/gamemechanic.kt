@@ -27,8 +27,9 @@ fun game() {
     val underline = "\u001B[4m"
     val backgroundYellow = "\u001B[43m"
     val reset = "\u001B[0m"
-    val introOutro = "src/main/kotlin/audio/Miracle of Sound - Valhalla Calling - Karaoke Instrumental Lyrics - ObsKure.wav"
-    val gameMusic = "src/main/kotlin/audio/Miracle of Sound - Valhalla Calling - Karaoke Instrumental Lyrics - ObsKure.wav"
+    val introOutroSound = "src/main/kotlin/audio/Miracle of Sound - Valhalla Calling - Karaoke Instrumental Lyrics - ObsKure.wav"
+    val doorkickSound = "src/main/kotlin/audio/Door Kick.wav"
+    val gameMusicSound = "src/main/kotlin/audio/Fairy Tail Theme (Violin Cover) Taylor Davis.wav"
 
     var index = 1
     var itemBox: ItemBox = ItemBox()
@@ -38,22 +39,26 @@ fun game() {
     val companions = mutableListOf(demonLord,firstHeavenlyKing,secondHeavenlyKing)
     var savior = Savior()
     val opponents: MutableList<Hero> = mutableListOf(savior)
-    val introOutroSound = playSound(introOutro,0.55f,3000000)
 
+    val intro = playSound(gameMusicSound,0.45f,3000000)
     intro(demonLord,firstHeavenlyKing,secondHeavenlyKing, red, bold, reset)
     itemChoice(itemBox)
     threadsleep(12)
-    endSound(introOutroSound)
+    playSound(doorkickSound,0.45f,1200)
+    endSound(intro)
+    val gameMusic = playSound(introOutroSound,0.30f,3000000)
     gameArt(1,cyan,bold,reset)
     fightRound(companions, opponents, itemBox,reset,red, green, yellow, bold)
     threadsleep(2)
+    endSound(gameMusic)
+    val outro = playSound(gameMusicSound,0.45f,3000000)
     println()
     println()
     threadsleep(2)
     gameArt(2,cyan,bold,reset)
     println()
     println()
-
+    endSound(outro)
 }
 
 fun itemChoice(itemBox: ItemBox) {

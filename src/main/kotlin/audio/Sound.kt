@@ -15,7 +15,7 @@ fun playSound(audioPath: String, volume: Float, durationMills: Long): Clip {
     clip.open(audioInput)
     if (clip.isControlSupported(FloatControl.Type.MASTER_GAIN)){
         val lautstärke: FloatControl = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
-        lautstärke.value = lautstärke.minimum+(0.55f*(lautstärke.maximum-lautstärke.minimum))
+        lautstärke.value = lautstärke.minimum+(volume*(lautstärke.maximum-lautstärke.minimum))
         clip.start()
     } else {
         println("Master gain control wird nicht unterstuetzt, wir konnten die Lautstärke so nicht beeinflussen...")

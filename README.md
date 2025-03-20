@@ -1,125 +1,57 @@
-<h1 align="center">Grundlagen der Programmierung</h1>
-<h3 align="center">Abschlussaufgabe RPG</h3>
-<br>
+# Primeal Dungeon
 
-<p align="center">
-  <img src="img/img1.png" width="50%">
-</p>
+Primeal Dungeon ist ein rundenbasiertes Rollenspiel (RPG), bei dem die Spieler die Rolle des Dämonenkönigs und seiner Offiziere übernehmen. Es bietet eine unkonventionelle Perspektive auf die Spielwelt, indem es die Geschichte aus der Sicht der Antagonisten erzählt.
 
-> **Hinweis**: Lies die Aufgabe aufmerksam. Versuche vor Beginn, die Aufgabe zu strukturieren. Notiere dir skizzenartig/in einem Klassendiagramm, was dein Programm braucht und setze deinen Plan Schritt für Schritt um.
+![Primeal_Dungeon](https://raw.githubusercontent.com/LarsNicodemus/Primeal_Dungeon/refs/heads/main/src/main/kotlin/utils/pic1.webp)
 
+## Inhaltsverzeichnis
+- [Beschreibung](#beschreibung)
+- [Technologien](#technologien)
+- [Installation](#installation)
+- [Nutzung](#nutzung)
+- [Lizenz](#lizenz)
 
-## 1. Szenario
+## Beschreibung
+In Primeal Dungeon übernimmt der Spieler die Kontrolle über den Dämonenkönig und seine Offiziere, um gegen die Helden der Spielwelt zu kämpfen. Das Spiel bietet eine unkonventionelle Perspektive und ermöglicht es den Spielern, die Geschichte aus der Sicht der Antagonisten zu erleben.
 
-Du bist neuerdings App-Developer und bekommst deinen ersten Auftrag: Du sollst das neue Videospiel „Golden Syntax“ mitentwickeln. Bei diesem Spiel handelt es sich um ein RPG (Rollenspiel) mit Kämpfen gegen NPCs (computergesteuerte Charaktere). In deinem Developer-Team wird dir die Aufgabe zugeteilt, das **rundenbasierte Kampfsystem** zu entwickeln. Danach sollst du dem Team dein Kampfsystem anhand eines Beispielkampfes gegen den Endgegner vorstellen.
+### Spielmechanik
+- **Rundenbasiertes Kampfsystem**: Die Spieler und ihre Gegner führen abwechselnd Aktionen aus.
+- **Charaktere**: Der Spieler wählt in jeder Runde einen spielbaren Charakter aus, der vier verschiedene Angriffe ausführen kann.
+- **Itembox**: Ein Charakter pro Runde kann auf die Itembox zugreifen, die entweder Stärketränke oder Heiltränke enthält.
+- **Gegner**: Die Helden und ihre Helfer greifen nach den Aktionen der spielbaren Charaktere an.
+- **Zyklus**: Der Kampf wiederholt sich, bis eine Seite keine Charaktere mehr hat.
 
+### Story-Fokus
+- **Unkonventionelle Perspektive**: Die Spieler erleben die Geschichte aus der Sicht des Dämonenkönigs und seiner Offiziere.
+- **Interaktionen**: Der Spieler kann dem Hauptcharakter einen Namen geben oder einen zufälligen Namen generieren lassen und auswählen, welche Tränke in die Itembox hinzugefügt werden sollen.
 
-## 2. Details
+## Technologien
+- **Programmiersprache**: Kotlin
+- **Entwicklungsumgebung**: IntelliJ IDEA
 
-Die Vorlage ist ein leeres Projekt in IntelliJ. Erstelle alle nötigen Dateien: Es gibt eine main.kt, in der das Spiel abläuft. Alle Klassen erhalten <span style="text-decoration:underline;">jeweils</span> eine eigene Datei. Funktionen kannst du <span style="text-decoration:underline;">zusammen</span> in eine Datei verlagern.
+## Installation
+Um das Spiel in IntelliJ IDEA auszuführen, gehe wie folgt vor:
 
+1. Klone das Repository:
+   ```bash
+   git clone https://github.com/LarsNicodemus/Primeal_Dungeon.git
+   ```
+2. Öffne das Projekt in IntelliJ IDEA.
+3. Stelle sicher, dass Kotlin installiert und konfiguriert ist.
+4. Führe die `main.kt` Datei aus, um das Spiel zu starten.
 
-### Informationen zu den Helden:
+## Nutzung
+1. Starte das Spiel, indem du die `main.kt` Datei in IntelliJ IDEA ausführst.
+2. Befolge die Anweisungen in der Konsole, um den Hauptcharakter zu benennen und die Tränke auszuwählen.
+3. Wähle in jeder Runde einen Charakter aus und führe eine Aktion aus oder greife auf die Itembox zu.
+4. Der Kampf wiederholt sich, bis eine Seite keine Charaktere mehr hat.
+5. Nach dem Spielende hast du die Möglichkeit, ein neues Spiel zu starten oder das Spiel zu beenden.
 
+## Lizenz
+Dieses Projekt steht unter der [MIT-Lizenz](LICENSE).
 
-
-* Es gibt ein Team von drei Helden, die gemeinsam als Team in dem Kampf antreten sollen. 
-* Die Helden können zum Beispiel _Magier_, _Krieger_ oder Ähnliches sein. Alle Arten von Helden sollen eine eigene Klasse erhalten, <span style="text-decoration:underline;">die von einer allgemeinen Klasse _Held_ erben</span>.
-* Sie alle sollen unterschiedliche Eigenschaften bzw. Werte haben:  \
-Einen Namen, HP (Gesundheitspunkte) und vier Aktionen
-* Beispiele für Aktionen:  \
-Angriffe mit unterschiedlichen Schadenswerten, Heilungsmöglichkeiten, oder Schutzzauber, die einen Helden einmalig vor dem nächsten Angriff schützen.
-* Die Heldengruppe hat einen gemeinsamen Beutel. Dieser kann einmalig pro Runde von einer der Helden genutzt werden. Derjenige Held, der den Beutel nutzt, verzichtet also auf seine Aktion.  \
-In dem Beutel sind Gegenstände, die einen direkten Effekt auswirken, z.B.: 
-    * 3x Heiltrank: heilt einen frei wählbaren Helden um die Hälfte seiner Lebenspunkte
-    * 1x Vitamine: erhöhen den Schadenswert für einen Helden dauerhaft um 10%.
-
-
-### Informationen zum Endgegner:
-
-
-
-* Dieser kann beispielsweise ein Dunkler Magier oder ein Drache sein. 
-* Auch er hat gewisse Eigenschaften: (Hohe) HP und sechs mögliche Aktionen.
-* Besonderheiten zu seinen Aktionen:
-    * Flächenschaden: diese Aktion **trifft alle Helden gleichzeitig** und fügt allen Helden Schaden zu. 
-    * Fluch/Gift: soll maximal einen der Helden betreffen und von diesem Helden solange **die HP um 10% pro Runde verringern, bis die HP des entsprechenden Helden weniger als 20% seiner gesamten HP beträgt**. Solange ein Held verflucht ist, kann kein weiterer Held verflucht werden. 
-    * Eine andere Aktion bewirkt, dass ein **Unterboss** beschworen wird. Auch dieser hat eigene (geringere) HP und vier mögliche Aktionen, um den Endgegner im Kampf zu unterstützen. Wird der Unterboss beschworen, muss auch dieser von den Helden besiegt werden, um zu gewinnen.  \
-Diese Aktion kann jedoch **maximal einmal pro Kampf** ausgeführt werden!
-      - leichte Variante: der Unterboss taucht automatisch auf, sobald die HP des Endgegners auf unter 50% fallen
-      - schwerere Variante: der Endgegner kann den Unterboss jederzeit rufen
-* Sowohl der Endgegner als auch der Unterboss sollen eine eigene Klasse erhalten, <span style="text-decoration:underline;">die von einer allgemeinen Klasse _Gegner_ erben</span>.
-  
-* Du brauchst keine Logik schreiben, um auszuwählen, welche Attacken der Endgegner/Unterboss ausführen. Das kann **zufällig** passieren.
-
-
-### Informationen zum Kampfsystem:
-
-
-* Es ist rundenbasiert. D.h. die einzelnen Mitglieder deines Heldenteams führen nacheinander eine Aktion aus und danach führt der Endgegner eine zufällige Aktion aus. Dies läuft so lange, bis die HP <span style="text-decoration:underline;">aller</span> einzelnen Teammitglieder **oder** des Endgegner(-teams) auf 0 sinken.
-* Nachdem sowohl jeder Held als auch jeder Gegner jeweils eine Aktionen durchgeführt hat, endet die Runde und der Kampf geht in die nächste Runde. 
-* Die Aktionen des Gegners werden <span style="text-decoration:underline;">völlig zufällig</span> aus seinem Pool an möglichen Aktionen ausgewählt.
-* Die Aktionen der Helden werden mit einer Eingabe auf der Konsole ausgewählt. \
-Das bedeutet, du wirst in der Konsole jede Runde gefragt, welche Aktion du für jeden deiner Helden durchführen möchtest.
-* In der Konsole wird außerdem jede Runde geschrieben, welche Aktion der Gegner ausgeführt hat und ggf. wie viele HP die betroffenen Helden / Gegner noch übrig haben. Ziel ist hierbei vor allem, dass man als Nutzer des Programms erfährt, was gerade im Kampf passiert.
-* denk also an sinnvolle `println()` sodass der Spieler immer weiß, was gerade los ist
-
-
-## 3. Optionale, freiwillige Ergänzungen und Anmerkungen
-
-Selbstverständlich darfst du dein Spiel mit deinen eigenen Ideen weiter ausschmücken.  \
-Einige Ideen zur Erweiterung:
-
-
-* Du kannst kritische Treffer implementieren.  \
-D.h. dass Angriffe mit einer Wahrscheinlichkeit von 5% doppelten Schaden verursachen.
-* Wenn du magst, kannst du auch sogenannte „Stats“ bei deinen Helden und Gegnern einfügen. Stats könnten z.B. ein Grundschadenswert, Schnelligkeit (= Reihenfolge, in der die Helden und Gegner ihre Aktionen durchführen), Rüstungswert und ähnliches sein. Der Verteidigungswert könnte z.B. einen Angriff auf den betroffenen Charakter um seinen Wert verringern.
-* Noch komplexer wird es, wenn du unterschiedliche Stärken und Schwächen einbinden möchtest. So könnten z.B. deine Helden und Gegner bestimmten Elementartypen angehören. Wasserzauber könnten zum Beispiel gegen Feuertypen grundsätzlich mehr Schaden verursachen – andersherum würde Feuer gegen Wasser nur einen verringerten Schaden verursachen.
-
-## Beispiel-Konsolenausgabe
-```
-######## Runde 5 ########
-Magier hat noch 100 HP
-Krieger hat noch 50 HP
 ---
-Endgegner hat noch 110 HP
-Unterboss hat noch 20 HP
----
-Magier greift an! Welche Aktion soll er ausführen?
-[1] Feuerball
-[2] Eisattacke
-[3] Donnerschlag
-[4] Heilung
-[5] Beutel nutzen
-1
-Magier greift Endgegner mit Feuerball an und verursacht 20 Schaden!
-Endgegner hat noch 90 HP!
----
-Krieger greift an! Welche Aktion soll er ausführen?
-[1] Schwertsturm
-[2] Schildschlag
-[3] Tackle
-[4] Kampfschrei
-[5] Beutel nutzen
-5
-Im Beutel sind noch 2 Heiltränke und 1 Booster. Was soll genutzt werden?
-[1] Heiltrank
-[2] Booster
-2
-Krieger nutzt Booster! Seine Angriffe sind jetzt alle 10% stärker!
----
-Endgegner greift mit Feueratem an und trifft alle Helden mit 30 HP Schaden!
-Magier hat noch 70 HP
-Krieger hat noch 20 HP
-Unterboss greift Krieger mit Axt an und verursacht 30 Schaden!
-Krieger hat noch -10 HP!
-Krieger ist besiegt und fällt raus!
-######## Runde 6 ########
-Magier hat noch 70 HP
----
-Endgegner hat noch 90 HP
-Unterboss hat noch 20 HP
----
-Magier greift an! Welche Aktion soll er ausführen?
-etc
-```
+
+Primeal Dungeon ist ein Abschlussprojekt bei Syntax. Es wurden keine weiteren Mitwirkenden hinzugefügt.
+
+Viel Spaß beim Spielen von Primeal Dungeon!
